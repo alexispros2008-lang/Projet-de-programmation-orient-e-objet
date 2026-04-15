@@ -132,6 +132,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mesFonctions.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Snowball.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena.h" />
@@ -140,6 +141,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="mesFonctions.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Snowball.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
