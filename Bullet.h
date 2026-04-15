@@ -1,13 +1,13 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 class Bullet
 {
 	protected:
-		int _positionBulletX;
-		int _positionBulletY;
+		sf::Vector2 <int> _positionBullet;
 		int _bulletSpeed;
 	public:
 		Bullet();
-		Bullet(int positionBulletX, int positionBulletY, int bulletSpeed);
+		Bullet(sf::Vector2 <int> positionBullet, int bulletSpeed);
 		~Bullet();
 };
 

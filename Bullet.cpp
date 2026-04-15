@@ -2,21 +2,21 @@
 
 Bullet::Bullet()
 {
-	_positionBulletX = 0;
-	_positionBulletY = 0;
+	_positionBullet.x = 0;
+	_positionBullet.y = 0;
 	_bulletSpeed = 0;
 }
 
-Bullet::Bullet(int positionBulletX, int positionBulletY, int bulletSpeed)
+Bullet::Bullet(sf::Vector2 <int> positionBullet, int bulletSpeed)
 {
-	_positionBulletX = positionBulletX;
-	_positionBulletY = positionBulletY;
+	_positionBullet.x = positionBullet.x;
+	_positionBullet.y = positionBullet.y;
 	_bulletSpeed = bulletSpeed;
 }
 
 Bullet::~Bullet()
 {
-	_positionBulletX = 0;
-	_positionBulletY = 0;
+	_positionBullet.x = 0;
+	_positionBullet.y = 0;
 	_bulletSpeed = 0;
 }
