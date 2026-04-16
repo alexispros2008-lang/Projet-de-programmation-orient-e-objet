@@ -11,14 +11,15 @@ enum Direction {
 class Bullet
 {
 	protected:
-		sf::Vector2 <int> _positionBullet;
-		sf::Vector2 <int> _bulletSize;
+		sf::Vector2 <float> _positionBullet;
 		int _bulletSpeed;
 		int _damageAmount;
 		Direction _direction;
 	public:
 		Bullet();
-		Bullet(sf::Vector2 <int> positionBullet, sf::Vector2 <int> bulletSize, int bulletSpeed, int damageAmount, Direction direction);
+		Bullet(sf::Vector2 <float> positionBullet, int bulletSpeed, int damageAmount, Direction direction);
 		~Bullet();
+		void createBullet(sf::Vector2 <float> positionBullet, int bulletSpeed, int damageAmount, Direction direction);
+		virtual void bulletMovement() = 0;
 };
 
