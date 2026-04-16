@@ -1,14 +1,17 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Snowball.h"
+#include "Arena.h"
+#include "mesConstantes.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML works!", sf::Style::Close);
     sf::Vector2 <int> positionTestBullet;
-    positionTestBullet.x = 0;
-    positionTestBullet.y = 0;
+    positionTestBullet.x = 50;
+    positionTestBullet.y = 50;
     Snowball s(positionTestBullet, positionTestBullet, 1, 1, NOTHING);
+    Arena arena;
 
     while (window.isOpen())
     {
@@ -20,8 +23,13 @@ int main()
         }
 
         window.clear();
-        window.display();
+
+        
+
         window.draw(s.getCircle());
+		arena.drawOutlineArena(window);
+
+        window.display();
     }
 
     return 0;

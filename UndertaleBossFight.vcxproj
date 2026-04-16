@@ -139,6 +139,7 @@
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="mesConstantes.h" />
     <ClInclude Include="mesFonctions.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Snowball.h" />
