@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Snowball.h"
+#include "Pattern.h"
 
 Game::Game()
 {
@@ -18,6 +19,7 @@ void Game::run()
     positionTestBullet.y = 100.f;
     Snowball s(positionTestBullet, 1, 1, RIGHT_DOWN, 10);
     Boss snowBoss;
+    Pattern pattern1("pattern/pattern1.txt");
 
 	_player = Player(sf::Vector2f(400, 400), sf::Vector2f(10, 10));
     _player.initSprite();
@@ -50,7 +52,9 @@ void Game::run()
         window.draw(snowBoss.getBoss());
         window.draw(_player.getPlayer());
         s.bulletMovement();
+        /*pattern1.getAllProjectile().bulletMovement();*/
         window.draw(s.getCircle());
+        window.draw(pattern1.drawPatern());
         window.display();
 
 

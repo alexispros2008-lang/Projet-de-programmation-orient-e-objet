@@ -6,8 +6,9 @@ class Pattern
 	private:
 		std::vector <Snowball> _pattern;
 	public:
-		Pattern();
-		~Pattern();
+		Pattern(std::string paternFileName);
 		void readPaternFile(std::string paternFileName);
+		sf::CircleShape drawPatern();
+		Snowball getAllProjectile();
 };
 
