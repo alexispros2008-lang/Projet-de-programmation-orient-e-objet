@@ -17,6 +17,7 @@ void Game::run()
     positionTestBullet.x = 120.f;
     positionTestBullet.y = 100.f;
     Snowball s(positionTestBullet, 1, 1, RIGHT_DOWN, 10);
+    Boss snowBoss;
 
 	_player = Player(sf::Vector2f(400, 400), sf::Vector2f(10, 10));
     _player.initSprite();
@@ -49,7 +50,7 @@ void Game::run()
         window.draw(_player.getPlayer());
         s.bulletMovement();
         window.draw(s.getCircle());
-
+        window.draw(snowBoss.getBoss());
         window.display();
 
 
