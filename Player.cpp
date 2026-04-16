@@ -17,7 +17,7 @@ Player::Player(sf::Vector2f position, sf::Vector2f size)
 	_playerHitbox.setPosition(position);
 	_playerHitbox.setSize(size);
 	_playerSpeed = 0.0f;
-	_playerHealth = 20;
+	_playerHealth = PLAYER_HP;
 }
 
 Player::~Player()
