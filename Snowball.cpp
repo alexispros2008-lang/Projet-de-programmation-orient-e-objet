@@ -21,6 +21,16 @@ const sf::CircleShape Snowball::getCircle()
 
 void Snowball::bulletMovement()
 {
+	sf::Clock clock;
+	sf::Time seconds = sf::seconds(2.f);
+	if (clock.getElapsedTime() >= sf::seconds(2.f)) {
+
+	}
+	else {
+		clock.restart();
+	}
+	do {
+	} while (clock.getElapsedTime() != seconds);
 	Sleep(_bulletSpeed);
 	_snowballCircle.setPosition(_snowballCircle.getPosition().x, _snowballCircle.getPosition().y + 2);
 }
