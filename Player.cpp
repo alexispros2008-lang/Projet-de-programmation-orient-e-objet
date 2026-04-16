@@ -33,8 +33,10 @@ Player::~Player()
 
 void Player::initSprite()
 {
-	sf::Texture playerTexture;
-	verificationTexture(playerTexture, "images/player.png");
+	static sf::Texture playerTexture; // durée de vie statique : reste valide tant que le programme tourne
+
+	// Charger la texture une seule fois
+	verificationTexture(playerTexture, "images\\player.png");
 	_player.setTexture(&playerTexture);
 	_playerHitbox.setTexture(&playerTexture);
 }
