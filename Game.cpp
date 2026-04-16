@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Snowball.h"
 
 Game::Game()
 {
@@ -12,9 +13,10 @@ Game::~Game()
 void Game::run()
 {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML works!", sf::Style::Close);
-    sf::Vector2 <int> positionTestBullet;
-    positionTestBullet.x = 50;
-    positionTestBullet.y = 50;
+    sf::Vector2 <float> positionTestBullet;
+    positionTestBullet.x = 120.f;
+    positionTestBullet.y = 100.f;
+    Snowball s(positionTestBullet, 1, 1, RIGHT_DOWN, 10);
 
 	_player = Player(sf::Vector2f(400, 400), sf::Vector2f(10, 10));
     _player.initSprite();
@@ -45,6 +47,8 @@ void Game::run()
 
         _arena.drawOutlineArena(window);
         window.draw(_player.getPlayer());
+        s.bulletMovement();
+        window.draw(s.getCircle());
 
         window.display();
 
