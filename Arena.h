@@ -6,7 +6,9 @@ class Arena
 {
 private:
 	sf::RectangleShape _arena;
-	sf::FloatRect _arenaBounds = _arena.getGlobalBounds();
+	sf::FloatRect _arenaBounds;
+	sf::RectangleShape outlineArena;
+
 public:
 	Arena();
 	~Arena();

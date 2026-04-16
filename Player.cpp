@@ -8,6 +8,7 @@ Player::Player()
 	_playerHitbox.setSize(sf::Vector2f(0, 0));
 	_playerSpeed = 0.0f;
 	_playerHealth = 0;
+	_playerBounds = _playerHitbox.getGlobalBounds();
 }
 
 Player::Player(sf::Vector2f position, sf::Vector2f size)
@@ -29,11 +30,17 @@ Player::~Player()
 	_playerSpeed = 0.0f;
 }
 
+void Player::initSprite()
+{
+
+}
+
 void Player::movePlayer(sf::Vector2f movement)
 {
 	_player.move(movement);
 	_playerHitbox.move(movement);
 	_playerBounds = _playerHitbox.getGlobalBounds();
+	_previousMovement.push_back(movement);
 }
 
 void Player::takeDamage(int dmg)

@@ -6,13 +6,17 @@
 class Game
 {
 private:
-	Player player;
-	Arena arena;
-	Boss boss;
+	Player _player;
+	Arena _arena;
+	Boss _boss;
+
+	bool _endGame;
 
 public:
 	Game();
 	~Game();
 	void run();
+
+	void checkBoundings();
 };
 
