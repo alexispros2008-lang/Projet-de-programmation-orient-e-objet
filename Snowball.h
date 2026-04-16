@@ -6,8 +6,8 @@ class Snowball : public Bullet
 		sf::CircleShape _snowballCircle;
 	public:
 		Snowball();
-		Snowball(sf::Vector2 <int> positionBullet, int bulletSpeed, int damageAmount, Direction direction);
+		Snowball(sf::Vector2 <int> positionBullet, sf::Vector2 <int> bulletSize, int bulletSpeed, int damageAmount, Direction direction);
 		~Snowball();
-		void drawBullet() override;
+		const sf::CircleShape getCircle();
 };
 
