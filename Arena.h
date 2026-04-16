@@ -12,5 +12,7 @@ public:
 	~Arena();
 	sf::FloatRect getArenaBounds() { return _arenaBounds; }
 	sf::RectangleShape getArena() { return _arena; }
+
+	void drawOutlineArena(sf::RenderWindow& window);
 };
 
