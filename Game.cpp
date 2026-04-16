@@ -12,7 +12,7 @@ Game::~Game()
 
 void Game::run()
 {
-    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML works!", sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "UndertaleBossFight", sf::Style::Close);
     sf::Vector2 <float> positionTestBullet;
     positionTestBullet.x = 120.f;
     positionTestBullet.y = 100.f;
@@ -47,10 +47,10 @@ void Game::run()
 
 
         _arena.drawOutlineArena(window);
+        window.draw(snowBoss.getBoss());
         window.draw(_player.getPlayer());
         s.bulletMovement();
         window.draw(s.getCircle());
-        window.draw(snowBoss.getBoss());
         window.display();
 
 
