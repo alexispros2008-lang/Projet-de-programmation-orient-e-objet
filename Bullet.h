@@ -19,5 +19,6 @@ class Bullet
 		Bullet();
 		Bullet(sf::Vector2 <int> positionBullet, int bulletSpeed, int damageAmount, Direction direction);
 		~Bullet();
+		virtual void drawBullet() = 0;
 };
 
