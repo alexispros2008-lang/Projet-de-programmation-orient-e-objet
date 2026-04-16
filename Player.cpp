@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "mesFonctions.h"
 
 Player::Player()
 {
@@ -32,7 +33,10 @@ Player::~Player()
 
 void Player::initSprite()
 {
-
+	sf::Texture playerTexture;
+	verificationTexture(playerTexture, "images/player.png");
+	_player.setTexture(&playerTexture);
+	_playerHitbox.setTexture(&playerTexture);
 }
 
 void Player::movePlayer(sf::Vector2f movement)

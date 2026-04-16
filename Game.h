@@ -18,5 +18,7 @@ public:
 	void run();
 
 	void checkBoundings();
+
+	void movePlayer();
 };
 

@@ -11,16 +11,83 @@ Game::~Game()
 
 void Game::run()
 {
-	while (!_endGame)
-	{
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML works!", sf::Style::Close);
+    sf::Vector2 <int> positionTestBullet;
+    positionTestBullet.x = 50;
+    positionTestBullet.y = 50;
 
-	}
+	_player = Player(sf::Vector2f(400, 400), sf::Vector2f(10, 10));
+    _player.initSprite();
+
+    window.setFramerateLimit(60);
+
+    std::vector<sf::Keyboard::Key> v_key;
+
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+
+
+        }
+
+        movePlayer();
+        checkBoundings();
+
+        
+
+        window.clear();
+
+
+
+        _arena.drawOutlineArena(window);
+        window.draw(_player.getPlayer());
+
+        window.display();
+
+
+
+        _player.getPreviousMovement().clear();
+
+
+
+    }
 }
 
 void Game::checkBoundings()
 {
-	if (_player.getPlayerBounds().intersects(_arena.getArenaBounds()))
-	{
+    if (!_player.getPlayerBounds().intersects(_arena.getArenaBounds()))
+    {
+        for (int i = 0; i < _player.getPreviousMovement().size(); i++)
+        {
+            _player.movePlayer(-_player.getPreviousMovement().at(i));
+            _player.getPreviousMovement().pop_back();
+        }
+    }
+}
 
-	}
+void Game::movePlayer()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        _player.movePlayer(sf::Vector2f(0, -PLAYER_SPEED));
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        _player.movePlayer(sf::Vector2f(-PLAYER_SPEED, 0));
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        _player.movePlayer(sf::Vector2f(0, PLAYER_SPEED));
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        _player.movePlayer(sf::Vector2f(PLAYER_SPEED, 0));
+    }
 }
