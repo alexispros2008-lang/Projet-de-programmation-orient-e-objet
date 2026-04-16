@@ -2,9 +2,13 @@
 #include <SFML/Graphics.hpp>
 enum Direction {
 	LEFT,
-	IP,
+	UP,
 	DOWN,
 	RIGHT,
+	RIGHT_UP,
+	RIGHT_DOWN,
+	LEFT_UP,
+	LEFT_DOWN,
 	NOTHING
 };
 
