@@ -1,9 +1,12 @@
 #include "Game.h"
 #include "Snowball.h"
 #include "Pattern.h"
+#include "mesFonctions.h"
 
 Game::Game()
 {
+	_player = Player(sf::Vector2f(400, 400), sf::Vector2f(20, 20));
+    _player.initSprite();
 	_endGame = false;
 }
 
@@ -20,9 +23,6 @@ void Game::run()
     Snowball s(positionTestBullet, 1, 1, RIGHT_DOWN, 10);
     Boss snowBoss;
     Pattern pattern1("pattern/pattern1.txt");
-
-	_player = Player(sf::Vector2f(400, 400), sf::Vector2f(10, 10));
-    _player.initSprite();
 
     window.setFramerateLimit(60);
 
@@ -42,6 +42,11 @@ void Game::run()
         movePlayer();
         checkBoundings();
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) //test pour take dmg
+        {
+            _player.takeDamage(1);
+        }
+
         
 
         window.clear();
@@ -55,6 +60,8 @@ void Game::run()
         /*pattern1.getAllProjectile().bulletMovement();*/
         window.draw(s.getCircle());
         window.draw(pattern1.drawPatern());
+		showHealthBar(window);
+
         window.display();
 
 
@@ -99,4 +106,30 @@ void Game::movePlayer()
     {
         _player.movePlayer(sf::Vector2f(PLAYER_SPEED, 0));
     }
+}
+
+void Game::showHealthBar(sf::RenderWindow& window)
+{
+	sf::RectangleShape healthBar;
+	sf::RectangleShape healthBarBackground;
+	healthBarBackground.setPosition(PLAYER_HEALTH_BAR_POS_X, PLAYER_HEALTH_BAR_POS_Y);
+	healthBarBackground.setSize(sf::Vector2f(PLAYER_HEALTH_BAR_WIDTH, 20));
+    healthBarBackground.setFillColor(sf::Color(sf::Color::Red));
+	window.draw(healthBarBackground);
+
+	healthBar.setPosition(PLAYER_HEALTH_BAR_POS_X, PLAYER_HEALTH_BAR_POS_Y);
+	healthBar.setSize(sf::Vector2f(200 * (_player.getPlayerHealth() / 50.0f), 20));
+	healthBar.setFillColor(sf::Color::Yellow);
+	window.draw(healthBar);
+
+    sf::Font healthBarFont;
+	verificationFont(healthBarFont, "fonts\\PixelOperator8-bold.ttf");
+	sf::Text healthBarText;
+	healthBarText.setFont(healthBarFont);
+	healthBarText.setString(std::to_string(_player.getPlayerHealth()) + " / 50");
+	healthBarText.setCharacterSize(18);
+	healthBarText.setFillColor(sf::Color::White);
+	healthBarText.setPosition(PLAYER_HEALTH_BAR_POS_X + PLAYER_HEALTH_BAR_WIDTH + 5, PLAYER_HEALTH_BAR_POS_Y);
+	window.draw(healthBarText);
+
 }

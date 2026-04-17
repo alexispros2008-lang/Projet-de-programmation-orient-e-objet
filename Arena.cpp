@@ -6,10 +6,10 @@ Arena::Arena()
 	_arena.setSize(sf::Vector2f(ARENA_WIDTH, ARENA_HEIGHT));
 	_arena.setFillColor(sf::Color::Black);
 	_arenaBounds = _arena.getGlobalBounds();
-	_arenaBounds.left += 45;
-	_arenaBounds.top += 45;
-	_arenaBounds.width -= 90;
-	_arenaBounds.height -= 90;
+	_arenaBounds.left += 15;
+	_arenaBounds.top += 15;
+	_arenaBounds.width -= 30;
+	_arenaBounds.height -= 30;
 }
 
 Arena::~Arena()

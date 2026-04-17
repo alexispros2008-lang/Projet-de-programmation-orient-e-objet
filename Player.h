@@ -23,6 +23,7 @@ public:
 	sf::RectangleShape& getPlayer() { return _player; }
 	sf::RectangleShape& getPlayerHitbox() { return _playerHitbox; }
 	std::vector<sf::Vector2f>& getPreviousMovement() { return _previousMovement; }
+	int getPlayerHealth() { return _playerHealth; }
 
 	void setPlayerSpeed(float speed) { _playerSpeed = speed; }
 

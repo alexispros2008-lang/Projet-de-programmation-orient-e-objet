@@ -20,5 +20,7 @@ public:
 	void checkBoundings();
 
 	void movePlayer();
+
+	void showHealthBar(sf::RenderWindow& window);
 };
 
