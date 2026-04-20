@@ -126,7 +126,7 @@ void Game::showHealthBar(sf::RenderWindow& window)
 	verificationFont(healthBarFont, "fonts\\PixelOperator8-bold.ttf");
 	sf::Text healthBarText;
 	healthBarText.setFont(healthBarFont);
-	healthBarText.setString(std::to_string(_player.getPlayerHealth()) + " / 50");
+	healthBarText.setString(std::to_string(_player.getPlayerHealth()) + " / 20");
 	healthBarText.setCharacterSize(18);
 	healthBarText.setFillColor(sf::Color::White);
 	healthBarText.setPosition(PLAYER_HEALTH_BAR_POS_X + PLAYER_HEALTH_BAR_WIDTH + 5, PLAYER_HEALTH_BAR_POS_Y);
