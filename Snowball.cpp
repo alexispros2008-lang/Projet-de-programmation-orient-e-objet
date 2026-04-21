@@ -21,30 +21,29 @@ const sf::CircleShape Snowball::getCircle()
 
 void Snowball::bulletMovement()
 {
-	Sleep(_bulletSpeed);
 	if (_direction == UP) {
-		_snowballCircle.setPosition(_snowballCircle.getPosition().x, _snowballCircle.getPosition().y - 2);
+		_snowballCircle.setPosition(_snowballCircle.getPosition().x, _snowballCircle.getPosition().y - _bulletSpeed);
 	}
 	else if (_direction == RIGHT_UP) {
-		_snowballCircle.setPosition(_snowballCircle.getPosition().x + 1, _snowballCircle.getPosition().y - 1);
+		_snowballCircle.setPosition(_snowballCircle.getPosition().x + _bulletSpeed, _snowballCircle.getPosition().y - _bulletSpeed);
 	}
 	else if (_direction == RIGHT_DOWN) {
-		_snowballCircle.setPosition(_snowballCircle.getPosition().x + 1, _snowballCircle.getPosition().y + 1);
+		_snowballCircle.setPosition(_snowballCircle.getPosition().x + _bulletSpeed, _snowballCircle.getPosition().y + _bulletSpeed);
 	}
 	else if (_direction == LEFT_UP) {
-		_snowballCircle.setPosition(_snowballCircle.getPosition().x - 1, _snowballCircle.getPosition().y - 1);
+		_snowballCircle.setPosition(_snowballCircle.getPosition().x - _bulletSpeed, _snowballCircle.getPosition().y - _bulletSpeed);
 	}
 	else if (_direction == LEFT_DOWN) {
-		_snowballCircle.setPosition(_snowballCircle.getPosition().x - 1, _snowballCircle.getPosition().y + 1);
+		_snowballCircle.setPosition(_snowballCircle.getPosition().x - _bulletSpeed, _snowballCircle.getPosition().y + _bulletSpeed);
 	}
 	else if (_direction == LEFT) {
-		_snowballCircle.setPosition(_snowballCircle.getPosition().x - 2, _snowballCircle.getPosition().y);
+		_snowballCircle.setPosition(_snowballCircle.getPosition().x - _bulletSpeed, _snowballCircle.getPosition().y);
 	}
 	else if (_direction == RIGHT) {
-		_snowballCircle.setPosition(_snowballCircle.getPosition().x + 2, _snowballCircle.getPosition().y);
+		_snowballCircle.setPosition(_snowballCircle.getPosition().x + _bulletSpeed, _snowballCircle.getPosition().y);
 	}
 	else if (_direction == DOWN) {
-		_snowballCircle.setPosition(_snowballCircle.getPosition().x, _snowballCircle.getPosition().y + 2);
+		_snowballCircle.setPosition(_snowballCircle.getPosition().x, _snowballCircle.getPosition().y + _bulletSpeed);
 	}
 	else {
 

@@ -17,12 +17,13 @@ Game::~Game()
 void Game::run()
 {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "UndertaleBossFight", sf::Style::Close);
-    sf::Vector2 <float> positionTestBullet;
-    positionTestBullet.x = 600.f;
-    positionTestBullet.y = 600.f;
-    Snowball s(positionTestBullet, 1, 1, RIGHT_DOWN, 10);
     Boss snowBoss;
     Pattern pattern;
+
+    sf::Vector2 <float> positionTestBullet;
+    positionTestBullet.x = 120.f;
+    positionTestBullet.y = 100.f;
+    Snowball s1(positionTestBullet, 1, 1, RIGHT_DOWN, 10);
 
     window.setFramerateLimit(60);
 
@@ -42,7 +43,7 @@ void Game::run()
         movePlayer();
         checkArenaBounds();
 
-        if (checkBoundingBox(_player.getPlayerBounds(), s.getSnowballBounds()))
+        if (checkBoundingBox(_player.getPlayerBounds(), s1.getSnowballBounds()))
         {
             _player.takeDamage(1);
         }
@@ -63,12 +64,15 @@ void Game::run()
         _arena.drawOutlineArena(window);
         window.draw(snowBoss.getBoss());
         window.draw(_player.getPlayer());
-        s.bulletMovement();
+        s1.bulletMovement();
 
         pattern.getAllProjectile().bulletMovement();
         window.draw(pattern.drawPatern());
  
 		showHealthBar(window);
+
+        s1.bulletMovement();
+        window.draw(s1.getCircle());
     
         window.display();
 
