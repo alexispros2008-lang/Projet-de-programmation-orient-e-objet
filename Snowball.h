@@ -8,7 +8,7 @@ class Snowball : public Bullet
 	public:
 		Snowball(sf::Vector2 <float> positionBullet, int bulletSpeed, Direction direction, int radius);
 		~Snowball();
-		sf::Rect <float> getSnowballBounds() { return _snowballBounds; }
+		sf::Rect <float> getSnowballBounds() const { return _snowballBounds; }
 		const sf::CircleShape getCircle();
 		void bulletMovement() override;
 };
