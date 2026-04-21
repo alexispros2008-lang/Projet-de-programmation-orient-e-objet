@@ -13,23 +13,31 @@ private:
 	std::vector<sf::Vector2f> _previousMovement;
 	float _playerSpeed;
 	int _playerHealth;
+
+	bool _hasIFrames;
+	sf::Clock _iFramesClock;
+	sf::Time _iFramesTimer;
 public:
 	Player();
 	Player(sf::Vector2f position, sf::Vector2f size);
 	~Player();
 
-	sf::FloatRect& getPlayerBounds() { return _playerBounds; }
-	float getPlayerSpeed() { return _playerSpeed; }
-	sf::RectangleShape& getPlayer() { return _player; }
-	sf::RectangleShape& getPlayerHitbox() { return _playerHitbox; }
-	std::vector<sf::Vector2f>& getPreviousMovement() { return _previousMovement; }
-	int getPlayerHealth() { return _playerHealth; }
+	inline sf::FloatRect& getPlayerBounds() { return _playerBounds; }
+	inline float getPlayerSpeed() const { return _playerSpeed; }
+	inline sf::RectangleShape& getPlayer() { return _player; }
+	inline sf::RectangleShape& getPlayerHitbox() { return _playerHitbox; }
+	inline std::vector<sf::Vector2f>& getPreviousMovement() { return _previousMovement; }
+	inline int getPlayerHealth() const { return _playerHealth; }
 
-	void setPlayerSpeed(float speed) { _playerSpeed = speed; }
+	inline void setPlayerSpeed(float speed) { _playerSpeed = speed; }
 
 	void initSprite();
 
 	void movePlayer(sf::Vector2f movement);
 	void takeDamage(int dmg);
+
+	void startIFrames();
+	void stopIFrames();
+	inline bool hasIFrames() const { return _hasIFrames; }
 };
 

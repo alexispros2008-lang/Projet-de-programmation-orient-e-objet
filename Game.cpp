@@ -2,6 +2,7 @@
 #include "Snowball.h"
 #include "Pattern.h"
 #include "mesFonctions.h"
+#include <SFML/Audio.hpp>
 
 Game::Game()
 {
@@ -25,9 +26,23 @@ void Game::run()
     positionTestBullet.y = 100.f;
     Snowball s1(positionTestBullet, 1, 1, RIGHT_DOWN, 10);
 
+	sf::SoundBuffer bgmBuffer;
+    sf::Sound bgm;
+
+    if (!bgmBuffer.loadFromFile("sound/bgm.wav")) {
+        exit(1);
+    } // On charge la musique du jeu
+        
+
+    bgm.setBuffer(bgmBuffer); // On applique la musique chargée à l’objet de type "Sound"
+    bgm.setLoop(true); // La musique jouera en boucle
+    bgm.play(); // On fait jouer la musique
+    
     window.setFramerateLimit(60);
 
     std::vector<sf::Keyboard::Key> v_key;
+
+
 
     while (window.isOpen())
     {
@@ -42,11 +57,14 @@ void Game::run()
 
         movePlayer();
         checkArenaBounds();
+        _player.stopIFrames();
 
-        if (checkBoundingBox(_player.getPlayerBounds(), s1.getSnowballBounds()))
+        if (checkBoundingBox(_player.getPlayerBounds(), s1.getSnowballBounds() ) && !_player.hasIFrames())
         {
             _player.takeDamage(1);
         }
+
+
 
 
 
@@ -54,7 +72,7 @@ void Game::run()
         {
             _player.takeDamage(1);
         }
-
+        
         
 
         window.clear();
