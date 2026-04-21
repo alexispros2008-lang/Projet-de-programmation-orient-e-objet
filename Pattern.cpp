@@ -70,7 +70,7 @@ void Pattern::readPaternFile(std::string paternFileName)
 
 void Pattern::randomPatternFile()
 {
-	int number = 1;
+	int number = 1; //todo: make it random
 	std::string s = std::to_string(number);
 	readPaternFile("pattern/pattern" + s + ".txt");
 }
