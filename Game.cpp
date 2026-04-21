@@ -18,8 +18,8 @@ void Game::run()
 {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "UndertaleBossFight", sf::Style::Close);
     sf::Vector2 <float> positionTestBullet;
-    positionTestBullet.x = 120.f;
-    positionTestBullet.y = 100.f;
+    positionTestBullet.x = 600.f;
+    positionTestBullet.y = 600.f;
     Snowball s(positionTestBullet, 1, 1, RIGHT_DOWN, 10);
     Boss snowBoss;
     Pattern pattern;
@@ -40,7 +40,14 @@ void Game::run()
         }
 
         movePlayer();
-        checkBoundings();
+        checkArenaBounds();
+
+        if (checkBoundingBox(_player.getPlayerBounds(), s.getSnowballBounds()))
+        {
+            _player.takeDamage(1);
+        }
+
+
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) //test pour take dmg
         {
@@ -74,9 +81,9 @@ void Game::run()
     }
 }
 
-void Game::checkBoundings()
+void Game::checkArenaBounds()
 {
-    if (!_player.getPlayerBounds().intersects(_arena.getArenaBounds()))
+    if (!checkBoundingBox(_player.getPlayerBounds(), _arena.getArenaBounds()))
     {
         for (int i = 0; i < _player.getPreviousMovement().size(); i++)
         {

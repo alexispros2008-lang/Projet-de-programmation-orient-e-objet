@@ -49,4 +49,6 @@ void Snowball::bulletMovement()
 	else {
 
 	}
+
+	_snowballBounds = _snowballCircle.getGlobalBounds();
 }

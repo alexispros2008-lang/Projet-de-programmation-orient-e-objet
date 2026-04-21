@@ -12,3 +12,7 @@ void verificationFont(sf::Font& font, std::string pathFont) {
 		exit(1);
 	}
 }
+
+bool checkBoundingBox(sf::FloatRect box1, sf::FloatRect box2) {
+	return box1.intersects(box2);
+}

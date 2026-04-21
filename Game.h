@@ -17,7 +17,7 @@ public:
 	~Game();
 	void run();
 
-	void checkBoundings();
+	void checkArenaBounds();
 
 	void movePlayer();
 
