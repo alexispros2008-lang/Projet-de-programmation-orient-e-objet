@@ -1,6 +1,7 @@
 #include "mesFonctions.h"
 #include "mesConstantes.h"
 #include <SFML/Graphics.hpp>
+#include <fstream>
 
 void verificationTexture(sf::Texture &texture, std::string pathTexture) {
 	if (!texture.loadFromFile(pathTexture)) {
@@ -22,6 +23,7 @@ void showMenu(sf::RenderWindow& window) {
 
 	sf::Font menuFont;
 	verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
+
 
 	sf::Text menuText;
 	menuText.setFont(menuFont);
@@ -51,6 +53,7 @@ void showMenu(sf::RenderWindow& window) {
 	quitText.setFillColor(sf::Color::White);
 	quitText.setPosition(WINDOW_WIDTH / 2 - quitText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - quitText.getGlobalBounds().height / 2 + 100);
 
+
 	window.draw(titleText);
 	window.draw(menuText);
 	window.draw(statsText);
@@ -71,10 +74,27 @@ void showMenu(sf::RenderWindow& window) {
 
 		}
 
-		if(event.key.code == sf::Keyboard::Escape)
+		if(event.key.code == sf::Keyboard::Escape || event.type == sf::Event::Closed)
 		{
 			window.close();
 			exit(0);
 		}
 	}	
+}
+
+void showStats() {
+	std::ifstream statsFile;
+	statsFile.open("stats.txt");
+
+	if (!statsFile) {
+		exit(1);
+	}
+
+	int totalGamesPlayed = 0;
+	int totalDamageTaken = 0;
+	int secondsPlayed = 0;
+
+	statsFile >> totalGamesPlayed >> totalDamageTaken >> secondsPlayed;
+
+	statsFile.close();
 }
