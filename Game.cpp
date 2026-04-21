@@ -22,7 +22,7 @@ void Game::run()
     positionTestBullet.y = 100.f;
     Snowball s(positionTestBullet, 1, 1, RIGHT_DOWN, 10);
     Boss snowBoss;
-    Pattern pattern1("pattern/pattern1.txt");
+    Pattern pattern;
 
     window.setFramerateLimit(60);
 
@@ -57,11 +57,12 @@ void Game::run()
         window.draw(snowBoss.getBoss());
         window.draw(_player.getPlayer());
         s.bulletMovement();
-        /*pattern1.getAllProjectile().bulletMovement();*/
-        window.draw(s.getCircle());
-        window.draw(pattern1.drawPatern());
-		showHealthBar(window);
 
+        pattern.getAllProjectile().bulletMovement();
+        window.draw(pattern.drawPatern());
+ 
+		showHealthBar(window);
+    
         window.display();
 
 

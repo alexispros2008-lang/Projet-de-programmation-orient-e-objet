@@ -5,9 +5,9 @@
 #include <vector>
 #include "Snowball.h"
 
-Pattern::Pattern(std::string paternFileName)
+Pattern::Pattern()
 {
-	readPaternFile(paternFileName);
+	randomPatternFile();
 }
 
 void Pattern::readPaternFile(std::string paternFileName)
@@ -69,6 +69,13 @@ void Pattern::readPaternFile(std::string paternFileName)
 	paternFile.close();
 }
 
+void Pattern::randomPatternFile()
+{
+	int number = 1;
+	std::string s = std::to_string(number);
+	readPaternFile("pattern/pattern" + s + ".txt");
+}
+
 sf::CircleShape Pattern::drawPatern()
 {
 	for (int i = 0; i < _pattern.size(); i++) {
@@ -82,5 +89,3 @@ Snowball Pattern::getAllProjectile()
 		return _pattern[i];
 	}
 }
-
-
