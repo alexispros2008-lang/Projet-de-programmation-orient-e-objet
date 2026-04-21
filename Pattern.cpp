@@ -82,16 +82,19 @@ sf::CircleShape Pattern::getAllCircleInPatern()
 	}
 }
 
-Snowball Pattern::getAllProjectile()
+Snowball Pattern::getAllProjectile(int i)
 {
-	for (int i = 0; i < _pattern.size(); i++) {
-		_pattern[i].bulletMovement();
-		return _pattern[i];
-	}
+	return _pattern[i];
 }
 
 std::vector<Snowball> Pattern::getPattern()
 {
 	return _pattern;
+}
+
+Snowball Pattern::getAllProjectileWithMovement(int i)
+{
+	_pattern[i].bulletMovement();
+	return _pattern[i];
 }
 

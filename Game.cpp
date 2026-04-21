@@ -37,7 +37,7 @@ void Game::run()
 
     std::vector<sf::Keyboard::Key> v_key;
 
-
+    showMenu(window);
 
     while (window.isOpen())
     {
@@ -46,50 +46,42 @@ void Game::run()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-
-
         }
 
         movePlayer();
         checkArenaBounds();
         _player.stopIFrames();
 
-        if (checkBoundingBox(_player.getPlayerBounds(), pattern.getAllProjectile().getSnowballBounds()) && !_player.hasIFrames())
-        {
-            _player.takeDamage(1);
+        for (int i = 0; i < pattern.getPattern().size(); i++) {
+            if (checkBoundingBox(_player.getPlayerBounds(), pattern.getAllProjectile(i).getSnowballBounds()) && !_player.hasIFrames())
+            {
+                _player.takeDamage(1);
+            }
         }
-
-
-
-
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) //test pour take dmg
         {
             _player.takeDamage(1);
         }
-        
-        
 
         window.clear();
-
-
 
         _arena.drawOutlineArena(window);
         window.draw(snowBoss.getBoss());
         window.draw(_player.getPlayer());
  
 		showHealthBar(window);
+    
+      
 
-        pattern.getPattern().push_back(pattern.getAllProjectile());
-        window.draw(pattern.getAllCircleInPatern());
+        for (int i = 0; i < pattern.getPattern().size(); i++) {
+            pattern.getAllProjectileWithMovement(i);
+            window.draw(pattern.getPattern()[i].getCircle());
+        }
     
         window.display();
 
-
-
         _player.getPreviousMovement().clear();
-
-
 
     }
 }
