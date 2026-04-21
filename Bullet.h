@@ -17,13 +17,12 @@ class Bullet
 	protected:
 		sf::Vector2 <float> _positionBullet;
 		int _bulletSpeed;
-		int _damageAmount;
 		Direction _direction;
 	public:
 		Bullet();
-		Bullet(sf::Vector2 <float> positionBullet, int bulletSpeed, int damageAmount, Direction direction);
+		Bullet(sf::Vector2 <float> positionBullet, int bulletSpeed, Direction direction);
 		~Bullet();
-		void createBullet(sf::Vector2 <float> positionBullet, int bulletSpeed, int damageAmount, Direction direction);
+		void createBullet(sf::Vector2 <float> positionBullet, int bulletSpeed, Direction direction);
 		virtual void bulletMovement() = 0;
 };
 

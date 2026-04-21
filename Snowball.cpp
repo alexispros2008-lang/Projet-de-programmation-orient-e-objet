@@ -3,9 +3,9 @@
 #include <SFML/Window.hpp>
 #include "Windows.h"
 
-Snowball::Snowball(sf::Vector2<float> positionBullet, int bulletSpeed, int damageAmount, Direction direction, int radius)
+Snowball::Snowball(sf::Vector2<float> positionBullet, int bulletSpeed, Direction direction, int radius)
 {
-	createBullet(positionBullet, bulletSpeed, damageAmount, direction);
+	createBullet(positionBullet, bulletSpeed, direction);
 	_snowballCircle = sf::CircleShape(radius);
 	_snowballCircle.setPosition(positionBullet);
 }

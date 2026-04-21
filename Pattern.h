@@ -9,8 +9,8 @@ class Pattern
 		Pattern();
 		void readPaternFile(std::string paternFileName);
 		void randomPatternFile();
-		sf::CircleShape drawPatern();
+		sf::CircleShape getAllCircleInPatern();
 		Snowball getAllProjectile();
-		std::vector <Snowball> getPattern();
+		std::vector <Snowball> getPattern();	
 };
 

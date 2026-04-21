@@ -24,13 +24,12 @@ void Pattern::readPaternFile(std::string paternFileName)
 	positionBullet.x = 0;
 	positionBullet.y = 0;
 	int bulletSpeed = 0;
-	int damageAmount = 0;
 	int direction = 0;
 	int radius = 0;
 	int bulletType = 0;
 	Direction tempDirectionPush = NOTHING;
 
-	while (paternFile >> bulletType >> positionBullet.x >> positionBullet.y >> bulletSpeed >> damageAmount >> direction >> radius) {
+	while (paternFile >> bulletType >> positionBullet.x >> positionBullet.y >> bulletSpeed >> direction >> radius) {
 		if (direction == 0) {
 			tempDirectionPush = LEFT;
 		}
@@ -59,7 +58,7 @@ void Pattern::readPaternFile(std::string paternFileName)
 			tempDirectionPush = NOTHING;
 		}
 		if (bulletType == 0) {
-			Snowball tempSnowball(positionBullet, bulletSpeed, damageAmount, tempDirectionPush, radius);
+			Snowball tempSnowball(positionBullet, bulletSpeed, tempDirectionPush, radius);
 			_pattern.push_back(tempSnowball);
 		}
 		else {
@@ -76,7 +75,7 @@ void Pattern::randomPatternFile()
 	readPaternFile("pattern/pattern" + s + ".txt");
 }
 
-sf::CircleShape Pattern::drawPatern()
+sf::CircleShape Pattern::getAllCircleInPatern()
 {
 	for (int i = 0; i < _pattern.size(); i++) {
 		return _pattern[i].getCircle();
@@ -86,6 +85,7 @@ sf::CircleShape Pattern::drawPatern()
 Snowball Pattern::getAllProjectile()
 {
 	for (int i = 0; i < _pattern.size(); i++) {
+		_pattern[i].bulletMovement();
 		return _pattern[i];
 	}
 }
@@ -94,3 +94,4 @@ std::vector<Snowball> Pattern::getPattern()
 {
 	return _pattern;
 }
+
