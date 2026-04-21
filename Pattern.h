@@ -11,5 +11,6 @@ class Pattern
 		void randomPatternFile();
 		sf::CircleShape drawPatern();
 		Snowball getAllProjectile();
+		std::vector <Snowball> getPattern();
 };
 
