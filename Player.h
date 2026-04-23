@@ -41,7 +41,5 @@ public:
 	void startIFrames();
 	void stopIFrames();
 	inline bool hasIFrames() const { return _hasIFrames; }
-
-	void IFramesAnimation();
 };
 

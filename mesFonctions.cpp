@@ -1,4 +1,5 @@
 #include "mesFonctions.h"
+#include "mesFonctions2.h"
 #include "mesConstantes.h"
 #include <SFML/Graphics.hpp>
 #include <fstream>
@@ -54,31 +55,46 @@ void showMenu(sf::RenderWindow& window) {
 	quitText.setPosition(WINDOW_WIDTH / 2 - quitText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - quitText.getGlobalBounds().height / 2 + 100);
 
 
-	window.draw(titleText);
-	window.draw(menuText);
-	window.draw(statsText);
-	window.draw(quitText);
+	
 
-	window.display();
+	
 
 	sf::Event event;
+	sf::Clock clock;
 	while (window.waitEvent(event))
 	{
-		if (event.key.code == sf::Keyboard::Enter)
+		window.clear(sf::Color::Black);
+
+		window.draw(titleText);
+		window.draw(menuText);
+		window.draw(statsText);
+		window.draw(quitText);
+
+		if (clock.getElapsedTime() >= sf::seconds(0.5f))
 		{
-			break;
+			if (event.key.code == sf::Keyboard::Enter)
+			{
+				break;
+			}
+
+			if (event.key.code == sf::Keyboard::Space)
+			{
+
+			}
+
+			if (event.key.code == sf::Keyboard::H) {
+				showHelp(window);
+			}
+
+			if (event.key.code == sf::Keyboard::Escape || event.type == sf::Event::Closed)
+			{
+				window.close();
+				exit(0);
+			}
+			clock.restart();
 		}
 
-		if (event.key.code == sf::Keyboard::Space)
-		{
-
-		}
-
-		if(event.key.code == sf::Keyboard::Escape || event.type == sf::Event::Closed)
-		{
-			window.close();
-			exit(0);
-		}
+		window.display();
 	}	
 }
 
