@@ -53,7 +53,7 @@ void Game::run()
         _player.stopIFrames();
 
         for (int i = 0; i < pattern.getPattern().size(); i++) {
-            if (checkBoundingBox(_player.getPlayerBounds(), pattern.getAllProjectile(i).getSnowballBounds()) && !_player.hasIFrames())
+            if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && !_player.hasIFrames())
             {
                 _player.takeDamage(1);
             }
@@ -73,7 +73,7 @@ void Game::run()
 		showHealthBar(window);
 
         for (int i = 0; i < pattern.getPattern().size(); i++) {
-            pattern.getAllProjectileWithMovement(i);
+            pattern.patternMovement(i);
             window.draw(pattern.getPattern()[i].getSnowballCircle());
         }
         window.display();

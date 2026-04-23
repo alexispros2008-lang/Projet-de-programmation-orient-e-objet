@@ -8,10 +8,8 @@ class Pattern
 	public:
 		Pattern();
 		void readPaternFile(std::string paternFileName);
-		void randomPatternFile();
-		sf::CircleShape getAllCircleInPatern();
-		Snowball getAllProjectile(int i);
+		std::string randomPatternFile();
 		std::vector <Snowball> getPattern();
-		Snowball getAllProjectileWithMovement(int i);
+		Snowball patternMovement(int numberOfTheActualBullet);
 };
 

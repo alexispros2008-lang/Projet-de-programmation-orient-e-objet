@@ -7,7 +7,8 @@
 
 Pattern::Pattern()
 {
-	randomPatternFile();
+	std::string randomNumberStringVersion = randomPatternFile();
+	readPaternFile("pattern/pattern" + randomNumberStringVersion + ".txt");
 }
 
 void Pattern::readPaternFile(std::string paternFileName)
@@ -68,23 +69,11 @@ void Pattern::readPaternFile(std::string paternFileName)
 	paternFile.close();
 }
 
-void Pattern::randomPatternFile()
+std::string Pattern::randomPatternFile()
 {
-	int randomNumberIntVersion = 1; //todo: make it random
+	int randomNumberIntVersion = rand() % 5 + 1;
 	std::string randomNumberStringVersion = std::to_string(randomNumberIntVersion);
-	readPaternFile("pattern/pattern" + randomNumberStringVersion + ".txt");
-}
-
-sf::CircleShape Pattern::getAllCircleInPatern()
-{
-	for (int i = 0; i < _pattern.size(); i++) {
-		return _pattern[i].getSnowballCircle();
-	}
-}
-
-Snowball Pattern::getAllProjectile(int i)
-{
-	return _pattern[i];
+	return randomNumberStringVersion;
 }
 
 std::vector<Snowball> Pattern::getPattern()
@@ -92,9 +81,9 @@ std::vector<Snowball> Pattern::getPattern()
 	return _pattern;
 }
 
-Snowball Pattern::getAllProjectileWithMovement(int i)
+Snowball Pattern::patternMovement(int numberOfTheActualBullet)
 {
-	_pattern[i].bulletMovement();
-	return _pattern[i];
+	_pattern[numberOfTheActualBullet].bulletMovement();
+	return _pattern[numberOfTheActualBullet];
 }
 
