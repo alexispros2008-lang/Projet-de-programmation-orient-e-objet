@@ -70,7 +70,7 @@ void Game::run()
             }
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) //test pour take dmg
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) //test pour take dmg
         {
             _player.takeDamage(1);
         }
@@ -95,22 +95,22 @@ void Game::checkArenaBounds()
 
 void Game::movePlayer()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         _player.movePlayer(sf::Vector2f(0, -PLAYER_SPEED));
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
         _player.movePlayer(sf::Vector2f(-PLAYER_SPEED, 0));
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         _player.movePlayer(sf::Vector2f(0, PLAYER_SPEED));
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         _player.movePlayer(sf::Vector2f(PLAYER_SPEED, 0));
     }

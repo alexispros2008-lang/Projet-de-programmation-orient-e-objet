@@ -5,6 +5,7 @@ class Snowball : public Bullet
 	private:
 		sf::CircleShape _snowballCircle;
 		sf::Rect <float> _snowballBounds = _snowballCircle.getGlobalBounds();
+		sf::Texture _snowballTexture;
 	public:
 		Snowball(sf::Vector2 <float> positionBullet, int bulletSpeed, Direction direction, int radius);
 		~Snowball();
