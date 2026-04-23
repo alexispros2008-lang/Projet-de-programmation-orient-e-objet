@@ -47,12 +47,19 @@ void showMenu(sf::RenderWindow& window) {
 	statsText.setFillColor(sf::Color::White);
 	statsText.setPosition(WINDOW_WIDTH / 2 - statsText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - statsText.getGlobalBounds().height / 2 + 50);
 
+	sf::Text helpText;
+	helpText.setFont(menuFont);
+	helpText.setString("Press H for Help");
+	helpText.setCharacterSize(30);
+	helpText.setFillColor(sf::Color::White);
+	helpText.setPosition(WINDOW_WIDTH / 2 - helpText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - helpText.getGlobalBounds().height / 2 + 100);
+
 	sf::Text quitText;
 	quitText.setFont(menuFont);
 	quitText.setString("Press Escape to Quit");
 	quitText.setCharacterSize(30);
 	quitText.setFillColor(sf::Color::White);
-	quitText.setPosition(WINDOW_WIDTH / 2 - quitText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - quitText.getGlobalBounds().height / 2 + 100);
+	quitText.setPosition(WINDOW_WIDTH / 2 - quitText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - quitText.getGlobalBounds().height / 2 + 150);
 
 
 	
@@ -68,6 +75,7 @@ void showMenu(sf::RenderWindow& window) {
 		window.draw(titleText);
 		window.draw(menuText);
 		window.draw(statsText);
+		window.draw(helpText);
 		window.draw(quitText);
 
 		if (clock.getElapsedTime() >= sf::seconds(0.5f))

@@ -28,10 +28,28 @@ void Game::run()
     window.setFramerateLimit(60);
     int numberOfPattern = 0;
 
-    showMenu(window);
+    
 
     while (window.isOpen())
     {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+
+            if (event.key.code == sf::Keyboard::Escape)
+            {
+                _showMenu = true;
+            }
+        }
+
+        if (_showMenu)
+        {
+            showMenu(window);
+			_showMenu = false;
+        }
+
         sf::Time waitTime = sf::seconds(1.f);
         if (clock.getElapsedTime() >= waitTime) {
             clock.restart();
@@ -39,12 +57,7 @@ void Game::run()
             numberOfPattern++;
         }
 
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+        
 
         movePlayer();
         checkArenaBounds();
