@@ -131,6 +131,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mesFonctions.cpp" />
+    <ClCompile Include="mesFonctions2.cpp" />
     <ClCompile Include="Pattern.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Snowball.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="mesConstantes.h" />
     <ClInclude Include="mesFonctions.h" />
+    <ClInclude Include="mesFonctions2.h" />
     <ClInclude Include="Pattern.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Snowball.h" />

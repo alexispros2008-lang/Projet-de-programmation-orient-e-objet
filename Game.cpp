@@ -1,13 +1,20 @@
 #include "Game.h"
-#include "Snowball.h"
-#include "Pattern.h"
 #include "mesFonctions.h"
-#include <SFML/Audio.hpp>
 
 Game::Game()
 {
 	_player = Player(sf::Vector2f(400, 400), sf::Vector2f(20, 20));
     _player.initSprite();
+
+    if (!bgmBuffer.loadFromFile("sound/bgm.wav")) {
+        exit(1);
+    }
+    
+    bgm.setBuffer(bgmBuffer); // On applique la musique chargée à l’objet de type "Sound"
+    bgm.setLoop(true); // La musique jouera en boucle
+    bgm.play(); // On fait jouer la musique
+    //put all the music in function later
+
 	_endGame = false;
 }
 
@@ -18,25 +25,7 @@ Game::~Game()
 void Game::run()
 {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "UndertaleBossFight", sf::Style::Close);
-    Boss snowBoss;
-    Pattern pattern;
-    sf::Clock clock;
-
-	sf::SoundBuffer bgmBuffer;
-    sf::Sound bgm;
-
-    if (!bgmBuffer.loadFromFile("sound/bgm.wav")) {
-        exit(1);
-    } // On charge la musique du jeu
-        
-
-    bgm.setBuffer(bgmBuffer); // On applique la musique chargée à l’objet de type "Sound"
-    bgm.setLoop(true); // La musique jouera en boucle
-    bgm.play(); // On fait jouer la musique
-    
     window.setFramerateLimit(60);
-
-    std::vector<sf::Keyboard::Key> v_key;
 
     showMenu(window);
 
@@ -47,6 +36,7 @@ void Game::run()
             clock.restart();
             pattern.resetPattern();
         }
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -57,6 +47,7 @@ void Game::run()
         movePlayer();
         checkArenaBounds();
         _player.stopIFrames();
+
 
         for (int i = 0; i < pattern.getPattern().size(); i++) {
             if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && !_player.hasIFrames())
@@ -70,19 +61,7 @@ void Game::run()
             _player.takeDamage(1);
         }
 
-        window.clear();
-
-        _arena.drawOutlineArena(window);
-        window.draw(snowBoss.getBoss());
-        window.draw(_player.getPlayer());
- 
-		showHealthBar(window);
-
-        for (int i = 0; i < pattern.getPattern().size(); i++) {
-            pattern.patternMovement(i);
-            window.draw(pattern.getPattern()[i].getSnowballCircle());
-        }
-        window.display();
+        draw(window);
 
         _player.getPreviousMovement().clear();
     }
@@ -123,7 +102,7 @@ void Game::movePlayer()
     }
 }
 
-void Game::showHealthBar(sf::RenderWindow& window)
+void Game::drawHealthBar(sf::RenderWindow& window)
 {
 	sf::RectangleShape healthBar;
 	sf::RectangleShape healthBarBackground;
@@ -147,4 +126,29 @@ void Game::showHealthBar(sf::RenderWindow& window)
 	healthBarText.setPosition(PLAYER_HEALTH_BAR_POS_X + PLAYER_HEALTH_BAR_WIDTH + 5, PLAYER_HEALTH_BAR_POS_Y);
 	window.draw(healthBarText);
 
+}
+
+void Game::checkHealth()
+{
+   if (_player.getPlayerHealth() <= 0)
+    {
+        _endGame = true;
+   }
+}
+
+void Game::draw(sf::RenderWindow& window)
+{
+    window.clear();
+
+    _arena.drawOutlineArena(window);
+    window.draw(snowBoss.getBoss());
+    window.draw(_player.getPlayer());
+    drawHealthBar(window);
+
+    for (int i = 0; i < pattern.getPattern().size(); i++) {
+        pattern.patternMovement(i);
+        window.draw(pattern.getPattern()[i].getSnowballCircle());
+    }
+
+    window.display();
 }
