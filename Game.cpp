@@ -45,7 +45,6 @@ void Game::run()
         sf::Time waitTime = sf::seconds(1.f);
         if (clock.getElapsedTime() >= waitTime) {
             clock.restart();
-            pattern.getPattern().clear();
             pattern.resetPattern();
         }
         sf::Event event;
