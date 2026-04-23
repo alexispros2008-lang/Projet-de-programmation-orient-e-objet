@@ -20,6 +20,7 @@ void Game::run()
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "UndertaleBossFight", sf::Style::Close);
     Boss snowBoss;
     Pattern pattern;
+    sf::Clock clock;
 
 	sf::SoundBuffer bgmBuffer;
     sf::Sound bgm;
@@ -41,6 +42,12 @@ void Game::run()
 
     while (window.isOpen())
     {
+        sf::Time waitTime = sf::seconds(1.f);
+        if (clock.getElapsedTime() >= waitTime) {
+            clock.restart();
+            pattern.getPattern().clear();
+            pattern.resetPattern();
+        }
         sf::Event event;
         while (window.pollEvent(event))
         {
