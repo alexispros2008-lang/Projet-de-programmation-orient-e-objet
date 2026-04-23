@@ -7,7 +7,7 @@ class Player
 {
 private:
 	sf::RectangleShape _player;
-	sf::RectangleShape _playerHitbox;
+	sf::RectangleShape _playerHitbox = _player;
 	sf::FloatRect _playerBounds = _playerHitbox.getGlobalBounds();
 
 	sf::Texture _playerTexture;

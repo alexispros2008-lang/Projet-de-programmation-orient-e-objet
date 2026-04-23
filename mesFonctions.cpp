@@ -68,7 +68,7 @@ void showMenu(sf::RenderWindow& window) {
 
 	sf::Event event;
 	sf::Clock clock;
-	while (window.waitEvent(event))
+	do
 	{
 		window.clear(sf::Color::Black);
 
@@ -103,7 +103,7 @@ void showMenu(sf::RenderWindow& window) {
 		}
 
 		window.display();
-	}	
+	} while (window.waitEvent(event));
 }
 
 void iFrameAnimation(sf::RectangleShape& player, sf::Clock& animationClock)
