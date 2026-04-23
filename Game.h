@@ -15,6 +15,7 @@ private:
 	Pattern pattern;
 
 	bool _endGame;
+	bool _showMenu = true;
 
 	sf::Clock clock;
 
