@@ -27,7 +27,6 @@ void Game::run()
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "UndertaleBossFight", sf::Style::Close);
     window.setFramerateLimit(60);
     int numberOfPattern = 0;
-
     
 
     while (window.isOpen())
@@ -48,10 +47,10 @@ void Game::run()
         {
             showMenu(window);
 			_showMenu = false;
+            startOfGameClock.restart();;
         }
 
-        sf::Time waitTime = sf::seconds(1.f);
-        if (clock.getElapsedTime() >= waitTime) {
+        if (clock.getElapsedTime() >= sf::seconds(1.f) && startOfGameClock.getElapsedTime() > sf::seconds(4.f)) {
             clock.restart();
             pattern.resetPattern();
             numberOfPattern++;
@@ -159,10 +158,11 @@ void Game::draw(sf::RenderWindow& window)
     window.draw(snowBoss.getBoss());
     window.draw(_player.getPlayer());
     drawHealthBar(window);
-
-    for (int i = 0; i < pattern.getPattern().size(); i++) {
-        pattern.patternMovement(i);
-        window.draw(pattern.getPattern()[i].getSnowballCircle());
+    if (startOfGameClock.getElapsedTime() > sf::seconds(4.f)) {
+        for (int i = 0; i < pattern.getPattern().size(); i++) {
+            pattern.patternMovement(i);
+            window.draw(pattern.getPattern()[i].getSnowballCircle());
+        }
     }
 
     window.display();

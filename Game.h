@@ -13,6 +13,7 @@ private:
 	Arena _arena;
 	Boss snowBoss;
 	Pattern pattern;
+	sf::Clock startOfGameClock;
 
 	bool _endGame;
 	bool _showMenu = true;
