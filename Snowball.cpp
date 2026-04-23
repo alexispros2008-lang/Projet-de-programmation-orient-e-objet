@@ -22,7 +22,7 @@ const sf::CircleShape Snowball::getSnowballCircle()
 void Snowball::bulletMovement()
 {
 	if (_direction == UP) {
-		_snowballCircle.setPosition(_snowballCircle.getPosition().x, _snowballCircle.getPosition().y - _bulletSpeed);
+		_snowballCircle.setPosition(_snowballCircle.getPosition().x, _snowballCircle.getPosition().y - (_bulletSpeed * 1.45));
 	}
 	else if (_direction == RIGHT_UP) {
 		_snowballCircle.setPosition(_snowballCircle.getPosition().x + _bulletSpeed, _snowballCircle.getPosition().y - _bulletSpeed);
@@ -37,13 +37,13 @@ void Snowball::bulletMovement()
 		_snowballCircle.setPosition(_snowballCircle.getPosition().x - _bulletSpeed, _snowballCircle.getPosition().y + _bulletSpeed);
 	}
 	else if (_direction == LEFT) {
-		_snowballCircle.setPosition(_snowballCircle.getPosition().x - _bulletSpeed, _snowballCircle.getPosition().y);
+		_snowballCircle.setPosition(_snowballCircle.getPosition().x - (_bulletSpeed * 1.45), _snowballCircle.getPosition().y);
 	}
 	else if (_direction == RIGHT) {
-		_snowballCircle.setPosition(_snowballCircle.getPosition().x + _bulletSpeed, _snowballCircle.getPosition().y);
+		_snowballCircle.setPosition(_snowballCircle.getPosition().x + (_bulletSpeed * 1.45), _snowballCircle.getPosition().y);
 	}
 	else if (_direction == DOWN) {
-		_snowballCircle.setPosition(_snowballCircle.getPosition().x, _snowballCircle.getPosition().y + _bulletSpeed);
+		_snowballCircle.setPosition(_snowballCircle.getPosition().x, _snowballCircle.getPosition().y + (_bulletSpeed * 1.45));
 	}
 	else {
 

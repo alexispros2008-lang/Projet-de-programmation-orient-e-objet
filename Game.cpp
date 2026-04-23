@@ -26,15 +26,17 @@ void Game::run()
 {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "UndertaleBossFight", sf::Style::Close);
     window.setFramerateLimit(60);
+    int numberOfPattern = 0;
 
     showMenu(window);
 
     while (window.isOpen())
     {
-        sf::Time waitTime = sf::seconds(1.f);
+        sf::Time waitTime = sf::seconds(5.f);
         if (clock.getElapsedTime() >= waitTime) {
             clock.restart();
             pattern.resetPattern();
+            numberOfPattern++;
         }
 
         sf::Event event;
