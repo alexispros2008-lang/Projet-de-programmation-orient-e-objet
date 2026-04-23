@@ -82,6 +82,23 @@ void showMenu(sf::RenderWindow& window) {
 	}	
 }
 
+void iFrameAnimation(sf::RectangleShape& player, sf::Clock& animationClock)
+{
+	sf::Time elapsed;
+	do
+	{
+		elapsed = animationClock.getElapsedTime();
+		if (static_cast<int>(elapsed.asSeconds() * 10) % 2 == 1) {
+			player.setFillColor(sf::Color::Color(player.getFillColor().r, player.getFillColor().g, player.getFillColor().b, 128));
+		}
+		if (static_cast<int>(elapsed.asSeconds() * 10) % 2 == 0)
+		{
+			player.setFillColor(sf::Color::Color(player.getFillColor().r, player.getFillColor().g, player.getFillColor().b, 255));
+		}
+
+	} while (elapsed.asSeconds() <= 1.0f);
+}
+
 void showStats() {
 	std::ifstream statsFile;
 	statsFile.open("stats.txt");

@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "mesFonctions.h"
 #include "SFML/Audio.hpp"
+#include <thread>
 
 Player::Player()
 {
@@ -37,12 +38,9 @@ Player::~Player()
 
 void Player::initSprite()
 {
-	static sf::Texture playerTexture; // durée de vie statique : reste valide tant que le programme tourne
-
-	// Charger la texture une seule fois
-	verificationTexture(playerTexture, "images\\player.png");
-	_player.setTexture(&playerTexture);
-	_playerHitbox.setTexture(&playerTexture);
+	verificationTexture(_playerTexture, "images\\player.png");
+	_player.setTexture(&_playerTexture);
+	_playerHitbox.setFillColor(sf::Color::Transparent);
 }
 
 void Player::movePlayer(sf::Vector2f movement)
@@ -75,12 +73,17 @@ void Player::startIFrames()
 {
 	_iFramesClock.restart();
 	_hasIFrames = true;
+	std::thread iFramesThread(iFrameAnimation, std::ref(_player), std::ref(_iFramesClock));
+	iFramesThread.detach(); //voodoo magic
 }
 
 void Player::stopIFrames()
 {
+	sf::Time _iFramesTimer;
 	_iFramesTimer = _iFramesClock.getElapsedTime();
+
 	if (_iFramesTimer.asSeconds() >= IFRAME_DURATION) {
 		_hasIFrames = false;
 	}
 }
+

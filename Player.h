@@ -10,13 +10,15 @@ private:
 	sf::RectangleShape _playerHitbox;
 	sf::FloatRect _playerBounds = _playerHitbox.getGlobalBounds();
 
+	sf::Texture _playerTexture;
+
 	std::vector<sf::Vector2f> _previousMovement;
 	float _playerSpeed;
 	int _playerHealth;
 
 	bool _hasIFrames;
 	sf::Clock _iFramesClock;
-	sf::Time _iFramesTimer;
+	sf::Clock _iFramesAnimationClock;
 public:
 	Player();
 	Player(sf::Vector2f position, sf::Vector2f size);
@@ -39,5 +41,7 @@ public:
 	void startIFrames();
 	void stopIFrames();
 	inline bool hasIFrames() const { return _hasIFrames; }
+
+	void IFramesAnimation();
 };
 
