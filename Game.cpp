@@ -32,7 +32,7 @@ void Game::run()
 
     while (window.isOpen())
     {
-        sf::Time waitTime = sf::seconds(5.f);
+        sf::Time waitTime = sf::seconds(1.f);
         if (clock.getElapsedTime() >= waitTime) {
             clock.restart();
             pattern.resetPattern();
