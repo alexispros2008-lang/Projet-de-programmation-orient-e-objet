@@ -70,15 +70,15 @@ void Pattern::readPaternFile(std::string paternFileName)
 
 void Pattern::randomPatternFile()
 {
-	int number = 1; //todo: make it random
-	std::string s = std::to_string(number);
-	readPaternFile("pattern/pattern" + s + ".txt");
+	int randomNumberIntVersion = 1; //todo: make it random
+	std::string randomNumberStringVersion = std::to_string(randomNumberIntVersion);
+	readPaternFile("pattern/pattern" + randomNumberStringVersion + ".txt");
 }
 
 sf::CircleShape Pattern::getAllCircleInPatern()
 {
 	for (int i = 0; i < _pattern.size(); i++) {
-		return _pattern[i].getCircle();
+		return _pattern[i].getSnowballCircle();
 	}
 }
 

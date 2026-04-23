@@ -71,18 +71,14 @@ void Game::run()
         window.draw(_player.getPlayer());
  
 		showHealthBar(window);
-    
-      
 
         for (int i = 0; i < pattern.getPattern().size(); i++) {
             pattern.getAllProjectileWithMovement(i);
-            window.draw(pattern.getPattern()[i].getCircle());
+            window.draw(pattern.getPattern()[i].getSnowballCircle());
         }
-    
         window.display();
 
         _player.getPreviousMovement().clear();
-
     }
 }
 
