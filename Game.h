@@ -4,6 +4,7 @@
 #include "Boss.h"
 #include "Bullet.h"
 #include "Pattern.h"
+#include "Windows.h"
 #include <SFML/Audio.hpp>
 
 class Game

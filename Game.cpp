@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "mesFonctions.h"
 
+
 Game::Game()
 {
 	_player = Player(sf::Vector2f(PLAYER_INIT_POSITION_X, PLAYER_INIT_POSITION_Y), sf::Vector2f(20, 20));
@@ -41,18 +42,55 @@ void Game::run()
             }
         }
 
-        if (_showMenu)
+        if (_player.getPlayerHealth() <= 0)
+        {
+            bgm.stop();
+            
+
+			_endGame = true;
+
+            window.clear(sf::Color::Black);
+
+            sf::Texture splitSoul;
+			sf::Texture tempTexture = *_player.getPlayer().getTexture();
+			verificationTexture(splitSoul, "images/undertale-split-soul.png");
+			_player.getPlayer().setTexture(&splitSoul);
+
+			sf::SoundBuffer deathBuffer;
+			sf::Sound deathSound;
+            if (!deathBuffer.loadFromFile("sound/undertale-death.wav")) {
+                exit(1);
+			}
+			deathSound.setBuffer(deathBuffer);
+			deathSound.setLoop(false);
+            deathSound.play();
+
+			window.draw(_player.getPlayer());
+
+			window.display();
+
+            Sleep(2000);
+            //ajouter ecriture a stats
+
+			_player.getPlayer().setTexture(&tempTexture); //marche pas pis jsp
+        }
+
+        if (_showMenu || _endGame)
         {
             bgm.stop();
 
             showMenu(window);
-			_showMenu = false;
-
+			
+            //Reinit
 			_player.getPlayer().setPosition(PLAYER_INIT_POSITION_X, PLAYER_INIT_POSITION_Y);
 			_player.setPlayerHealth(PLAYER_HP);
 			bgm.play();
             startOfGameClock.restart();
+            _showMenu = false;
+			_endGame = false;
         }
+
+        
 
         if (clock.getElapsedTime() >= sf::seconds(1.f) && startOfGameClock.getElapsedTime() > sf::seconds(4.f)) {
             clock.restart();

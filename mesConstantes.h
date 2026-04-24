@@ -1,6 +1,6 @@
 #pragma once
 
-const int PLAYER_HP = 20;
+const int PLAYER_HP = 2;
 const int BOSS_DMG = 1;
 
 const int WINDOW_WIDTH = 800;
