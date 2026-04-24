@@ -3,4 +3,3 @@
 #include <SFML/Graphics.hpp>
 #include <fstream>
 
-void showHelp(sf::RenderWindow& window);

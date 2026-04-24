@@ -3,7 +3,7 @@
 
 Game::Game()
 {
-	_player = Player(sf::Vector2f(400, 400), sf::Vector2f(20, 20));
+	_player = Player(sf::Vector2f(PLAYER_INIT_POSITION_X, PLAYER_INIT_POSITION_Y), sf::Vector2f(20, 20));
     _player.initSprite();
 
     if (!bgmBuffer.loadFromFile("sound/bgm.wav")) {
@@ -12,8 +12,6 @@ Game::Game()
     
     bgm.setBuffer(bgmBuffer); // On applique la musique chargée à l’objet de type "Sound"
     bgm.setLoop(true); // La musique jouera en boucle
-    bgm.play(); // On fait jouer la musique
-    //put all the music in function later
 
 	_endGame = false;
 }
@@ -45,9 +43,15 @@ void Game::run()
 
         if (_showMenu)
         {
+            bgm.stop();
+
             showMenu(window);
 			_showMenu = false;
-            startOfGameClock.restart();;
+
+			_player.getPlayer().setPosition(PLAYER_INIT_POSITION_X, PLAYER_INIT_POSITION_Y);
+			_player.setPlayerHealth(PLAYER_HP);
+			bgm.play();
+            startOfGameClock.restart();
         }
 
         if (clock.getElapsedTime() >= sf::seconds(1.f) && startOfGameClock.getElapsedTime() > sf::seconds(4.f)) {

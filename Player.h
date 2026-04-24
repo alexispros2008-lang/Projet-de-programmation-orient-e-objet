@@ -32,6 +32,7 @@ public:
 	inline int getPlayerHealth() const { return _playerHealth; }
 
 	inline void setPlayerSpeed(float speed) { _playerSpeed = speed; }
+	inline void setPlayerHealth(int health) { _playerHealth = health; }
 
 	void initSprite();
 

@@ -6,3 +6,5 @@ void verificationFont(sf::Font& font, std::string pathFont);
 bool checkBoundingBox(sf::FloatRect, sf::FloatRect);
 void showMenu(sf::RenderWindow& window);
 void iFrameAnimation(sf::RectangleShape& player, sf::Clock& animationClock);
+void showHelp(sf::RenderWindow& window);
+
