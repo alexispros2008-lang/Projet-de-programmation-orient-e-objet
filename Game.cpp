@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "mesFonctions.h"
 
+//Optimisations a faire: IFrameClock qui compte pas pour infini (Gros nombre)
 
 Game::Game()
 {
