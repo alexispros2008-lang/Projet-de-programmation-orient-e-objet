@@ -26,38 +26,17 @@ void showMenu(sf::RenderWindow& window) {
 
 	sf::Text menuText;
 	menuText.setFont(menuFont);
-	menuText.setString("Press Enter to Play");
 	menuText.setCharacterSize(30);
 	menuText.setFillColor(sf::Color::White);
-	menuText.setPosition(WINDOW_WIDTH / 2 - menuText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - menuText.getGlobalBounds().height / 2);
+	menuText.setPosition(50, 50);
 
-	sf::Text titleText;
-	titleText.setFont(menuFont);
-	titleText.setString("Undertale Boss Fight");
-	titleText.setCharacterSize(20);
-	titleText.setFillColor(sf::Color::White);
-	titleText.setPosition(WINDOW_WIDTH / 2 - titleText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 4 - titleText.getGlobalBounds().height / 2);
-
-	sf::Text statsText;
-	statsText.setFont(menuFont);
-	statsText.setString("Press Space for Statistics");
-	statsText.setCharacterSize(30);
-	statsText.setFillColor(sf::Color::White);
-	statsText.setPosition(WINDOW_WIDTH / 2 - statsText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - statsText.getGlobalBounds().height / 2 + 50);
-
-	sf::Text helpText;
-	helpText.setFont(menuFont);
-	helpText.setString("Press H for Help");
-	helpText.setCharacterSize(30);
-	helpText.setFillColor(sf::Color::White);
-	helpText.setPosition(WINDOW_WIDTH / 2 - helpText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - helpText.getGlobalBounds().height / 2 + 100);
-
-	sf::Text quitText;
-	quitText.setFont(menuFont);
-	quitText.setString("Press Escape to Quit");
-	quitText.setCharacterSize(30);
-	quitText.setFillColor(sf::Color::White);
-	quitText.setPosition(WINDOW_WIDTH / 2 - quitText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - quitText.getGlobalBounds().height / 2 + 150);
+	menuText.setString("Undertale Boss Fight\n\n\n"
+		"Press Enter to Play\n\n"
+		"Press Space for Statistics\n\n"
+		"Press H for Help\n\n"
+		"Press C for Option\n\n"
+		"Press Escape to Quit"
+	);
 
 	sf::Event event;
 	sf::Clock clock;
@@ -65,11 +44,7 @@ void showMenu(sf::RenderWindow& window) {
 	{
 		window.clear(sf::Color::Black);
 
-		window.draw(titleText);
 		window.draw(menuText);
-		window.draw(statsText);
-		window.draw(helpText);
-		window.draw(quitText);
 
 		if (clock.getElapsedTime() >= sf::seconds(0.5f))
 		{
@@ -87,11 +62,17 @@ void showMenu(sf::RenderWindow& window) {
 				showHelp(window);
 			}
 
+			if (event.key.code == sf::Keyboard::C)
+			{
+				showOption(window);
+			}
+
 			if (event.key.code == sf::Keyboard::Escape || event.type == sf::Event::Closed)
 			{
 				window.close();
 				exit(0);
 			}
+
 			clock.restart();
 		}
 
@@ -220,7 +201,7 @@ void insertStats(int numberOfPattern, sf::Clock startOfGameClock)
 		exit(1);
 	}
 
-	if (compareStats(numberOfPattern, startOfGameClock) == true)
+	if (compareStats(numberOfPattern, startOfGameClock))
 	{
 		statsFile << numberOfPattern << " " << startOfGameClock.getElapsedTime().asSeconds();
 	}
@@ -275,10 +256,13 @@ void showOption(sf::RenderWindow& window) {
 
 		sf::Text optionText;
 		optionText.setFont(menuFont);
-		optionText.setString("Press Y to put the game in 120fps, it will speed.\nup the game and make it harder.\n\nPress Escape to return to the menu.");
+		optionText.setString("Press Y to put the game in 120fps, it will speed.\n"
+			"up the game and make it harder.\n\n"
+			"Press Escape to return to the menu."
+);
 		optionText.setCharacterSize(15);
 		optionText.setFillColor(sf::Color::White);
-		optionText.setPosition(WINDOW_WIDTH / 2 - optionText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - optionText.getGlobalBounds().height / 2);
+		optionText.setPosition(50, 50);
 		window.draw(optionText);
 		window.display();
 
