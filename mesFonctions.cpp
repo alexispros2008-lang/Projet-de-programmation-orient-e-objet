@@ -1,5 +1,4 @@
 #include "mesFonctions.h"
-#include "mesFonctions2.h"
 #include "mesConstantes.h"
 #include <SFML/Graphics.hpp>
 #include <fstream>
@@ -87,7 +86,7 @@ void showMenu(sf::RenderWindow& window) {
 
 			if (event.key.code == sf::Keyboard::Space)
 			{
-
+				showStats(window);
 			}
 
 			if (event.key.code == sf::Keyboard::H) {
@@ -123,22 +122,109 @@ void iFrameAnimation(sf::RectangleShape& player, sf::Clock& animationClock)
 	} while (elapsed.asSeconds() <= 1.0f);
 }
 
-void showStats() {
+void showStats(sf::RenderWindow& window) {
+	
 	std::ifstream statsFile;
-	statsFile.open("stats.txt");
+	statsFile.open("save/stats.txt");
 
 	if (!statsFile) {
 		exit(1);
 	}
 
-	int totalGamesPlayed = 0;
-	int totalDamageTaken = 0;
-	int secondsPlayed = 0;
+	int bestSecondsSurvived = 0;
+	int bestNumberOfPattern = 0;
 
-	statsFile >> totalGamesPlayed >> totalDamageTaken >> secondsPlayed;
+	statsFile >> bestNumberOfPattern >> bestSecondsSurvived;
+
+	statsFile.close();
+
+	std::string numberOfPatternIntoString = std::to_string(bestNumberOfPattern);
+	std::string secondsSurvivedIntoString = std::to_string(bestSecondsSurvived);
+
+	sf::Event event;
+	while (window.waitEvent(event))
+	{
+		window.clear(sf::Color::Black);
+
+		sf::Font menuFont;
+		verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
+
+		sf::Text numberOfPatternText;
+		numberOfPatternText.setFont(menuFont);
+		numberOfPatternText.setString("Best number of pattern : " + numberOfPatternIntoString);
+		numberOfPatternText.setCharacterSize(30);
+		numberOfPatternText.setFillColor(sf::Color::White);
+		numberOfPatternText.setPosition(WINDOW_WIDTH / 2 - numberOfPatternText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - numberOfPatternText.getGlobalBounds().height / 2 + 50);
+
+		sf::Text secondsSurvivedText;
+		secondsSurvivedText.setFont(menuFont);
+		secondsSurvivedText.setString("Best time in seconds : " + secondsSurvivedIntoString);
+		secondsSurvivedText.setCharacterSize(30);
+		secondsSurvivedText.setFillColor(sf::Color::White);
+		secondsSurvivedText.setPosition(WINDOW_WIDTH / 2 - secondsSurvivedText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - secondsSurvivedText.getGlobalBounds().height / 2 + 100);
+
+		sf::Text titleStatsText;
+		titleStatsText.setFont(menuFont);
+		titleStatsText.setString("Best statistics for every game played");
+		titleStatsText.setCharacterSize(20);
+		titleStatsText.setFillColor(sf::Color::White);
+		titleStatsText.setPosition(WINDOW_WIDTH / 2 - titleStatsText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 4 - titleStatsText.getGlobalBounds().height / 2);
+
+		window.draw(numberOfPatternText);
+		window.draw(secondsSurvivedText);
+		window.draw(titleStatsText);
+		window.display();
+
+		if (event.type == sf::Event::KeyPressed)
+		{
+			break;
+		}
+	}
+}
+
+bool compareStats(int numberOfPattern, sf::Clock startOfGameClock)
+{
+	std::ifstream statsFile;
+	statsFile.open("save/stats.txt");
+
+	if (!statsFile) {
+		exit(1);
+	}
+
+	int oldBestSecondsSurvived = 0;
+	int oldBestNumberOfPattern = 0;
+
+	statsFile >> oldBestNumberOfPattern >> oldBestSecondsSurvived;
+
+	statsFile.close();
+
+	if (oldBestNumberOfPattern >= numberOfPattern)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+void insertStats(int numberOfPattern, sf::Clock startOfGameClock)
+{
+	std::ofstream statsFile;
+	statsFile.open("save/stats.txt");
+
+	if (!statsFile) {
+		exit(1);
+	}
+
+	if (compareStats(numberOfPattern, startOfGameClock) == true)
+	{
+		statsFile << numberOfPattern << " " << startOfGameClock.getElapsedTime().asSeconds();
+	}
 
 	statsFile.close();
 }
+
 
 
 void showHelp(sf::RenderWindow& window) {

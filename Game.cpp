@@ -46,8 +46,8 @@ void Game::run()
         {
             bgm.stop();
             
-
 			_endGame = true;
+            insertStats(numberOfPattern, startOfGameClock);
 
             window.clear(sf::Color::Black);
 
@@ -75,6 +75,7 @@ void Game::run()
 
         if (_showMenu || _endGame)
         {
+            insertStats(numberOfPattern, startOfGameClock);
             bgm.stop();
 
             showMenu(window);
