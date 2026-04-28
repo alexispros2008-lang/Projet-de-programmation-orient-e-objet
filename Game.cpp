@@ -46,6 +46,23 @@ void Game::run()
         checkDeath(window);
         checkMovePlayer();
         checkArenaBounds();
+<<<<<<< HEAD
+=======
+
+        for (int i = 0; i < pattern.getPattern().size(); i++) {
+            if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && !_player.hasIFrames())
+            {
+                if (pattern.getPattern()[i].checkBlue() && _player.getPlayerSpeed() != 0 || pattern.getPattern()[i].checkOrange() && _player.getPlayerSpeed() == 0)
+                {
+                    _player.takeDamage(1);
+                }
+                else if (!pattern.getPattern()[i].checkBlue() && !pattern.getPattern()[i].checkOrange())
+                {
+                    _player.takeDamage(1);
+                }
+            }
+        }
+>>>>>>> 33ca49ff7790882b31df237d1e7c473739a316e5
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) //test pour take dmg
         {
