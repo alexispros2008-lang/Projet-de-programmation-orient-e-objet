@@ -5,7 +5,7 @@ void verificationTexture(sf::Texture& texture, std::string pathTexture);
 void verificationFont(sf::Font& font, std::string pathFont);
 bool checkBoundingBox(sf::FloatRect, sf::FloatRect);
 void showMenu(sf::RenderWindow& window);
-void iFrameAnimation(sf::RectangleShape& player, sf::Clock& animationClock);
+void iFrameAnimation(sf::RectangleShape& player, bool& hasIFrames);
 void showHelp(sf::RenderWindow& window);
 void insertStats(int numberOfPattern, sf::Clock startOfGameClock);
 bool compareStats(int numberOfPattern, sf::Clock startOfGameClock);

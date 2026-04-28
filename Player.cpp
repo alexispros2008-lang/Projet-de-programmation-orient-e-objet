@@ -21,6 +21,7 @@ Player::Player(sf::Vector2f position, sf::Vector2f size)
 	_player.setSize(size);
 	_playerHitbox.setPosition(position);
 	_playerHitbox.setSize(size);
+	_playerBounds = _playerHitbox.getGlobalBounds();
 	_playerSpeed = 0.0f;
 	_playerHealth = PLAYER_HP;
 	_hasIFrames = false;
@@ -78,19 +79,7 @@ void Player::takeDamage(int dmg)
 
 void Player::startIFrames()
 {
-	_iFramesClock.restart();
-	_hasIFrames = true;
-	std::thread iFramesThread(iFrameAnimation, std::ref(_player), std::ref(_iFramesClock));
+	std::thread iFramesThread(iFrameAnimation, std::ref(_player), std::ref(_hasIFrames));
 	iFramesThread.detach(); //voodoo magic
-}
-
-void Player::stopIFrames()
-{
-	sf::Time _iFramesTimer;
-	_iFramesTimer = _iFramesClock.getElapsedTime();
-
-	if (_iFramesTimer.asSeconds() >= IFRAME_DURATION) {
-		_hasIFrames = false;
-	}
 }
 

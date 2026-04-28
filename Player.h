@@ -17,8 +17,6 @@ private:
 	int _playerHealth;
 
 	bool _hasIFrames;
-	sf::Clock _iFramesClock;
-	sf::Clock _iFramesAnimationClock;
 public:
 	Player();
 	Player(sf::Vector2f position, sf::Vector2f size);

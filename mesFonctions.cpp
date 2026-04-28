@@ -105,21 +105,29 @@ void showMenu(sf::RenderWindow& window) {
 	} while (window.waitEvent(event));
 }
 
-void iFrameAnimation(sf::RectangleShape& player, sf::Clock& animationClock)
+void iFrameAnimation(sf::RectangleShape& player, bool& hasIFrames)
 {
+	hasIFrames = true;
+
+	sf::Clock iFramesClock;
 	sf::Time elapsed;
 	do
 	{
-		elapsed = animationClock.getElapsedTime();
-		if (static_cast<int>(elapsed.asSeconds() * 10) % 2 == 1) {
+		elapsed = iFramesClock.getElapsedTime();
+
+		if (static_cast<int>(elapsed.asSeconds() * 10) % 2 == 1) 
+		{
 			player.setFillColor(sf::Color::Color(player.getFillColor().r, player.getFillColor().g, player.getFillColor().b, 128));
 		}
+
 		if (static_cast<int>(elapsed.asSeconds() * 10) % 2 == 0)
 		{
 			player.setFillColor(sf::Color::Color(player.getFillColor().r, player.getFillColor().g, player.getFillColor().b, 255));
 		}
 
 	} while (elapsed.asSeconds() <= 1.0f);
+
+	hasIFrames = false;
 }
 
 void showStats(sf::RenderWindow& window) {
