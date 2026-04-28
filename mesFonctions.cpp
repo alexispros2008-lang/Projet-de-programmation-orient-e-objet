@@ -24,7 +24,6 @@ void showMenu(sf::RenderWindow& window) {
 	sf::Font menuFont;
 	verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
 
-
 	sf::Text menuText;
 	menuText.setFont(menuFont);
 	menuText.setString("Press Enter to Play");
@@ -59,11 +58,6 @@ void showMenu(sf::RenderWindow& window) {
 	quitText.setCharacterSize(30);
 	quitText.setFillColor(sf::Color::White);
 	quitText.setPosition(WINDOW_WIDTH / 2 - quitText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - quitText.getGlobalBounds().height / 2 + 150);
-
-
-	
-
-	
 
 	sf::Event event;
 	sf::Clock clock;
@@ -150,33 +144,34 @@ void showStats(sf::RenderWindow& window) {
 	std::string secondsSurvivedIntoString = std::to_string(bestSecondsSurvived);
 
 	sf::Event event;
+
+	sf::Font menuFont;
+	verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
+
+	sf::Text numberOfPatternText;
+	numberOfPatternText.setFont(menuFont);
+	numberOfPatternText.setString("Best number of pattern : " + numberOfPatternIntoString);
+	numberOfPatternText.setCharacterSize(30);
+	numberOfPatternText.setFillColor(sf::Color::White);
+	numberOfPatternText.setPosition(WINDOW_WIDTH / 2 - numberOfPatternText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - numberOfPatternText.getGlobalBounds().height / 2 + 50);
+
+	sf::Text secondsSurvivedText;
+	secondsSurvivedText.setFont(menuFont);
+	secondsSurvivedText.setString("Best time in seconds : " + secondsSurvivedIntoString);
+	secondsSurvivedText.setCharacterSize(30);
+	secondsSurvivedText.setFillColor(sf::Color::White);
+	secondsSurvivedText.setPosition(WINDOW_WIDTH / 2 - secondsSurvivedText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - secondsSurvivedText.getGlobalBounds().height / 2 + 100);
+
+	sf::Text titleStatsText;
+	titleStatsText.setFont(menuFont);
+	titleStatsText.setString("Best statistics for every game played");
+	titleStatsText.setCharacterSize(20);
+	titleStatsText.setFillColor(sf::Color::White);
+	titleStatsText.setPosition(WINDOW_WIDTH / 2 - titleStatsText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 4 - titleStatsText.getGlobalBounds().height / 2);
+
 	while (window.waitEvent(event))
 	{
 		window.clear(sf::Color::Black);
-
-		sf::Font menuFont;
-		verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
-
-		sf::Text numberOfPatternText;
-		numberOfPatternText.setFont(menuFont);
-		numberOfPatternText.setString("Best number of pattern : " + numberOfPatternIntoString);
-		numberOfPatternText.setCharacterSize(30);
-		numberOfPatternText.setFillColor(sf::Color::White);
-		numberOfPatternText.setPosition(WINDOW_WIDTH / 2 - numberOfPatternText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - numberOfPatternText.getGlobalBounds().height / 2 + 50);
-
-		sf::Text secondsSurvivedText;
-		secondsSurvivedText.setFont(menuFont);
-		secondsSurvivedText.setString("Best time in seconds : " + secondsSurvivedIntoString);
-		secondsSurvivedText.setCharacterSize(30);
-		secondsSurvivedText.setFillColor(sf::Color::White);
-		secondsSurvivedText.setPosition(WINDOW_WIDTH / 2 - secondsSurvivedText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - secondsSurvivedText.getGlobalBounds().height / 2 + 100);
-
-		sf::Text titleStatsText;
-		titleStatsText.setFont(menuFont);
-		titleStatsText.setString("Best statistics for every game played");
-		titleStatsText.setCharacterSize(20);
-		titleStatsText.setFillColor(sf::Color::White);
-		titleStatsText.setPosition(WINDOW_WIDTH / 2 - titleStatsText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 4 - titleStatsText.getGlobalBounds().height / 2);
 
 		window.draw(numberOfPatternText);
 		window.draw(secondsSurvivedText);
@@ -237,21 +232,28 @@ void insertStats(int numberOfPattern, sf::Clock startOfGameClock)
 
 void showHelp(sf::RenderWindow& window) {
 
+	sf::Font menuFont;
+	verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
+
+	sf::Text helpText;
+	helpText.setFont(menuFont);
+	helpText.setString("Use the arrow keys to move.\n"
+		"Survive for as many patterns as you can!\n"
+		"Blue bullets will hit you if you move.\n"
+		"Orange bullets will hit you if you stay still.\n\n"
+		"Press Escape to return to the menu."
+	);
+	helpText.setCharacterSize(17.5f);
+	helpText.setFillColor(sf::Color::White);
+	helpText.setPosition(WINDOW_WIDTH / 2 - helpText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - helpText.getGlobalBounds().height / 2);
+
 	sf::Event event;
 	while (window.waitEvent(event))
 	{
 		window.clear(sf::Color::Black);
 
-		sf::Font menuFont;
-		verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
-
-		sf::Text helpText;
-		helpText.setFont(menuFont);
-		helpText.setString("Use the arrow keys to move.\nThe longer you survive, the more points you get!\n\nPress Escape to return to the menu.");
-		helpText.setCharacterSize(15);
-		helpText.setFillColor(sf::Color::White);
-		helpText.setPosition(WINDOW_WIDTH / 2 - helpText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - helpText.getGlobalBounds().height / 2);
 		window.draw(helpText);
+
 		window.display();
 
 		if (event.type == sf::Event::KeyPressed)
