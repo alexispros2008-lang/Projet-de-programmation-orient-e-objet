@@ -6,7 +6,6 @@
 Game::Game()
 {
 	_player = Player(sf::Vector2f(PLAYER_INIT_POSITION_X, PLAYER_INIT_POSITION_Y), sf::Vector2f(20, 20));
-    _player.initSprite();
 
     if (!bgmBuffer.loadFromFile("sound/bgm.wav")) {
         exit(1);
@@ -53,7 +52,6 @@ void Game::run()
             window.clear(sf::Color::Black);
 
             sf::Texture splitSoul;
-			sf::Texture tempTexture = *_player.getPlayer().getTexture();
 			verificationTexture(splitSoul, "images/undertale-split-soul.png");
 			_player.getPlayer().setTexture(&splitSoul);
 
@@ -73,7 +71,6 @@ void Game::run()
             Sleep(2000);
             //ajouter ecriture a stats
 
-			_player.getPlayer().setTexture(&tempTexture); //marche pas pis jsp
         }
 
         if (_showMenu || _endGame)
@@ -85,8 +82,12 @@ void Game::run()
             //Reinit
 			_player.getPlayer().setPosition(PLAYER_INIT_POSITION_X, PLAYER_INIT_POSITION_Y);
 			_player.setPlayerHealth(PLAYER_HP);
+            _player.initSprite();
+
 			bgm.play();
+
             startOfGameClock.restart();
+
             _showMenu = false;
 			_endGame = false;
         }
