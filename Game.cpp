@@ -76,25 +76,25 @@ void Game::checkMovePlayer()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         _player.movePlayer(sf::Vector2f(0, -PLAYER_SPEED));
-        _player.setPlayerSpeed(1.0);
+        _player.setPlayerSpeed(PLAYER_SPEED);
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
         _player.movePlayer(sf::Vector2f(-PLAYER_SPEED, 0));
-        _player.setPlayerSpeed(1.0);
+        _player.setPlayerSpeed(PLAYER_SPEED);
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         _player.movePlayer(sf::Vector2f(0, PLAYER_SPEED));
-        _player.setPlayerSpeed(1.0);
+        _player.setPlayerSpeed(PLAYER_SPEED);
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         _player.movePlayer(sf::Vector2f(PLAYER_SPEED, 0));
-        _player.setPlayerSpeed(1.0);
+        _player.setPlayerSpeed(PLAYER_SPEED);
     }
 }
 
@@ -191,7 +191,6 @@ void Game::menu(sf::RenderWindow& window)
 {
     if (_showMenu || _endGame)
     {
-        insertStats(_numberOfPattern, startOfGameClock);
         bgm.stop();
 
         showMenu(window);
