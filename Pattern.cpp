@@ -7,13 +7,17 @@
 
 Pattern::Pattern()
 {
+	_pattern.clear();
 	std::string randomNumberStringVersion = randomPatternFile();
 	readPaternFile("pattern/pattern" + randomNumberStringVersion + ".txt");
 }
 
-void Pattern::resetPattern()
+void Pattern::resetPattern(int numberOfPattern)
 {
-	_pattern.clear();
+	if (numberOfPattern % 4 == 0)
+	{
+		_pattern.clear();
+	}
 	std::string randomNumberStringVersion = randomPatternFile();
 	readPaternFile("pattern/pattern" + randomNumberStringVersion + ".txt");
 }

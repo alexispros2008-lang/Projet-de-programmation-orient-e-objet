@@ -91,20 +91,15 @@ void Game::run()
 			_endGame = false;
         }
 
-        
-
         if (clock.getElapsedTime() >= sf::seconds(1.f) && startOfGameClock.getElapsedTime() > sf::seconds(4.f)) {
             clock.restart();
-            pattern.resetPattern();
+            pattern.resetPattern(numberOfPattern);
             numberOfPattern++;
         }
-
-        
 
         movePlayer();
         checkArenaBounds();
         _player.stopIFrames();
-
 
         for (int i = 0; i < pattern.getPattern().size(); i++) {
             if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && !_player.hasIFrames())
