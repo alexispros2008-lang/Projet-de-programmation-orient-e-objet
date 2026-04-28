@@ -99,7 +99,6 @@ void Game::run()
 
         movePlayer();
         checkArenaBounds();
-        _player.stopIFrames();
 
         for (int i = 0; i < pattern.getPattern().size(); i++) {
             if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && !_player.hasIFrames())
