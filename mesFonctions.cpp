@@ -262,3 +262,34 @@ void showHelp(sf::RenderWindow& window) {
 		}
 	}
 }
+
+void showOption(sf::RenderWindow& window) {
+
+	sf::Event event;
+	while (window.waitEvent(event))
+	{
+		window.clear(sf::Color::Black);
+
+		sf::Font menuFont;
+		verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
+
+		sf::Text optionText;
+		optionText.setFont(menuFont);
+		optionText.setString("Press Y to put the game in 120fps, it will speed.\nup the game and make it harder.\n\nPress Escape to return to the menu.");
+		optionText.setCharacterSize(15);
+		optionText.setFillColor(sf::Color::White);
+		optionText.setPosition(WINDOW_WIDTH / 2 - optionText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - optionText.getGlobalBounds().height / 2);
+		window.draw(optionText);
+		window.display();
+
+		if (event.key.code == sf::Keyboard::Escape)
+		{
+			break;
+		}
+		if (event.key.code == sf::Keyboard::Y)
+		{
+			window.setFramerateLimit(120);
+			break;
+		}
+	}
+}
