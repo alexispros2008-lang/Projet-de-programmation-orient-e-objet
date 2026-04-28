@@ -33,6 +33,7 @@ public:
 
 	inline void setPlayerSpeed(float speed) { _playerSpeed = speed; }
 	inline void setPlayerHealth(int health) { _playerHealth = health; }
+	void setPlayerPosition(sf::Vector2f position);
 
 	void initSprite();
 

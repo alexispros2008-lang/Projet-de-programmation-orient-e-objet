@@ -81,7 +81,7 @@ void Game::run()
             showMenu(window);
 			
             //Reinit
-			_player.getPlayer().setPosition(PLAYER_INIT_POSITION_X, PLAYER_INIT_POSITION_Y);
+			_player.setPlayerPosition(sf::Vector2f(PLAYER_INIT_POSITION_X, PLAYER_INIT_POSITION_Y));
 			_player.setPlayerHealth(PLAYER_HP);
             _player.initSprite();
 

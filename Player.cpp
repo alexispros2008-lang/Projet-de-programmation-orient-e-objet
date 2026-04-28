@@ -36,6 +36,13 @@ Player::~Player()
 	_hasIFrames = false;
 }
 
+void Player::setPlayerPosition(sf::Vector2f position)
+{
+	_player.setPosition(position);
+	_playerHitbox.setPosition(position);
+	_playerBounds = _playerHitbox.getGlobalBounds();
+}
+
 void Player::initSprite()
 {
 	verificationTexture(_playerTexture, "images\\player.png");
