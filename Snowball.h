@@ -12,6 +12,8 @@ class Snowball : public Bullet
 		const sf::CircleShape getSnowballCircle();
 		void bulletMovement() override;
 		void setColorBlue();
+		void setColorOrange();
 		bool checkBlue();
+		bool checkOrange();
 };
 

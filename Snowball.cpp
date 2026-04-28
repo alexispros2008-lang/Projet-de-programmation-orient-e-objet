@@ -57,9 +57,25 @@ void Snowball::setColorBlue()
 	_snowballCircle.setFillColor(sf::Color::Cyan);
 }
 
+void Snowball::setColorOrange()
+{
+	sf::Color orange(248, 147, 41);
+	_snowballCircle.setFillColor(orange);
+}
+
 bool Snowball::checkBlue()
 {
 	if (_snowballCircle.getFillColor() == sf::Color::Cyan) 
+	{
+		return true;
+	}
+	return false;
+}
+
+bool Snowball::checkOrange()
+{
+	sf::Color orange(248, 147, 41);
+	if (_snowballCircle.getFillColor() == orange)
 	{
 		return true;
 	}

@@ -71,14 +71,15 @@ void Pattern::readPaternFile(std::string paternFileName)
 		}
 		if (bulletType == 0) {
 			Snowball tempSnowball(positionBullet, bulletSpeed, tempDirectionPush, radius);
-			if (int randomNumberIntVersion = rand() % 3 + 1 == 2)
+			if (int randomNumberForColorBlue = rand() % 3 + 1 == 2)
 			{
 				tempSnowball.setColorBlue();
 			}
+			if (int randomNumberForColorOrange = rand() % 3 + 1 == 1)
+			{
+				tempSnowball.setColorOrange();
+			}
 			_pattern.push_back(tempSnowball);
-		}
-		else {
-
 		}
 	}
 	paternFile.close();

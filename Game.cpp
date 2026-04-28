@@ -69,8 +69,6 @@ void Game::run()
 			window.display();
 
             Sleep(2000);
-            //ajouter ecriture a stats
-
         }
 
         if (_showMenu || _endGame)
@@ -106,11 +104,11 @@ void Game::run()
         for (int i = 0; i < pattern.getPattern().size(); i++) {
             if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && !_player.hasIFrames())
             {
-                if (pattern.getPattern()[i].checkBlue() && _player.getPlayerSpeed() != 0)
+                if (pattern.getPattern()[i].checkBlue() && _player.getPlayerSpeed() != 0 || pattern.getPattern()[i].checkOrange() && _player.getPlayerSpeed() == 0)
                 {
                     _player.takeDamage(1);
                 }
-                else if (!pattern.getPattern()[i].checkBlue())
+                else if (!pattern.getPattern()[i].checkBlue() && !pattern.getPattern()[i].checkOrange())
                 {
                     _player.takeDamage(1);
                 }
