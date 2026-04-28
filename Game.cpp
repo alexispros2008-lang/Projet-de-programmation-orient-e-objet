@@ -25,9 +25,7 @@ void Game::run()
 {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "UndertaleBossFight", sf::Style::Close);
     window.setFramerateLimit(60);
-    int numberOfPattern = 0;
     
-
     while (window.isOpen())
     {
         sf::Event event;
@@ -42,78 +40,12 @@ void Game::run()
             }
         }
 
-        if (_player.getPlayerHealth() <= 0)
-        {
-            bgm.stop();
-            
-			_endGame = true;
-            insertStats(numberOfPattern, startOfGameClock);
+		menu(window);
 
-            window.clear(sf::Color::Black);
-
-            sf::Texture splitSoul;
-			verificationTexture(splitSoul, "images/undertale-split-soul.png");
-			_player.getPlayer().setTexture(&splitSoul);
-
-			sf::SoundBuffer deathBuffer;
-			sf::Sound deathSound;
-            if (!deathBuffer.loadFromFile("sound/undertale-death.wav")) {
-                exit(1);
-			}
-			deathSound.setBuffer(deathBuffer);
-			deathSound.setLoop(false);
-            deathSound.play();
-
-			window.draw(_player.getPlayer());
-
-			window.display();
-
-            Sleep(2000);
-        }
-
-        if (_showMenu || _endGame)
-        {
-            insertStats(numberOfPattern, startOfGameClock);
-            bgm.stop();
-
-            showMenu(window);
-			
-            //Reinit
-			_player.setPlayerPosition(sf::Vector2f(PLAYER_INIT_POSITION_X, PLAYER_INIT_POSITION_Y));
-			_player.setPlayerHealth(PLAYER_HP);
-            _player.initSprite();
-
-			bgm.play();
-
-            startOfGameClock.restart();
-
-            _showMenu = false;
-			_endGame = false;
-        }
-
-        if (clock.getElapsedTime() >= sf::seconds(1.f) && startOfGameClock.getElapsedTime() > sf::seconds(4.f)) {
-            clock.restart();
-            pattern.resetPattern(numberOfPattern);
-            numberOfPattern++;
-        }
-
-        movePlayer();
+        checkPattern();
+        checkDeath(window);
+        checkMovePlayer();
         checkArenaBounds();
-        _player.stopIFrames();
-
-        for (int i = 0; i < pattern.getPattern().size(); i++) {
-            if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && !_player.hasIFrames())
-            {
-                if (pattern.getPattern()[i].checkBlue() && _player.getPlayerSpeed() != 0 || pattern.getPattern()[i].checkOrange() && _player.getPlayerSpeed() == 0)
-                {
-                    _player.takeDamage(1);
-                }
-                else if (!pattern.getPattern()[i].checkBlue() && !pattern.getPattern()[i].checkOrange())
-                {
-                    _player.takeDamage(1);
-                }
-            }
-        }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) //test pour take dmg
         {
@@ -138,7 +70,7 @@ void Game::checkArenaBounds()
     }
 }
 
-void Game::movePlayer()
+void Game::checkMovePlayer()
 {
     _player.setPlayerSpeed(0.0);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -198,6 +130,84 @@ void Game::checkHealth()
     {
         _endGame = true;
    }
+}
+
+void Game::checkDeath(sf::RenderWindow& window)
+{
+    if (_player.getPlayerHealth() <= 0)
+    {
+        bgm.stop();
+
+        _endGame = true;
+        insertStats(_numberOfPattern, startOfGameClock);
+
+        window.clear(sf::Color::Black);
+
+        sf::Texture splitSoul;
+        verificationTexture(splitSoul, "images/undertale-split-soul.png");
+        _player.getPlayer().setTexture(&splitSoul);
+
+        sf::SoundBuffer deathBuffer;
+        sf::Sound deathSound;
+        if (!deathBuffer.loadFromFile("sound/undertale-death.wav")) {
+            exit(1);
+        }
+        deathSound.setBuffer(deathBuffer);
+        deathSound.setLoop(false);
+        deathSound.play();
+
+        window.draw(_player.getPlayer());
+
+        window.display();
+
+        Sleep(2000);
+    }
+}
+
+void Game::checkPattern()
+{
+    if (clock.getElapsedTime() >= sf::seconds(1.f) && startOfGameClock.getElapsedTime() > sf::seconds(4.f)) {
+        clock.restart();
+        pattern.resetPattern(_numberOfPattern);
+        _numberOfPattern++;
+    }
+
+    for (int i = 0; i < pattern.getPattern().size(); i++) {
+        if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && !_player.hasIFrames())
+        {
+            if (pattern.getPattern()[i].checkBlue() && _player.getPlayerSpeed() != 0 || pattern.getPattern()[i].checkOrange() && _player.getPlayerSpeed() == 0)
+            {
+                _player.takeDamage(1);
+            }
+            else if (!pattern.getPattern()[i].checkBlue() && !pattern.getPattern()[i].checkOrange())
+            {
+                _player.takeDamage(1);
+            }
+        }
+    }
+}
+
+void Game::menu(sf::RenderWindow& window)
+{
+    if (_showMenu || _endGame)
+    {
+        insertStats(_numberOfPattern, startOfGameClock);
+        bgm.stop();
+
+        showMenu(window);
+
+        //Reinit
+        _player.setPlayerPosition(sf::Vector2f(PLAYER_INIT_POSITION_X, PLAYER_INIT_POSITION_Y));
+        _player.setPlayerHealth(PLAYER_HP);
+        _player.initSprite();
+
+        bgm.play();
+
+        startOfGameClock.restart();
+
+        _showMenu = false;
+        _endGame = false;
+    }
 }
 
 void Game::draw(sf::RenderWindow& window)

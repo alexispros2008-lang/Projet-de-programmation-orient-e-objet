@@ -18,6 +18,7 @@ private:
 
 	bool _endGame;
 	bool _showMenu = true;
+	int _numberOfPattern = 0;
 
 	sf::Clock clock;
 
@@ -33,11 +34,17 @@ public:
 
 	void checkArenaBounds();
 
-	void movePlayer();
+	void checkMovePlayer();
 
 	void drawHealthBar(sf::RenderWindow& window);
 
 	void checkHealth();
+
+	void checkDeath(sf::RenderWindow& window);
+
+	void checkPattern();
+
+	void menu(sf::RenderWindow& window);
 
 	void draw(sf::RenderWindow& window);
 };
