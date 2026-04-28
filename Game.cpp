@@ -43,7 +43,6 @@ void Game::run()
 		menu(window);
 
         checkPattern();
-        checkDeath(window);
         checkMovePlayer();
         checkArenaBounds();
 
@@ -53,6 +52,7 @@ void Game::run()
         }
 
         draw(window);
+        checkDeath(window);
 
         _player.getPreviousMovement().clear();
     }
