@@ -52,7 +52,16 @@ void Snowball::bulletMovement()
 	_snowballBounds = _snowballCircle.getGlobalBounds();
 }
 
+void Snowball::setColorBlue()
+{
+	_snowballCircle.setFillColor(sf::Color::Cyan);
+}
+
 bool Snowball::checkBlue()
 {
-	return true;
+	if (_snowballCircle.getFillColor() == sf::Color::Cyan) 
+	{
+		return true;
+	}
+	return false;
 }

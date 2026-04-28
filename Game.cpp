@@ -102,9 +102,16 @@ void Game::run()
         _player.stopIFrames();
 
         for (int i = 0; i < pattern.getPattern().size(); i++) {
-            if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && !_player.hasIFrames() && !pattern.getPattern()[i].checkBlue())
+            if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && !_player.hasIFrames())
             {
-                _player.takeDamage(1);
+                if (pattern.getPattern()[i].checkBlue() && _player.getPlayerSpeed() != 0)
+                {
+                    _player.takeDamage(1);
+                }
+                else if (!pattern.getPattern()[i].checkBlue())
+                {
+                    _player.takeDamage(1);
+                }
             }
         }
 
@@ -133,24 +140,29 @@ void Game::checkArenaBounds()
 
 void Game::movePlayer()
 {
+    _player.setPlayerSpeed(0.0);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         _player.movePlayer(sf::Vector2f(0, -PLAYER_SPEED));
+        _player.setPlayerSpeed(1.0);
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
         _player.movePlayer(sf::Vector2f(-PLAYER_SPEED, 0));
+        _player.setPlayerSpeed(1.0);
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         _player.movePlayer(sf::Vector2f(0, PLAYER_SPEED));
+        _player.setPlayerSpeed(1.0);
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         _player.movePlayer(sf::Vector2f(PLAYER_SPEED, 0));
+        _player.setPlayerSpeed(1.0);
     }
 }
 
