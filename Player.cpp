@@ -61,12 +61,12 @@ void Player::takeDamage(int dmg)
 
 	if (!dmgBuffer.loadFromFile("sound/dmg.wav")) {
 		exit(1);
-	} 
+	}
 
 	dmgSound.setBuffer(dmgBuffer);
 	dmgSound.setLoop(false);
 	dmgSound.setVolume(100);
-	dmgSound.play(); 
+	dmgSound.play();
 }
 
 void Player::startIFrames()

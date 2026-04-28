@@ -97,4 +97,3 @@ Snowball Pattern::patternMovement(int numberOfTheActualBullet)
 	_pattern[numberOfTheActualBullet].bulletMovement();
 	return _pattern[numberOfTheActualBullet];
 }
-

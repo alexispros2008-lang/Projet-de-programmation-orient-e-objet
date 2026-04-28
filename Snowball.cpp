@@ -51,3 +51,8 @@ void Snowball::bulletMovement()
 
 	_snowballBounds = _snowballCircle.getGlobalBounds();
 }
+
+bool Snowball::checkBlue()
+{
+	return true;
+}

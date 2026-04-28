@@ -102,7 +102,7 @@ void Game::run()
         _player.stopIFrames();
 
         for (int i = 0; i < pattern.getPattern().size(); i++) {
-            if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && !_player.hasIFrames())
+            if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && !_player.hasIFrames() && !pattern.getPattern()[i].checkBlue())
             {
                 _player.takeDamage(1);
             }
