@@ -10,3 +10,4 @@ void showHelp(sf::RenderWindow& window);
 void insertStats(int numberOfPattern, sf::Clock startOfGameClock);
 bool compareStats(int numberOfPattern, sf::Clock startOfGameClock);
 void showStats(sf::RenderWindow& window);
+void showOption(sf::RenderWindow& window);
