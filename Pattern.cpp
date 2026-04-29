@@ -97,7 +97,7 @@ void Pattern::readPaternFile(std::string paternFileName)
 
 std::string Pattern::randomPatternFile()
 {
-	int randomNumberIntVersion =  rand() % 12 + 1;
+	int randomNumberIntVersion =  rand() % 13 + 1;
 	std::string randomNumberStringVersion = std::to_string(randomNumberIntVersion);
 	return randomNumberStringVersion;
 }
