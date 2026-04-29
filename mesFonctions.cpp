@@ -258,6 +258,8 @@ void showOption(sf::RenderWindow& window) {
 		optionText.setFont(menuFont);
 		optionText.setString("Press Y to put the game in 120fps, it will speed.\n"
 			"up the game and make it harder.\n\n"
+			"Press U to put the game in 60fps, it will put.\n"
+			"the game at the intended speed limit.\n\n"
 			"Press Escape to return to the menu."
 );
 		optionText.setCharacterSize(15);
@@ -273,6 +275,11 @@ void showOption(sf::RenderWindow& window) {
 		if (event.key.code == sf::Keyboard::Y)
 		{
 			window.setFramerateLimit(120);
+			break;
+		}
+		if (event.key.code == sf::Keyboard::U)
+		{
+			window.setFramerateLimit(60);
 			break;
 		}
 	}

@@ -14,7 +14,7 @@ Pattern::Pattern()
 
 void Pattern::resetPattern(int numberOfPattern)
 {
-	if (numberOfPattern % 4 == 0)
+	if (numberOfPattern % 10 == 0)
 	{
 		_pattern.clear();
 	}
@@ -78,7 +78,17 @@ void Pattern::readPaternFile(std::string paternFileName)
 			if (int randomNumberForColorOrange = rand() % 3 + 1 == 1)
 			{
 				tempSnowball.setColorOrange();
-			}
+			} 
+			_pattern.push_back(tempSnowball);
+		}
+		else if (bulletType == 1) {
+			Snowball tempSnowball(positionBullet, bulletSpeed, tempDirectionPush, radius);
+			tempSnowball.setColorBlue();
+			_pattern.push_back(tempSnowball);
+		}
+		else if (bulletType == 2) {
+			Snowball tempSnowball(positionBullet, bulletSpeed, tempDirectionPush, radius);
+			tempSnowball.setColorOrange();
 			_pattern.push_back(tempSnowball);
 		}
 	}
@@ -87,7 +97,7 @@ void Pattern::readPaternFile(std::string paternFileName)
 
 std::string Pattern::randomPatternFile()
 {
-	int randomNumberIntVersion =  rand() % 10 + 1;
+	int randomNumberIntVersion =  rand() % 12 + 1;
 	std::string randomNumberStringVersion = std::to_string(randomNumberIntVersion);
 	return randomNumberStringVersion;
 }
