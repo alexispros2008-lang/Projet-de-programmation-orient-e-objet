@@ -101,7 +101,7 @@ void Pattern::deleteOneSnowball(int snowballVectorPlace)
 
 std::string Pattern::randomPatternFile()
 {
-	int randomNumberIntVersion =  rand() % 15 + 1;
+	int randomNumberIntVersion =  rand() % 16 + 1;
 	std::string randomNumberStringVersion = std::to_string(randomNumberIntVersion);
 	return randomNumberStringVersion;
 }

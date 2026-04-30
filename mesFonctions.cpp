@@ -35,6 +35,7 @@ void showMenu(sf::RenderWindow& window) {
 		"Press Space for Statistics\n\n"
 		"Press H for Help\n\n"
 		"Press C for Option\n\n"
+		"Press T for Tutorial\n\n"
 		"Press Escape to Quit"
 	);
 
@@ -65,6 +66,11 @@ void showMenu(sf::RenderWindow& window) {
 			if (event.key.code == sf::Keyboard::C)
 			{
 				showOption(window);
+			}
+
+			if (event.key.code == sf::Keyboard::T)
+			{
+				break;
 			}
 
 			if (event.key.code == sf::Keyboard::Escape || event.type == sf::Event::Closed)

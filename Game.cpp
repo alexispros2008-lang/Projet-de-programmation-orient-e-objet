@@ -46,11 +46,6 @@ void Game::run()
         checkMovePlayer();
         checkArenaBounds();
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) //test pour take dmg
-        {
-            _player.takeDamage(1);
-        }
-
         draw(window);
         checkDeath(window);
 
@@ -166,7 +161,8 @@ void Game::checkDeath(sf::RenderWindow& window)
 
 void Game::checkPattern()
 {
-    if (clock.getElapsedTime() >= sf::seconds(1.f) && startOfGameClock.getElapsedTime() > sf::seconds(4.f)) {
+    if (clock.getElapsedTime() >= sf::seconds(1.f) && startOfGameClock.getElapsedTime() > sf::seconds(4.f)) 
+    {
         clock.restart();
         pattern.resetPattern();
         _numberOfPattern++;
