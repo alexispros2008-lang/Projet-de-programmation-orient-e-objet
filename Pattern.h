@@ -9,6 +9,7 @@ class Pattern
 		Pattern();
 		void resetPattern(int numberOfPattern);
 		void readPaternFile(std::string paternFileName);
+		void deleteOneSnowball(int snowballVectorPlace);
 		std::string randomPatternFile();
 		std::vector <Snowball> getPattern();
 		Snowball patternMovement(int numberOfTheActualBullet);

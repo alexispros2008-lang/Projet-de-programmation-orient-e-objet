@@ -88,6 +88,11 @@ void Pattern::readPaternFile(std::string paternFileName)
 	paternFile.close();
 }
 
+void Pattern::deleteOneSnowball(int snowballVectorPlace)
+{
+	_pattern.erase(_pattern.begin() + snowballVectorPlace);
+}
+
 std::string Pattern::randomPatternFile()
 {
 	int randomNumberIntVersion =  rand() % 15 + 1;
