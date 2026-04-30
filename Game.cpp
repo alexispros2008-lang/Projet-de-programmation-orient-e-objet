@@ -179,7 +179,11 @@ void Game::checkPattern()
             {
                 _player.takeDamage(1);
             }
-            else if (!pattern.getPattern()[i].checkBlue() && !pattern.getPattern()[i].checkOrange())
+            else if (_player.getPlayerHealth() < 20 && pattern.getPattern()[i].checkGreen())
+            {
+                _player.setPlayerHealth(_player.getPlayerHealth() + 1);
+            }
+            else if (pattern.getPattern()[i].checkWhite())
             {
                 _player.takeDamage(1);
             }

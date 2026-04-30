@@ -69,35 +69,28 @@ void Pattern::readPaternFile(std::string paternFileName)
 		else {
 			tempDirectionPush = NOTHING;
 		}
+		Snowball tempSnowball(positionBullet, bulletSpeed, tempDirectionPush, radius);
 		if (bulletType == 0) {
-			Snowball tempSnowball(positionBullet, bulletSpeed, tempDirectionPush, radius);
-			if (int randomNumberForColorBlue = rand() % 3 + 1 == 2)
-			{
-				tempSnowball.setColorBlue();
-			}
-			if (int randomNumberForColorOrange = rand() % 3 + 1 == 1)
-			{
-				tempSnowball.setColorOrange();
-			} 
-			_pattern.push_back(tempSnowball);
+			tempSnowball.setColorWhite();
 		}
 		else if (bulletType == 1) {
-			Snowball tempSnowball(positionBullet, bulletSpeed, tempDirectionPush, radius);
 			tempSnowball.setColorBlue();
-			_pattern.push_back(tempSnowball);
+			
 		}
 		else if (bulletType == 2) {
-			Snowball tempSnowball(positionBullet, bulletSpeed, tempDirectionPush, radius);
 			tempSnowball.setColorOrange();
-			_pattern.push_back(tempSnowball);
 		}
+		else if (bulletType == 3) {
+			tempSnowball.setColorGreen();
+		}
+		_pattern.push_back(tempSnowball);
 	}
 	paternFile.close();
 }
 
 std::string Pattern::randomPatternFile()
 {
-	int randomNumberIntVersion =  rand() % 13 + 1;
+	int randomNumberIntVersion =  rand() % 15 + 1;
 	std::string randomNumberStringVersion = std::to_string(randomNumberIntVersion);
 	return randomNumberStringVersion;
 }

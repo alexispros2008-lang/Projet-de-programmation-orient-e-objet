@@ -11,9 +11,13 @@ class Snowball : public Bullet
 		sf::Rect <float> getSnowballBounds() const { return _snowballBounds; }
 		const sf::CircleShape getSnowballCircle();
 		void bulletMovement() override;
+		void setColorWhite();
 		void setColorBlue();
 		void setColorOrange();
+		void setColorGreen();
+		bool checkWhite();
 		bool checkBlue();
 		bool checkOrange();
+		bool checkGreen();
 };
 

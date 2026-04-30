@@ -52,6 +52,11 @@ void Snowball::bulletMovement()
 	_snowballBounds = _snowballCircle.getGlobalBounds();
 }
 
+void Snowball::setColorWhite()
+{
+	_snowballCircle.setFillColor(sf::Color::White);
+}
+
 void Snowball::setColorBlue()
 {
 	_snowballCircle.setFillColor(sf::Color::Cyan);
@@ -61,6 +66,20 @@ void Snowball::setColorOrange()
 {
 	sf::Color orange(248, 147, 41);
 	_snowballCircle.setFillColor(orange);
+}
+
+void Snowball::setColorGreen()
+{
+	_snowballCircle.setFillColor(sf::Color::Green);
+}
+
+bool Snowball::checkWhite()
+{
+	if (_snowballCircle.getFillColor() == sf::Color::White)
+	{
+		return true;
+	}
+	return false;
 }
 
 bool Snowball::checkBlue()
@@ -76,6 +95,15 @@ bool Snowball::checkOrange()
 {
 	sf::Color orange(248, 147, 41);
 	if (_snowballCircle.getFillColor() == orange)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool Snowball::checkGreen()
+{
+	if (_snowballCircle.getFillColor() == sf::Color::Green)
 	{
 		return true;
 	}
