@@ -5,6 +5,7 @@
 #include "Bullet.h"
 #include "Pattern.h"
 #include "Windows.h"
+#include "Spawner.h"
 #include <SFML/Audio.hpp>
 
 class Game
@@ -15,6 +16,7 @@ private:
 	Boss snowBoss;
 	Pattern pattern;
 	sf::Clock startOfGameClock;
+	Spawner spawner;
 
 	bool _endGame;
 	bool _showMenu = true;

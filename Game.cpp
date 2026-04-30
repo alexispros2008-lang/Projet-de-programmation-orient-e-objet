@@ -25,6 +25,9 @@ void Game::run()
 {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "UndertaleBossFight", sf::Style::Close);
     window.setFramerateLimit(60);
+
+    spawner.setTypeIce(Ice(sf::Vector2f(0, 0), 10, 10, 0, 0));
+    spawner.setSpawner(sf::Vector2f(400, 400), 0, 50, 0);
     
     while (window.isOpen())
     {
@@ -45,6 +48,15 @@ void Game::run()
         checkPattern();
         checkMovePlayer();
         checkArenaBounds();
+
+        spawner.move();
+        spawner.summonBullet();
+
+        for (int i = 0; i < spawner.getIceBullets().size(); i++)
+        {
+            spawner.getIceBullets().at(i).bulletMovement();
+        }
+
 
         draw(window);
         checkDeath(window);
@@ -218,6 +230,13 @@ void Game::draw(sf::RenderWindow& window)
     window.draw(snowBoss.getBoss());
     window.draw(_player.getPlayer());
     drawHealthBar(window);
+
+    for (int i = 0; i < spawner.getIceBullets().size(); i++)
+    {
+        window.draw(spawner.getIceBullets().at(i).getIce());
+    }
+
+
     if (startOfGameClock.getElapsedTime() > sf::seconds(4.f)) {
         for (int i = 0; i < pattern.getPattern().size(); i++) {
             pattern.patternMovement(i);
