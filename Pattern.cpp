@@ -20,6 +20,9 @@ void Pattern::resetPattern()
 		if (_pattern[i].getSnowballCircle().getPosition().x < 0 || _pattern[i].getSnowballCircle().getPosition().x > WINDOW_WIDTH || _pattern[i].getSnowballCircle().getPosition().y < 0 || _pattern[i].getSnowballCircle().getPosition().x > WINDOW_HEIGHT) {
 			deleteOneSnowball(i);
 		}
+		if (_pattern.size() >= 20) {
+			_pattern.clear();
+		}
 	}
 	std::string randomNumberStringVersion = randomPatternFile();
 	readPaternFile("pattern/pattern" + randomNumberStringVersion + ".txt");
@@ -94,10 +97,6 @@ void Pattern::readPaternFile(std::string paternFileName)
 void Pattern::deleteOneSnowball(int snowballVectorPlace)
 {
 	_pattern.erase(_pattern.begin() + snowballVectorPlace);
-	_pattern.shrink_to_fit();
-	if (_pattern.empty()) {
-		_pattern.clear();
-	}
 }
 
 std::string Pattern::randomPatternFile()
