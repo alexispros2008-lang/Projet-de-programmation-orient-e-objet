@@ -184,7 +184,7 @@ void Game::checkPattern()
                 _player.takeDamage(1);
             }
         }
-        if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && _player.getPlayerHealth() < 20 && pattern.getPattern()[i].checkGreen())
+        if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && _player.getPlayerHealth() < PLAYER_HP && pattern.getPattern()[i].checkGreen())
         {
             pattern.deleteOneSnowball(i);
             _player.setPlayerHealth(_player.getPlayerHealth() + 1);
