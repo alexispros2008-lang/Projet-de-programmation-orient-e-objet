@@ -179,14 +179,15 @@ void Game::checkPattern()
             {
                 _player.takeDamage(1);
             }
-            else if (_player.getPlayerHealth() < 20 && pattern.getPattern()[i].checkGreen())
-            {
-                _player.setPlayerHealth(_player.getPlayerHealth() + 1);
-            }
             else if (pattern.getPattern()[i].checkWhite())
             {
                 _player.takeDamage(1);
             }
+        }
+        if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && _player.getPlayerHealth() < 20 && pattern.getPattern()[i].checkGreen())
+        {
+            _player.setPlayerHealth(_player.getPlayerHealth() + 1);
+            pattern.getPattern().erase(pattern.getPattern().begin() + i);
         }
     }
 }
