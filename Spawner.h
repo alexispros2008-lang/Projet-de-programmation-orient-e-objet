@@ -1,6 +1,6 @@
 #pragma once
 #include "SFML/Graphics.hpp"
-#include "Snowball.h"
+#include "Ice.h"
 class Spawner
 {
 private:
@@ -8,7 +8,9 @@ private:
 	sf::FloatRect _spawnerBounds = _spawner.getGlobalBounds();
 	sf::Vector2f _speed;
 	float _rotation; //angle
-	std::vector <Snowball> _snowballs;
+
+	Ice typeIce;
+	std::vector <Ice> _iceBullets;
 public:
 	Spawner();
 

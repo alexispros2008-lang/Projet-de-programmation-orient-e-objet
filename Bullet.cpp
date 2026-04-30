@@ -19,8 +19,7 @@ Bullet::~Bullet()
 
 void Bullet::createBullet(sf::Vector2<float> positionBullet, int bulletSpeed, Direction direction)
 {
-	_positionBullet.x = positionBullet.x;
-	_positionBullet.y = positionBullet.y;
+	_positionBullet = positionBullet;
 	_bulletSpeed = bulletSpeed;
 	_direction = direction;
 }

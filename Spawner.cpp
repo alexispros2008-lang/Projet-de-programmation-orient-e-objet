@@ -26,6 +26,6 @@ void Spawner::turn()
 
 void Spawner::summonBullet()
 {
-	Snowball s(_spawner.getPosition(), 0, NOTHING, 0);
-	_snowballs.push_back(s);
+	Ice ice(_spawner.getPosition(), 0, NOTHING, 0, 0);
+	
 }

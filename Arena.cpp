@@ -28,5 +28,4 @@ void Arena::drawOutlineArena(sf::RenderWindow& window)
 	outlineArena.setOutlineThickness(5);
 	outlineArena.setOutlineColor(sf::Color::White);
 	window.draw(outlineArena);
-
 }
