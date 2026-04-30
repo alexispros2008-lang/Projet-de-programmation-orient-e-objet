@@ -22,6 +22,9 @@ class Bullet
 		Bullet();
 		Bullet(sf::Vector2 <float> positionBullet, int bulletSpeed, Direction direction);
 		~Bullet();
+
+		Bullet& getBullet() { return *this; }
+
 		void createBullet(sf::Vector2 <float> positionBullet, int bulletSpeed, Direction direction);
 		virtual void bulletMovement() = 0;
 };
