@@ -4,6 +4,7 @@
 #include <fstream>
 #include <vector>
 #include "Snowball.h"
+#include "mesConstantes.h"
 
 Pattern::Pattern()
 {
@@ -12,11 +13,13 @@ Pattern::Pattern()
 	readPaternFile("pattern/pattern" + randomNumberStringVersion + ".txt");
 }
 
-void Pattern::resetPattern(int numberOfPattern)
+void Pattern::resetPattern()
 {
-	if (numberOfPattern % 10 == 0)
+	for (int i = 0; i < _pattern.size(); i++)
 	{
-		_pattern.clear();
+		if (_pattern[i].getSnowballCircle().getPosition().x < 0 || _pattern[i].getSnowballCircle().getPosition().x > WINDOW_WIDTH || _pattern[i].getSnowballCircle().getPosition().y < 0 || _pattern[i].getSnowballCircle().getPosition().x > WINDOW_HEIGHT) {
+			deleteOneSnowball(i);
+		}
 	}
 	std::string randomNumberStringVersion = randomPatternFile();
 	readPaternFile("pattern/pattern" + randomNumberStringVersion + ".txt");

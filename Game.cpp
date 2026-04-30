@@ -168,7 +168,7 @@ void Game::checkPattern()
 {
     if (clock.getElapsedTime() >= sf::seconds(1.f) && startOfGameClock.getElapsedTime() > sf::seconds(4.f)) {
         clock.restart();
-        pattern.resetPattern(_numberOfPattern);
+        pattern.resetPattern();
         _numberOfPattern++;
     }
 

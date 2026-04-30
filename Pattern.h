@@ -7,7 +7,7 @@ class Pattern
 		std::vector <Snowball> _pattern;
 	public:
 		Pattern();
-		void resetPattern(int numberOfPattern);
+		void resetPattern();
 		void readPaternFile(std::string paternFileName);
 		void deleteOneSnowball(int snowballVectorPlace);
 		std::string randomPatternFile();
