@@ -94,6 +94,7 @@ void Pattern::readPaternFile(std::string paternFileName)
 void Pattern::deleteOneSnowball(int snowballVectorPlace)
 {
 	_pattern.erase(_pattern.begin() + snowballVectorPlace);
+	_pattern.shrink_to_fit();
 	if (_pattern.empty()) {
 		_pattern.clear();
 	}
