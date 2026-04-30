@@ -10,6 +10,7 @@ private:
 	float _angle; //angle
 	float _rotation; //speed of rotation
 	float _shootSpeed;
+	sf::Clock _shootSpeedClock;
 
 	Ice _typeIce;
 	std::vector <Ice> _iceBullets;

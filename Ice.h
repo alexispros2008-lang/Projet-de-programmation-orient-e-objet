@@ -1,5 +1,8 @@
 #pragma once
 #include "Bullet.h"
+#include "math.h"
+#include "mesConstantes.h"
+
 class Ice : public Bullet
 {
 private:

@@ -7,6 +7,7 @@ Spawner::Spawner()
 	_angle = 0.0f;
 	_rotation = 0.0f;
 	_speed = sf::Vector2f(0, 0);
+	_shootSpeed = 0.0f;
 }
 
 Spawner::Spawner(sf::Vector2f position, float angle, float rotation, float shootSpeed)
@@ -24,15 +25,15 @@ void Spawner::setSpawner(sf::Vector2f position, float angle, float rotation, flo
 {
 	_spawner.setPosition(position);
 	_spawner.setSize(sf::Vector2f(50, 50));
-	_spawner.setFillColor(sf::Color::Magenta);
 	_angle = angle;
 	_rotation = rotation;
+	_shootSpeed = shootSpeed;
 }
 
 void Spawner::move()
 {
 	_angle += _rotation;
-	sf::Vector2f movement(_speed.x * (cos(_angle * 3.14 / 180) / 2), _speed.y * (sin(_angle * 3.14 / 180) / 2)); //convertir angle en radians, mettre dans un vecteur
+	sf::Vector2f movement(_speed.x * (cos(_angle * PI / 180) / 2), _speed.y * (sin(_angle * PI / 180) / 2)); //convertir angle en radians, mettre dans un vecteur
 	_spawner.move(movement);
 }
 
@@ -43,6 +44,10 @@ void Spawner::turn()
 
 void Spawner::summonBullet()
 {
-	Ice iceBullet(_spawner.getPosition(), _typeIce.getBulletSpeed(), _typeIce.getRadius(), _typeIce.getAngle() + _angle, _typeIce.getRotation());
-	_iceBullets.push_back(iceBullet);
+	if (_shootSpeedClock.getElapsedTime() >= sf::seconds(_shootSpeed / 10))
+	{
+		Ice iceBullet(_spawner.getPosition(), _typeIce.getBulletSpeed(), _typeIce.getRadius(), _typeIce.getAngle() + _angle, _typeIce.getRotation());
+		_iceBullets.push_back(iceBullet);
+		_shootSpeedClock.restart();
+	}
 }

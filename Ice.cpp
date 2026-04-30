@@ -31,6 +31,7 @@ Ice::~Ice()
 void Ice::bulletMovement()
 {
 	_angle += _rotation;
-	sf::Vector2f bulletMovement(_bulletSpeed * (cos(_angle * 3.14 / 180) / 2), _bulletSpeed * (sin(_angle * 3.14 / 180) / 2)); //convertir angle en radians, mettre dans un vecteur
+	sf::Vector2f bulletMovement(_bulletSpeed * (cos(_angle * PI / 180) / 2), _bulletSpeed * (sin(_angle * PI / 180) / 2)); //convertir angle en radians, mettre dans un vecteur
 	_iceCircle.move(bulletMovement);
+	
 }

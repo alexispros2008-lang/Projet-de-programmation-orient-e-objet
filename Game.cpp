@@ -26,8 +26,8 @@ void Game::run()
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "UndertaleBossFight", sf::Style::Close);
     window.setFramerateLimit(60);
 
-    spawner.setTypeIce(Ice(sf::Vector2f(0, 0), 10, 10, 0, 0));
-    spawner.setSpawner(sf::Vector2f(400, 400), 0, 50, 0);
+    spawner.setTypeIce(Ice(sf::Vector2f(0, 0), 10, 10, 0, 2));
+    spawner.setSpawner(sf::Vector2f(400, 400), 0, 45, 0);
     
     while (window.isOpen())
     {
