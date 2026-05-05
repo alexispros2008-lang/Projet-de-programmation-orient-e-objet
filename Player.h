@@ -39,7 +39,6 @@ public:
 	void takeDamage(int dmg);
 
 	void startIFrames();
-	void stopIFrames();
 	inline bool hasIFrames() const { return _hasIFrames; }
 };
 

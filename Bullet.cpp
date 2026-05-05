@@ -9,11 +9,12 @@ Bullet::Bullet()
 	_bulletSpeed = 0;
 	_rotation = 0.0f;
 	_angle = 0.0f;
+	_bulletLifeTime = 0.0f;
 }
 
-Bullet::Bullet(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation)
+Bullet::Bullet(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation, float bulletLifeTime)
 {
-	createBullet(bulletCircle, bulletSpeed, radius, angle, rotation);
+	createBullet(bulletCircle, bulletSpeed, radius, angle, rotation, bulletLifeTime);
 }
 
 Bullet::~Bullet()
@@ -25,7 +26,7 @@ Bullet::~Bullet()
 	_angle = 0.0f;
 }
 
-void Bullet::createBullet(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation)
+void Bullet::createBullet(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation, float bulletLifeTime)
 {
 	_bulletCircle.setRadius(radius);
 	_bulletCircle.setPosition({ bulletCircle.getPosition().x, bulletCircle.getPosition().y});
