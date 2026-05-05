@@ -1,31 +1,22 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-enum Direction {
-	LEFT,
-	UP,
-	DOWN,
-	RIGHT,
-	RIGHT_UP,
-	RIGHT_DOWN,
-	LEFT_UP,
-	LEFT_DOWN,
-	NOTHING
-};
+#include "mesConstantes.h"
 
 class Bullet
 {
 	protected:
-		sf::Vector2 <float> _positionBullet;
+		sf::CircleShape _bulletCircle;
 		int _bulletSpeed;
-		Direction _direction;
+		float _angle;
+		float _rotation; //speed of rotation
 	public:
 		Bullet();
-		Bullet(sf::Vector2 <float> positionBullet, int bulletSpeed, Direction direction);
+		Bullet(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation);
 		~Bullet();
 
 		Bullet& getBullet() { return *this; }
 
-		void createBullet(sf::Vector2 <float> positionBullet, int bulletSpeed, Direction direction);
-		virtual void bulletMovement() = 0;
+		void createBullet(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation);
+		void bulletMovement();
 };
 

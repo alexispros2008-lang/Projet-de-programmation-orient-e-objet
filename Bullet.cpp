@@ -4,22 +4,35 @@
 
 Bullet::Bullet()
 {
-	createBullet({ 0.0f, 0.0f }, 0, NOTHING);
+	_bulletCircle.setRadius(0);
+	_bulletCircle.setPosition({ 0.0f, 0.0f });
+	_bulletSpeed = 0;
+	_rotation = 0.0f;
+	_angle = 0.0f;
 }
 
-Bullet::Bullet(sf::Vector2 <float> positionBullet, int bulletSpeed, Direction direction)
+Bullet::Bullet(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation)
 {
-	createBullet(positionBullet, bulletSpeed, direction);
+	createBullet(bulletCircle, bulletSpeed, radius, angle, rotation);
 }
 
 Bullet::~Bullet()
 {
-	createBullet({ 0.0f, 0.0f }, 0, NOTHING);
+	createBullet(_bulletCircle, 0, 0, 0.0f, 0.0f);
 }
 
-void Bullet::createBullet(sf::Vector2<float> positionBullet, int bulletSpeed, Direction direction)
+void Bullet::createBullet(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation)
 {
-	_positionBullet = positionBullet;
-	_bulletSpeed = bulletSpeed;
-	_direction = direction;
+	_bulletCircle.setRadius(radius);
+	_bulletCircle.setPosition({ bulletCircle.getPosition().x, bulletCircle.getPosition().y});
+	_bulletSpeed = 0;
+	_rotation = 0.0f;
+	_angle = 0.0f;
+}
+
+void Bullet::bulletMovement()
+{
+	_angle += _rotation;
+	sf::Vector2f bulletMovement(_bulletSpeed * (cos(_angle * PI / 180) / 2), _bulletSpeed * (sin(_angle * PI / 180) / 2)); //convertir angle en radians, mettre dans un vecteur
+	_bulletCircle.move(bulletMovement);
 }

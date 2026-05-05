@@ -46,7 +46,9 @@ void Spawner::summonBullet()
 {
 	if (_shootSpeedClock.getElapsedTime() >= sf::seconds(_shootSpeed / 10))
 	{
-		Ice iceBullet(_spawner.getPosition(), _typeIce.getBulletSpeed(), _typeIce.getRadius(), _typeIce.getAngle() + _angle, _typeIce.getRotation());
+		sf::CircleShape tempCircle;
+		tempCircle.setPosition(_spawner.getPosition());
+		Ice iceBullet(tempCircle, _typeIce.getBulletSpeed(), _typeIce.getRadius(), _typeIce.getAngle() + _angle, _typeIce.getRotation());
 		_iceBullets.push_back(iceBullet);
 		_shootSpeedClock.restart();
 	}

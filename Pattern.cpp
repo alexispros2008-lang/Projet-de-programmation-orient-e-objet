@@ -43,37 +43,39 @@ void Pattern::readPaternFile(std::string paternFileName)
 	int direction = 0;
 	int radius = 0;
 	int bulletType = 0;
-	Direction tempDirectionPush = NOTHING;
+	float angle = 0.0f;
 
 	while (paternFile >> bulletType >> positionBullet.x >> positionBullet.y >> bulletSpeed >> direction >> radius) {
 		if (direction == 0) {
-			tempDirectionPush = LEFT;
+			angle = 180.f;
 		}
 		else if (direction == 1) {
-			tempDirectionPush = UP;
+			angle = 90.f;
 		}
 		else if (direction == 2) {
-			tempDirectionPush = DOWN;
+			angle = 270.f;
 		}
 		else if (direction == 3) {
-			tempDirectionPush = RIGHT;
+			angle = 0.f;
 		}
 		else if (direction == 4) {
-			tempDirectionPush = RIGHT_UP;
+			angle = 45.f;
 		}
 		else if (direction == 5) {
-			tempDirectionPush = RIGHT_DOWN;
+			angle = 335.f;
 		}
 		else if (direction == 6) {
-			tempDirectionPush = LEFT_UP;
+			angle = 180.f;
 		}
 		else if (direction == 7) {
-			tempDirectionPush = LEFT_DOWN;
+			angle = 180.f;
 		}
 		else {
-			tempDirectionPush = NOTHING;
+			angle = 0.f;
 		}
-		Snowball tempSnowball(positionBullet, bulletSpeed, tempDirectionPush, radius);
+		sf::CircleShape tempBullet;
+		tempBullet.setPosition({ positionBullet.x, positionBullet.y });
+		Snowball tempSnowball(tempBullet, bulletSpeed, angle, radius, 0);
 		if (bulletType == 0) {
 			tempSnowball.setColorWhite();
 		}

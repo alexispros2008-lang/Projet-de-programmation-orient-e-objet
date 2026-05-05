@@ -289,59 +289,98 @@ void showTutorial(sf::RenderWindow& window)
 {
 	int actualTutorial = 0;
 	sf::Event event;
-	sf::RectangleShape tutorialInfo;
-	tutorialInfo.setPosition(0.f, 0.f);
-	tutorialInfo.setSize({WINDOW_WIDTH, WINDOW_HEIGHT});
-	static sf::Texture tutorialTexture;
+	sf::Clock clock;
+	sf::RectangleShape tutorialInfo1;
+	tutorialInfo1.setPosition(0.f, 0.f);
+	tutorialInfo1.setSize({WINDOW_WIDTH, WINDOW_HEIGHT});
+	static sf::Texture tutorialTexture1;
 
-	verificationTexture(tutorialTexture, "images\\drawingTheTutorial.png");
-	tutorialInfo.setTexture(&tutorialTexture);
+	verificationTexture(tutorialTexture1, "images\\tutorial\\1.png");
+	tutorialInfo1.setTexture(&tutorialTexture1);
 
 	sf::RectangleShape tutorialInfo2;
 	tutorialInfo2.setPosition(0.f, 0.f);
 	tutorialInfo2.setSize({ WINDOW_WIDTH, WINDOW_HEIGHT });
 	static sf::Texture tutorialTexture2;
 
-	verificationTexture(tutorialTexture2, "images\\drawingTheTutorial2.png");
+	verificationTexture(tutorialTexture2, "images\\tutorial\\2.png");
 	tutorialInfo2.setTexture(&tutorialTexture2);
+
+	sf::RectangleShape tutorialInfo3;
+	tutorialInfo3.setPosition(0.f, 0.f);
+	tutorialInfo3.setSize({ WINDOW_WIDTH, WINDOW_HEIGHT });
+	static sf::Texture tutorialTexture3;
+
+	verificationTexture(tutorialTexture3, "images\\tutorial\\3.png");
+	tutorialInfo3.setTexture(&tutorialTexture3);
+
+	sf::RectangleShape tutorialInfo4;
+	tutorialInfo4.setPosition(0.f, 0.f);
+	tutorialInfo4.setSize({ WINDOW_WIDTH, WINDOW_HEIGHT });
+	static sf::Texture tutorialTexture4;
+
+	verificationTexture(tutorialTexture4, "images\\tutorial\\4.png");
+	tutorialInfo4.setTexture(&tutorialTexture4);
 	
+	sf::RectangleShape tutorialInfo5;
+	tutorialInfo5.setPosition(0.f, 0.f);
+	tutorialInfo5.setSize({ WINDOW_WIDTH, WINDOW_HEIGHT });
+	static sf::Texture tutorialTexture5;
+
+	verificationTexture(tutorialTexture5, "images\\tutorial\\5.png");
+	tutorialInfo5.setTexture(&tutorialTexture5);
+
 	while (window.waitEvent(event))
 	{
 		window.clear(sf::Color::Black);
 
 		if (actualTutorial == 0) {
-			window.draw(tutorialInfo);
+			window.draw(tutorialInfo1);
 		}
 		else if (actualTutorial == 1) {
 			window.draw(tutorialInfo2);
 		}
+		else if (actualTutorial == 2) {
+			window.draw(tutorialInfo3);
+		}
+		else if (actualTutorial == 3) {
+			window.draw(tutorialInfo4);
+		}
+		else if (actualTutorial == 4) {
+			window.draw(tutorialInfo5);
+		}
 		window.display();
 
-		if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Left)
+		if (clock.getElapsedTime() >= sf::seconds(0.4f))
 		{
-			if (actualTutorial == 0) 
+			if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Left)
 			{
+				if (actualTutorial == 0)
+				{
 
+				}
+				else
+				{
+					actualTutorial = actualTutorial - 1;
+				}
 			}
-			else if (actualTutorial == 1) 
+			if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Right)
 			{
-				actualTutorial = 0;
+				if (actualTutorial == 4)
+				{
+
+				}
+				else
+				{
+					actualTutorial = actualTutorial + 1;
+
+				}
 			}
-		}
-		if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Right)
-		{
-			if (actualTutorial == 0)
+			if (event.key.code == sf::Keyboard::Escape)
 			{
-				actualTutorial = 1;
+				break;
 			}
-			else if (actualTutorial == 1)
-			{
-				
-			}
-		}
-		if (event.key.code == sf::Keyboard::Escape)
-		{
-			break;
+			clock.restart();
 		}
 	}
 }

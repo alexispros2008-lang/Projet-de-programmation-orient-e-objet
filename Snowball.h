@@ -6,11 +6,10 @@ class Snowball : public Bullet
 		sf::CircleShape _snowballCircle;
 		sf::Rect <float> _snowballBounds = _snowballCircle.getGlobalBounds();
 	public:
-		Snowball(sf::Vector2 <float> positionBullet, int bulletSpeed, Direction direction, int radius);
+		Snowball(sf::CircleShape bulletCircle, int bulletSpeed, float angle, int radius, float rotation);
 		~Snowball();
 		sf::Rect <float> getSnowballBounds() const { return _snowballBounds; }
 		const sf::CircleShape getSnowballCircle();
-		void bulletMovement() override;
 		void setColorWhite();
 		void setColorBlue();
 		void setColorOrange();
