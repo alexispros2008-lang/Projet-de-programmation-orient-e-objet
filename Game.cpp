@@ -171,7 +171,7 @@ void Game::checkPattern()
         if (_patterns.size() == 0)
         {
             Pattern pattern;
-            _patterns.push_back(pattern);
+            _patterns.push_back(pattern); //temp pattern so it doesnt break everything under it
         }
 
         if (_patternClock.getElapsedTime() > sf::seconds(_patterns.at(_patterns.size() - 1).getPatternLifeTime()))
@@ -202,6 +202,7 @@ void Game::checkPattern()
                     _patterns.at(i).deleteOneSnowball(j);
                     _player.setPlayerHealth(_player.getPlayerHealth() + 1);
                 }
+                _patterns.at(i).patternMovement(j);
             }
 
             _patterns.at(i).resetPattern();
@@ -244,8 +245,6 @@ void Game::draw(sf::RenderWindow& window)
 
     for (int i = 0; i < _patterns.size(); i++) {
         for (int j = 0; j < _patterns.at(i).getPattern().size(); j++) {
-
-            _patterns.at(i).patternMovement(j);
             window.draw(_patterns.at(i).getPattern().at(j).getBullet().getBulletCircle());
         }
     }
