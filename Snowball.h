@@ -3,8 +3,7 @@
 class Snowball : public Bullet
 {
 	private:
-		sf::CircleShape _snowballCircle;
-		sf::Rect <float> _snowballBounds = _snowballCircle.getGlobalBounds();
+		sf::Rect <float> _snowballBounds = _bulletCircle.getGlobalBounds();
 	public:
 		Snowball(sf::CircleShape bulletCircle, int bulletSpeed, float angle, int radius, float rotation);
 		~Snowball();

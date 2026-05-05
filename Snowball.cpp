@@ -6,8 +6,8 @@
 Snowball::Snowball(sf::CircleShape bulletCircle, int bulletSpeed, float angle, int radius, float rotation)
 {
 	createBullet(bulletCircle, bulletSpeed, radius, angle, rotation);
-	_snowballCircle = sf::CircleShape(radius);
-	_snowballCircle.setPosition(bulletCircle.getPosition().x, bulletCircle.getPosition().y);
+	_bulletCircle = sf::CircleShape(radius);
+	_bulletCircle.setPosition(bulletCircle.getPosition().x, bulletCircle.getPosition().y);
 }
 
 Snowball::~Snowball()
@@ -16,33 +16,33 @@ Snowball::~Snowball()
 
 const sf::CircleShape Snowball::getSnowballCircle()
 {
-	return _snowballCircle;
+	return _bulletCircle;
 }
 
 void Snowball::setColorWhite()
 {
-	_snowballCircle.setFillColor(sf::Color::White);
+	_bulletCircle.setFillColor(sf::Color::White);
 }
 
 void Snowball::setColorBlue()
 {
-	_snowballCircle.setFillColor(sf::Color::Cyan);
+	_bulletCircle.setFillColor(sf::Color::Cyan);
 }
 
 void Snowball::setColorOrange()
 {
 	sf::Color orange(248, 147, 41);
-	_snowballCircle.setFillColor(orange);
+	_bulletCircle.setFillColor(orange);
 }
 
 void Snowball::setColorGreen()
 {
-	_snowballCircle.setFillColor(sf::Color::Green);
+	_bulletCircle.setFillColor(sf::Color::Green);
 }
 
 bool Snowball::checkWhite()
 {
-	if (_snowballCircle.getFillColor() == sf::Color::White)
+	if (_bulletCircle.getFillColor() == sf::Color::White)
 	{
 		return true;
 	}
@@ -51,7 +51,7 @@ bool Snowball::checkWhite()
 
 bool Snowball::checkBlue()
 {
-	if (_snowballCircle.getFillColor() == sf::Color::Cyan) 
+	if (_bulletCircle.getFillColor() == sf::Color::Cyan) 
 	{
 		return true;
 	}
@@ -61,7 +61,7 @@ bool Snowball::checkBlue()
 bool Snowball::checkOrange()
 {
 	sf::Color orange(248, 147, 41);
-	if (_snowballCircle.getFillColor() == orange)
+	if (_bulletCircle.getFillColor() == orange)
 	{
 		return true;
 	}
@@ -70,7 +70,7 @@ bool Snowball::checkOrange()
 
 bool Snowball::checkGreen()
 {
-	if (_snowballCircle.getFillColor() == sf::Color::Green)
+	if (_bulletCircle.getFillColor() == sf::Color::Green)
 	{
 		return true;
 	}
