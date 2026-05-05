@@ -2,7 +2,9 @@
 
 Ice::Ice()
 {
-	createBullet(_bulletCircle, 0, 0, 0.0f, 0.0f);
+	sf::CircleShape tempCircle;
+	tempCircle.setPosition(0.0f, 0.0f);
+	createBullet(tempCircle, 0, 0, 0.0f, 0.0f);
 }
 
 Ice::Ice(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation)
@@ -13,5 +15,7 @@ Ice::Ice(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle,
 
 Ice::~Ice()
 {
-	createBullet(_bulletCircle, 0, 0, 0.0f, 0.0f);
+	sf::CircleShape tempCircle;
+	tempCircle.setPosition(0.0f, 0.0f);
+	createBullet(tempCircle, 0, 0, 0.0f, 0.0f);
 }
