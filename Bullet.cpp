@@ -25,9 +25,9 @@ void Bullet::createBullet(sf::CircleShape bulletCircle, int bulletSpeed, int rad
 {
 	_bulletCircle.setRadius(radius);
 	_bulletCircle.setPosition({ bulletCircle.getPosition().x, bulletCircle.getPosition().y});
-	_bulletSpeed = 0;
-	_rotation = 0.0f;
-	_angle = 0.0f;
+	_bulletSpeed = bulletSpeed;
+	_rotation = rotation;
+	_angle = angle;
 }
 
 void Bullet::bulletMovement()
