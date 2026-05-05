@@ -40,4 +40,5 @@ void Bullet::bulletMovement()
 	_angle += _rotation;
 	sf::Vector2f bulletMovement(_bulletSpeed * (cos(_angle * PI / 180) / 2), -(_bulletSpeed * (sin(_angle * PI / 180) / 2))); //convertir angle en radians, mettre dans un vecteur
 	_bulletCircle.move(bulletMovement);
+	_bulletBounds = _bulletCircle.getGlobalBounds();
 }

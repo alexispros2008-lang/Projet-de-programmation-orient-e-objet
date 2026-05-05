@@ -180,7 +180,7 @@ void Game::checkPattern()
         {
             for (int j = 0; j < _patterns.at(i).getPattern().size(); j++) {
 
-                if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getPattern()[j].getSnowballBounds()) && !_player.hasIFrames())
+                if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getPattern()[j].getBullet().getBulletBounds()) && !_player.hasIFrames())
                 {
                     if (_patterns.at(i).getPattern()[j].checkBlue() && _player.getPlayerSpeed() != 0 || _patterns.at(i).getPattern()[j].checkOrange() && _player.getPlayerSpeed() == 0)
                     {
