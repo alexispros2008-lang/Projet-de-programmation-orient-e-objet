@@ -22,6 +22,5 @@ class Bullet
 
 		void createBullet(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation);
 		void bulletMovement();
-		float &getBulletLifeTime();
 };
 

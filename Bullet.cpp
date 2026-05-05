@@ -42,9 +42,3 @@ void Bullet::bulletMovement()
 	_bulletBounds = _bulletCircle.getGlobalBounds();
 }
 
-float& Bullet::getBulletLifeTime()
-{
-	return _bulletLifeTime;
-}
-
-

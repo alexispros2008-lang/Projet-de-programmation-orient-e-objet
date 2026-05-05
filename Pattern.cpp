@@ -51,13 +51,9 @@ void Pattern::readPaternFile(std::string paternFileName)
 
 		sf::CircleShape tempBullet;
 		tempBullet.setPosition({ positionBullet.x, positionBullet.y });
-<<<<<<< Updated upstream
-		Snowball tempSnowball(tempBullet, bulletSpeed * 2.5, angle, radius, 0, bulletLifeTime);
-=======
-		Snowball tempSnowball(tempBullet, 9, angle, radius, 0);
+		Snowball tempSnowball(tempBullet, bulletSpeed * 2.5, angle, radius, 0);
 		_patternLifeTime = patternLifeTime;
 
->>>>>>> Stashed changes
 		if (bulletType == 0) 
 		{
 			tempSnowball.setColorWhite();
