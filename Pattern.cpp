@@ -40,38 +40,83 @@ void Pattern::readPaternFile(std::string paternFileName)
 		exit(1);
 	}
 
-	sf::Vector2 <float> positionBullet(0, 0);
-	int bulletSpeed = 0;
-	int radius = 0;
-	int bulletType = 0;
-	float angle = 0.0f;
-	float patternLifeTime = 0.0f;
+	
 
-	while (paternFile >> bulletType >> positionBullet.x >> positionBullet.y >> bulletSpeed >> angle >> radius >> patternLifeTime) {
 
-		sf::CircleShape tempBullet;
-		tempBullet.setPosition({ positionBullet.x, positionBullet.y });
-		Snowball tempSnowball(tempBullet, bulletSpeed * 2.5, angle, radius, 0);
-		_patternLifeTime = patternLifeTime;
+	while (!paternFile.eof())
+	{
+		int bulletType = 0;
+	
+		paternFile >> bulletType;
 
-		if (bulletType == 0) 
+		sf::Vector2 <float> position(0, 0);
+		int speed = 0;
+		float angle = 0.0f;
+		float lifeTime = 0.0f;
+		int radius = 0;
+
+		if (bulletType <= 3)
 		{
-			tempSnowball.setColorWhite();
+			paternFile >> position.x >> position.y >> speed >> angle >> radius >> lifeTime;
+
+			sf::CircleShape tempBullet;
+			tempBullet.setPosition({ position.x, position.y });
+			Snowball tempSnowball(tempBullet, speed * 2.5, angle, radius, 0);
+			_patternLifeTime = lifeTime;
+
+			if (bulletType == 0)
+			{
+				tempSnowball.setColorWhite();
+			}
+			else if (bulletType == 1)
+			{
+				tempSnowball.setColorBlue();
+			}
+			else if (bulletType == 2)
+			{
+				tempSnowball.setColorOrange();
+			}
+			else if (bulletType == 3)
+			{
+				tempSnowball.setColorGreen();
+			}
+			_pattern.push_back(tempSnowball);
 		}
-		else if (bulletType == 1) 
+		else
 		{
-			tempSnowball.setColorBlue();
+			float rotation = 0;
+
+			paternFile >> position.x >> position.y >> angle >> rotation >> speed >> lifeTime;
+			Spawner tempSpawner(position, angle, rotation, speed, lifeTime);
+
+			paternFile >> speed >> angle >> radius >> lifeTime;
+			sf::CircleShape tempBullet;
+			tempBullet.setPosition({ position.x, position.y });
+			Snowball tempSnowball(tempBullet, speed * 2.5, angle, radius, 0);
+
+			if (bulletType == 0)
+			{
+				tempSnowball.setColorWhite();
+			}
+			else if (bulletType == 1)
+			{
+				tempSnowball.setColorBlue();
+			}
+			else if (bulletType == 2)
+			{
+				tempSnowball.setColorOrange();
+			}
+			else if (bulletType == 3)
+			{
+				tempSnowball.setColorGreen();
+			}
+
+			tempSpawner.setTypeBullet(tempSnowball);
+			_spawners.push_back(tempSpawner);
 		}
-		else if (bulletType == 2) 
-		{
-			tempSnowball.setColorOrange();
-		}
-		else if (bulletType == 3) 
-		{
-			tempSnowball.setColorGreen();
-		}
-		_pattern.push_back(tempSnowball);
 	}
+
+	
 	paternFile.close();
 }
 

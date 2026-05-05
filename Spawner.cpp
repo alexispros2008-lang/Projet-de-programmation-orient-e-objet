@@ -8,26 +8,33 @@ Spawner::Spawner()
 	_rotation = 0.0f;
 	_speed = sf::Vector2f(0, 0);
 	_shootSpeed = 0.0f;
+	_spawnerLifeTime = 0.0f;
 }
 
-Spawner::Spawner(sf::Vector2f position, float angle, float rotation, float shootSpeed)
+Spawner::Spawner(sf::Vector2f position, float angle, float rotation, float shootSpeed, float spawnerLifeTime)
 {
-	setSpawner(position, angle, rotation, shootSpeed);
+	setSpawner(position, angle, rotation, shootSpeed, spawnerLifeTime);
 }
 
 Spawner::~Spawner()
 {
 	_spawner.setSize(sf::Vector2f(0, 0));
 	_spawner.setPosition(0, 0);
+	_angle = 0.0f;
+	_rotation = 0.0f;
+	_speed = sf::Vector2f(0, 0);
+	_shootSpeed = 0.0f;
+	_spawnerLifeTime = 0.0f;
 }
 
-void Spawner::setSpawner(sf::Vector2f position, float angle, float rotation, float shootSpeed)
+void Spawner::setSpawner(sf::Vector2f position, float angle, float rotation, float shootSpeed, float spawnerLifeTime)
 {
 	_spawner.setPosition(position);
 	_spawner.setSize(sf::Vector2f(50, 50));
 	_angle = angle;
 	_rotation = rotation;
 	_shootSpeed = shootSpeed;
+	_spawnerLifeTime = spawnerLifeTime;
 }
 
 void Spawner::move()

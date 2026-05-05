@@ -8,6 +8,8 @@ class Pattern
 		std::vector <Snowball> _pattern;
 		float _patternLifeTime;
 
+		std::vector <Spawner> _spawners;
+
 	public:
 		Pattern();
 

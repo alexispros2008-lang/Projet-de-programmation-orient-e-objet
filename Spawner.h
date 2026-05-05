@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Ice.h"
+#include "Snowball.h"
 class Spawner
 {
 private:
@@ -10,20 +11,22 @@ private:
 	float _angle; //angle
 	float _rotation; //speed of rotation
 	float _shootSpeed;
+	float _spawnerLifeTime;
 	sf::Clock _shootSpeedClock;
 
-	Ice _typeIce;
-	std::vector <Ice> _iceBullets;
+	Snowball _typeSnowball;
+	std::vector <Snowball> _snowBullets;
 public:
 	Spawner();
-	Spawner(sf::Vector2f position, float angle, float rotation, float shootSpeed);
+	Spawner(sf::Vector2f position, float angle, float rotation, float shootSpeed, float spawnerLifeTime);
 
 	~Spawner();
 	inline sf::RectangleShape getSpawner() const { return _spawner; }
-	inline std::vector<Ice>& getIceBullets() { return _iceBullets; }
+	inline std::vector<Snowball>& getSnowBullets() { return _snowBullets; }
+	inline float getLifeTime() const { return _spawnerLifeTime; }
 
-	inline void setTypeIce(Ice typeIce) { _typeIce = typeIce; }
-	void setSpawner(sf::Vector2f position, float angle, float rotation, float shootSpeed);
+	inline void setTypeBullet(Snowball bullet) { _typeSnowball = bullet; }
+	void setSpawner(sf::Vector2f position, float angle, float rotation, float shootSpeed, float spawnerLifeTime);
 
 	void move();
 	void turn();
