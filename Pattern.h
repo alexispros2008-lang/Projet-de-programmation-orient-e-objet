@@ -16,8 +16,8 @@ class Pattern
 
 		std::string randomPatternFile();
 
-		std::vector <Snowball> getPattern();
+		std::vector <Snowball>& getPattern();
 
-		Snowball patternMovement(int numberOfTheActualBullet);
+		void patternMovement(int numberOfTheActualBullet);
 };
 

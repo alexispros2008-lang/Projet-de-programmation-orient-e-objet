@@ -15,6 +15,7 @@ class Bullet
 		~Bullet();
 
 		Bullet& getBullet() { return *this; }
+		const sf::CircleShape& getBulletCircle() const { return _bulletCircle; }
 
 		void createBullet(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation);
 		void bulletMovement();

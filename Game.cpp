@@ -240,7 +240,7 @@ void Game::draw(sf::RenderWindow& window)
         for (int j = 0; j < _patterns.at(i).getPattern().size(); j++) {
 
             _patterns.at(i).patternMovement(j);
-            window.draw(_patterns.at(i).getPattern().at(j).getSnowballCircle());
+            window.draw(_patterns.at(i).getPattern().at(j).getBullet().getBulletCircle());
         }
     }
     

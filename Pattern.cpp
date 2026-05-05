@@ -106,13 +106,12 @@ std::string Pattern::randomPatternFile()
 	return randomNumberStringVersion;
 }
 
-std::vector<Snowball> Pattern::getPattern()
+std::vector<Snowball>& Pattern::getPattern()
 {
 	return _pattern;
 }
 
-Snowball Pattern::patternMovement(int numberOfTheActualBullet)
+void Pattern::patternMovement(int numberOfTheActualBullet)
 {
 	_pattern[numberOfTheActualBullet].bulletMovement();
-	return _pattern[numberOfTheActualBullet];
 }

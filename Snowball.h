@@ -8,7 +8,7 @@ class Snowball : public Bullet
 		Snowball(sf::CircleShape bulletCircle, int bulletSpeed, float angle, int radius, float rotation);
 		~Snowball();
 		sf::Rect <float> getSnowballBounds() const { return _snowballBounds; }
-		const sf::CircleShape getSnowballCircle();
+		const sf::CircleShape& getSnowballCircle();
 		void setColorWhite();
 		void setColorBlue();
 		void setColorOrange();

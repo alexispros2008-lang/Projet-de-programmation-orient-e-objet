@@ -18,7 +18,11 @@ Bullet::Bullet(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float 
 
 Bullet::~Bullet()
 {
-	createBullet(_bulletCircle, 0, 0, 0.0f, 0.0f);
+	_bulletCircle.setRadius(0);
+	_bulletCircle.setPosition({ 0.0f, 0.0f });
+	_bulletSpeed = 0;
+	_rotation = 0.0f;
+	_angle = 0.0f;
 }
 
 void Bullet::createBullet(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation)

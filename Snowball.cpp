@@ -14,7 +14,7 @@ Snowball::~Snowball()
 {
 }
 
-const sf::CircleShape Snowball::getSnowballCircle()
+const sf::CircleShape& Snowball::getSnowballCircle()
 {
 	return _bulletCircle;
 }
