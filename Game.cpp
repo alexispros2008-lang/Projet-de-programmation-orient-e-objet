@@ -175,7 +175,6 @@ void Game::checkPattern()
             _patterns.push_back(pattern);
             _patternClock.restart();
         }
-		
 
         for (int i = 0; i < _patterns.size(); i++)
         {
@@ -235,14 +234,7 @@ void Game::draw(sf::RenderWindow& window)
     window.draw(_player.getPlayer());
     drawHealthBar(window);
 
-    for (int i = 0; i < _spawner.getIceBullets().size(); i++)
-    {
-        window.draw(_spawner.getIceBullets().at(i).getIce());
-    }
-
-
     for (int i = 0; i < _patterns.size(); i++) {
-
         for (int j = 0; j < _patterns.at(i).getPattern().size(); j++) {
 
             _patterns.at(i).patternMovement(j);
