@@ -70,7 +70,7 @@ void showMenu(sf::RenderWindow& window) {
 
 			if (event.key.code == sf::Keyboard::T)
 			{
-				break;
+				showTutorial(window);
 			}
 
 			if (event.key.code == sf::Keyboard::Escape || event.type == sf::Event::Closed)
@@ -280,6 +280,67 @@ void showOption(sf::RenderWindow& window) {
 		if (event.key.code == sf::Keyboard::U)
 		{
 			window.setFramerateLimit(60);
+			break;
+		}
+	}
+}
+
+void showTutorial(sf::RenderWindow& window)
+{
+	int actualTutorial = 0;
+	sf::Event event;
+	sf::RectangleShape tutorialInfo;
+	tutorialInfo.setPosition(0.f, 0.f);
+	tutorialInfo.setSize({WINDOW_WIDTH, WINDOW_HEIGHT});
+	static sf::Texture tutorialTexture;
+
+	verificationTexture(tutorialTexture, "images\\drawingTheTutorial.png");
+	tutorialInfo.setTexture(&tutorialTexture);
+
+	sf::RectangleShape tutorialInfo2;
+	tutorialInfo2.setPosition(0.f, 0.f);
+	tutorialInfo2.setSize({ WINDOW_WIDTH, WINDOW_HEIGHT });
+	static sf::Texture tutorialTexture2;
+
+	verificationTexture(tutorialTexture2, "images\\drawingTheTutorial2.png");
+	tutorialInfo2.setTexture(&tutorialTexture2);
+	
+	while (window.waitEvent(event))
+	{
+		window.clear(sf::Color::Black);
+
+		if (actualTutorial == 0) {
+			window.draw(tutorialInfo);
+		}
+		else if (actualTutorial == 1) {
+			window.draw(tutorialInfo2);
+		}
+		window.display();
+
+		if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Left)
+		{
+			if (actualTutorial == 0) 
+			{
+
+			}
+			else if (actualTutorial == 1) 
+			{
+				actualTutorial = 0;
+			}
+		}
+		if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Right)
+		{
+			if (actualTutorial == 0)
+			{
+				actualTutorial = 1;
+			}
+			else if (actualTutorial == 1)
+			{
+				
+			}
+		}
+		if (event.key.code == sf::Keyboard::Escape)
+		{
 			break;
 		}
 	}
