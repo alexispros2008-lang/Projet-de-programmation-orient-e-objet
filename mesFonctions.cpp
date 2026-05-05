@@ -1,6 +1,7 @@
 #include "mesFonctions.h"
 #include "mesConstantes.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <fstream>
 
 void verificationTexture(sf::Texture &texture, std::string pathTexture) {
@@ -20,6 +21,15 @@ bool checkBoundingBox(sf::FloatRect box1, sf::FloatRect box2) {
 }
 
 void showMenu(sf::RenderWindow& window) {
+
+	sf::SoundBuffer menuBGMBuffer;
+	sf::Sound menuBGM;
+	if (!menuBGMBuffer.loadFromFile("sound/mainmenu.wav")) {
+		exit(1);
+	}
+	menuBGM.setBuffer(menuBGMBuffer);
+	menuBGM.setLoop(true);
+	menuBGM.play();
 
 	sf::Font menuFont;
 	verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
