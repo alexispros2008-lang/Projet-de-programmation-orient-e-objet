@@ -3,7 +3,7 @@
 class Snowball : public Bullet
 {
 	public:
-		Snowball(sf::CircleShape bulletCircle, int bulletSpeed, float angle, int radius, float rotation, float bulletLifeTime);
+		Snowball(sf::CircleShape bulletCircle, int bulletSpeed, float angle, int radius, float rotation);
 		~Snowball();
 		const sf::CircleShape& getSnowballCircle();
 		void setColorWhite();

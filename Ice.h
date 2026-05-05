@@ -9,7 +9,7 @@ private:
 	sf::Rect <float> _iceBounds = _bulletCircle.getGlobalBounds();
 public:
 	Ice();
-	Ice(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation, float bulletLifeTime);
+	Ice(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation);
 	~Ice();
 
 	inline sf::CircleShape getIce() const { return _bulletCircle; }

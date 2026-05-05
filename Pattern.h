@@ -5,6 +5,7 @@ class Pattern
 {
 	private:
 		std::vector <Snowball> _pattern;
+		float _patternLifeTime;
 	public:
 		Pattern();
 
@@ -17,6 +18,7 @@ class Pattern
 		std::string randomPatternFile();
 
 		std::vector <Snowball>& getPattern();
+		float getPatternLifeTime() const { return _patternLifeTime; }
 
 		void patternMovement(int numberOfTheActualBullet);
 };

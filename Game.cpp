@@ -168,7 +168,13 @@ void Game::checkPattern()
 {
     if (_startOfGameClock.getElapsedTime() > sf::seconds(4.f))
     {
-        if (_patternClock.getElapsedTime() > sf::seconds(1.f))
+        if (_patterns.size() == 0)
+        {
+            Pattern pattern;
+            _patterns.push_back(pattern);
+        }
+
+        if (_patternClock.getElapsedTime() > sf::seconds(_patterns.at(_patterns.size() - 1).getPatternLifeTime()))
         {
             Pattern pattern;
             pattern.createPattern();
