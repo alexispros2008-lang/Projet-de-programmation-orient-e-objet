@@ -13,21 +13,20 @@ class Game
 private:
 	Player _player;
 	Arena _arena;
-	Boss snowBoss;
-	Pattern pattern;
-	sf::Clock startOfGameClock;
-	Spawner spawner;
+	Boss _snowBoss;
+	std::vector<Pattern> _patterns;
+	sf::Clock _startOfGameClock;
+	Spawner _spawner;
 
 	bool _endGame;
 	bool _showMenu = true;
-	int _numberOfPattern = 0;
 
-	sf::Clock clock;
+	sf::Clock _patternClock;
 
-	sf::SoundBuffer bgmBuffer;
-	sf::Sound bgm;
+	sf::SoundBuffer _bgmBuffer;
+	sf::Sound _bgm;
 
-	std::vector<sf::Keyboard::Key> v_key;
+	std::vector<sf::Keyboard::Key> _v_key;
 
 public:
 	Game();

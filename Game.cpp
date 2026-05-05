@@ -7,12 +7,12 @@ Game::Game()
 {
 	_player = Player(sf::Vector2f(PLAYER_INIT_POSITION_X, PLAYER_INIT_POSITION_Y), sf::Vector2f(20, 20));
 
-    if (!bgmBuffer.loadFromFile("sound/bgm.wav")) {
+    if (!_bgmBuffer.loadFromFile("sound/bgm.wav")) {
         exit(1);
     }
     
-    bgm.setBuffer(bgmBuffer); // On applique la musique chargée à l’objet de type "Sound"
-    bgm.setLoop(true); // La musique jouera en boucle
+    _bgm.setBuffer(_bgmBuffer); // On applique la musique chargée à l’objet de type "Sound"
+    _bgm.setLoop(true); // La musique jouera en boucle
 
 	_endGame = false;
 }
@@ -38,6 +38,10 @@ void Game::run()
             if (event.key.code == sf::Keyboard::Escape)
             {
                 _showMenu = true;
+            }
+            if (event.key.code == sf::Keyboard::Q)
+            {
+                _player.takeDamage(1);
             }
         }
 
@@ -132,10 +136,10 @@ void Game::checkDeath(sf::RenderWindow& window)
 {
     if (_player.getPlayerHealth() <= 0)
     {
-        bgm.stop();
+        _bgm.stop();
 
         _endGame = true;
-        insertStats(_numberOfPattern, startOfGameClock);
+        insertStats(_patterns.size(), _startOfGameClock);
 
         window.clear(sf::Color::Black);
 
@@ -162,29 +166,38 @@ void Game::checkDeath(sf::RenderWindow& window)
 
 void Game::checkPattern()
 {
-    if (clock.getElapsedTime() >= sf::seconds(1.f) && startOfGameClock.getElapsedTime() > sf::seconds(4.f)) 
+    if (_startOfGameClock.getElapsedTime() > sf::seconds(4.f))
     {
-        clock.restart();
-        pattern.resetPattern();
-        _numberOfPattern++;
-    }
-
-    for (int i = 0; i < pattern.getPattern().size(); i++) {
-        if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && !_player.hasIFrames())
+        if (_patternClock.getElapsedTime() > sf::seconds(1.f))
         {
-            if (pattern.getPattern()[i].checkBlue() && _player.getPlayerSpeed() != 0 || pattern.getPattern()[i].checkOrange() && _player.getPlayerSpeed() == 0)
-            {
-                _player.takeDamage(1);
-            }
-            else if (pattern.getPattern()[i].checkWhite())
-            {
-                _player.takeDamage(1);
-            }
+            Pattern pattern;
+            pattern.createPattern();
+            _patterns.push_back(pattern);
+            _patternClock.restart();
         }
-        if (checkBoundingBox(_player.getPlayerBounds(), pattern.getPattern()[i].getSnowballBounds()) && _player.getPlayerHealth() < PLAYER_HP && pattern.getPattern()[i].checkGreen())
+		
+
+        for (int i = 0; i < _patterns.size(); i++)
         {
-            pattern.deleteOneSnowball(i);
-            _player.setPlayerHealth(_player.getPlayerHealth() + 1);
+            for (int j = 0; j < _patterns.at(i).getPattern().size(); j++) {
+
+                if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getPattern()[j].getSnowballBounds()) && !_player.hasIFrames())
+                {
+                    if (_patterns.at(i).getPattern()[j].checkBlue() && _player.getPlayerSpeed() != 0 || _patterns.at(i).getPattern()[j].checkOrange() && _player.getPlayerSpeed() == 0)
+                    {
+                        _player.takeDamage(1);
+                    }
+                    else if (_patterns.at(i).getPattern()[j].checkWhite())
+                    {
+                        _player.takeDamage(1);
+                    }
+                }
+                if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getPattern()[j].getSnowballBounds()) && _player.getPlayerHealth() < PLAYER_HP && _patterns.at(i).getPattern()[j].checkGreen())
+                {
+                    _patterns.at(i).deleteOneSnowball(j);
+                    _player.setPlayerHealth(_player.getPlayerHealth() + 1);
+                }
+            }
         }
     }
 }
@@ -193,7 +206,7 @@ void Game::menu(sf::RenderWindow& window)
 {
     if (_showMenu || _endGame)
     {
-        bgm.stop();
+        _bgm.stop();
 
         showMenu(window);
 
@@ -202,12 +215,14 @@ void Game::menu(sf::RenderWindow& window)
         _player.setPlayerHealth(PLAYER_HP);
         _player.initSprite();
 
-        bgm.play();
+        _bgm.play();
 
-        startOfGameClock.restart();
+        _startOfGameClock.restart();
 
         _showMenu = false;
         _endGame = false;
+
+        _patterns.clear();
     }
 }
 
@@ -216,22 +231,24 @@ void Game::draw(sf::RenderWindow& window)
     window.clear();
 
     _arena.drawOutlineArena(window);
-    window.draw(snowBoss.getBoss());
+    window.draw(_snowBoss.getBoss());
     window.draw(_player.getPlayer());
     drawHealthBar(window);
 
-    for (int i = 0; i < spawner.getIceBullets().size(); i++)
+    for (int i = 0; i < _spawner.getIceBullets().size(); i++)
     {
-        window.draw(spawner.getIceBullets().at(i).getIce());
+        window.draw(_spawner.getIceBullets().at(i).getIce());
     }
 
 
-    if (startOfGameClock.getElapsedTime() > sf::seconds(4.f)) {
-        for (int i = 0; i < pattern.getPattern().size(); i++) {
-            pattern.patternMovement(i);
-            window.draw(pattern.getPattern()[i].getSnowballCircle());
+    for (int i = 0; i < _patterns.size(); i++) {
+
+        for (int j = 0; j < _patterns.at(i).getPattern().size(); j++) {
+
+            _patterns.at(i).patternMovement(j);
+            window.draw(_patterns.at(i).getPattern().at(j).getSnowballCircle());
         }
     }
-
+    
     window.display();
 }

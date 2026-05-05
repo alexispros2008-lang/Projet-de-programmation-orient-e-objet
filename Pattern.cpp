@@ -8,7 +8,10 @@
 
 Pattern::Pattern()
 {
-	_pattern.clear();
+}
+
+void Pattern::createPattern()
+{
 	std::string randomNumberStringVersion = randomPatternFile();
 	readPaternFile("pattern/pattern" + randomNumberStringVersion + ".txt");
 }
@@ -24,13 +27,10 @@ void Pattern::resetPattern()
 			_pattern.clear();
 		}
 	}
-	std::string randomNumberStringVersion = randomPatternFile();
-	readPaternFile("pattern/pattern" + randomNumberStringVersion + ".txt");
 }
 
 void Pattern::readPaternFile(std::string paternFileName)
 {
-
 	std::ifstream paternFile;
 	paternFile.open(paternFileName);
 
@@ -38,9 +38,7 @@ void Pattern::readPaternFile(std::string paternFileName)
 		exit(1);
 	}
 
-	sf::Vector2 <float> positionBullet;
-	positionBullet.x = 0;
-	positionBullet.y = 0;
+	sf::Vector2 <float> positionBullet(0, 0);
 	int bulletSpeed = 0;
 	int direction = 0;
 	int radius = 0;
