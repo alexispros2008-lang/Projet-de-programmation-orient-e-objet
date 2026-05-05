@@ -197,6 +197,8 @@ void Game::checkPattern()
                     _player.setPlayerHealth(_player.getPlayerHealth() + 1);
                 }
             }
+
+            _patterns.at(i).resetPattern();
         }
     }
 }
