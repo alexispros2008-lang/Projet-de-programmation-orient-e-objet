@@ -26,12 +26,10 @@ void Game::run()
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "UndertaleBossFight", sf::Style::Close);
     window.setFramerateLimit(60);
 
-    spawner.setTypeIce(Ice(sf::Vector2f(0, 0), 20, 10, 0, 2));
-    spawner.setSpawner(sf::Vector2f(400, 380), 0, 137.50776f, 0);
+    sf::Event event;
     
     while (window.isOpen())
     {
-        sf::Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
@@ -48,15 +46,6 @@ void Game::run()
         checkPattern();
         checkMovePlayer();
         checkArenaBounds();
-
-        spawner.move();
-        spawner.summonBullet();
-
-        for (int i = 0; i < spawner.getIceBullets().size(); i++)
-        {
-            spawner.getIceBullets().at(i).bulletMovement();
-        }
-
 
         draw(window);
         checkDeath(window);
