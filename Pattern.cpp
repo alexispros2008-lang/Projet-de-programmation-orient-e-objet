@@ -23,9 +23,6 @@ void Pattern::resetPattern()
 		if (_pattern[i].getSnowballCircle().getPosition().x < 0 || _pattern[i].getSnowballCircle().getPosition().x > WINDOW_WIDTH || _pattern[i].getSnowballCircle().getPosition().y < 0 || _pattern[i].getSnowballCircle().getPosition().x > WINDOW_HEIGHT) {
 			deleteOneSnowball(i);
 		}
-		if (_pattern.size() >= 20) {
-			_pattern.clear();
-		}
 	}
 }
 
@@ -48,7 +45,7 @@ void Pattern::readPaternFile(std::string paternFileName)
 	while (paternFile >> bulletType >> positionBullet.x >> positionBullet.y >> bulletSpeed >> angle >> radius >> bulletLifeTime) {
 		sf::CircleShape tempBullet;
 		tempBullet.setPosition({ positionBullet.x, positionBullet.y });
-		Snowball tempSnowball(tempBullet, 9, angle, radius, 0, bulletLifeTime);
+		Snowball tempSnowball(tempBullet, bulletSpeed * 2.5, angle, radius, 0, bulletLifeTime);
 		if (bulletType == 0) 
 		{
 			tempSnowball.setColorWhite();
