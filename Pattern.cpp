@@ -89,7 +89,7 @@ void Pattern::readPaternFile(std::string paternFileName)
 			paternFile >> position.x >> position.y >> angle >> rotation >> speed >> lifeTime;
 			Spawner tempSpawner(position, angle, rotation, speed, lifeTime);
 
-			paternFile >> speed >> angle >> radius >> lifeTime;
+			paternFile >> speed >> angle >> radius;
 			sf::CircleShape tempBullet;
 			tempBullet.setPosition({ position.x, position.y });
 			Snowball tempSnowball(tempBullet, speed * 2.5, angle, radius, 0);
