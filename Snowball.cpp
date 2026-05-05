@@ -6,7 +6,7 @@
 Snowball::Snowball(sf::CircleShape bulletCircle, int bulletSpeed, float angle, int radius, float rotation)
 {
 	createBullet(bulletCircle, bulletSpeed, radius, angle, rotation);
-	_bulletCircle = sf::CircleShape(radius);
+	_bulletCircle.setRadius(bulletCircle.getRadius());
 	_bulletCircle.setPosition(bulletCircle.getPosition().x, bulletCircle.getPosition().y);
 }
 
