@@ -191,7 +191,7 @@ void Game::checkPattern()
                         _player.takeDamage(1);
                     }
                 }
-                if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getPattern()[j].getSnowballBounds()) && _player.getPlayerHealth() < PLAYER_HP && _patterns.at(i).getPattern()[j].checkGreen())
+                if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getPattern()[j].getBullet().getBulletBounds()) && _player.getPlayerHealth() < PLAYER_HP && _patterns.at(i).getPattern()[j].checkGreen())
                 {
                     _patterns.at(i).deleteOneSnowball(j);
                     _player.setPlayerHealth(_player.getPlayerHealth() + 1);
