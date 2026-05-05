@@ -10,6 +10,8 @@ Game::Game()
     if (!_bgmBuffer.loadFromFile("sound/bgm.wav")) {
         exit(1);
     }
+
+    _window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "UndertaleBossFight", sf::Style::Close);
     
     _bgm.setBuffer(_bgmBuffer); // On applique la musique chargée à l’objet de type "Sound"
     _bgm.setLoop(true); // La musique jouera en boucle
@@ -23,17 +25,20 @@ Game::~Game()
 
 void Game::run()
 {
-    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "UndertaleBossFight", sf::Style::Close);
-    window.setFramerateLimit(60);
+    
+    _window.setFramerateLimit(60);
+
+	//_spawner.setSpawner(sf::Vector2f(ARENA_POS_X + ARENA_WIDTH / 2, ARENA_POS_Y), 270, 1.0f, 1.f);
+	//_spawner.setTypeIce(Ice(sf::CircleShape(), 10, 10, 0.0f, 1.0f));
 
     sf::Event event;
     
-    while (window.isOpen())
+    while (_window.isOpen())
     {
-        while (window.pollEvent(event))
+        while (_window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                window.close();
+                _window.close();
 
             if (event.key.code == sf::Keyboard::Escape)
             {
@@ -45,14 +50,17 @@ void Game::run()
             }
         }
 
-		menu(window);
+		menu();
+
+        //_spawner.summonBullet();
+        //_spawner.move();
 
         checkPattern();
         checkMovePlayer();
         checkArenaBounds();
 
-        draw(window);
-        checkDeath(window);
+        draw();
+        checkDeath();
 
         _player.getPreviousMovement().clear();
     }
@@ -98,19 +106,19 @@ void Game::checkMovePlayer()
     }
 }
 
-void Game::drawHealthBar(sf::RenderWindow& window)
+void Game::drawHealthBar()
 {
 	sf::RectangleShape healthBar;
 	sf::RectangleShape healthBarBackground;
 	healthBarBackground.setPosition(PLAYER_HEALTH_BAR_POS_X, PLAYER_HEALTH_BAR_POS_Y);
 	healthBarBackground.setSize(sf::Vector2f(PLAYER_HEALTH_BAR_WIDTH, 20));
     healthBarBackground.setFillColor(sf::Color(sf::Color::Red));
-	window.draw(healthBarBackground);
+	_window.draw(healthBarBackground);
 
 	healthBar.setPosition(PLAYER_HEALTH_BAR_POS_X, PLAYER_HEALTH_BAR_POS_Y);
 	healthBar.setSize(sf::Vector2f(200 * (_player.getPlayerHealth() / 50.0f), 20));
 	healthBar.setFillColor(sf::Color::Yellow);
-	window.draw(healthBar);
+	_window.draw(healthBar);
 
     sf::Font healthBarFont;
 	verificationFont(healthBarFont, "fonts\\PixelOperator8-bold.ttf");
@@ -120,7 +128,7 @@ void Game::drawHealthBar(sf::RenderWindow& window)
 	healthBarText.setCharacterSize(18);
 	healthBarText.setFillColor(sf::Color::White);
 	healthBarText.setPosition(PLAYER_HEALTH_BAR_POS_X + PLAYER_HEALTH_BAR_WIDTH + 5, PLAYER_HEALTH_BAR_POS_Y);
-	window.draw(healthBarText);
+	_window.draw(healthBarText);
 
 }
 
@@ -132,7 +140,7 @@ void Game::checkHealth()
    }
 }
 
-void Game::checkDeath(sf::RenderWindow& window)
+void Game::checkDeath()
 {
     if (_player.getPlayerHealth() <= 0)
     {
@@ -141,7 +149,7 @@ void Game::checkDeath(sf::RenderWindow& window)
         _endGame = true;
         insertStats(_patterns.size(), _startOfGameClock);
 
-        window.clear(sf::Color::Black);
+        _window.clear(sf::Color::Black);
 
         sf::Texture splitSoul;
         verificationTexture(splitSoul, "images/undertale-split-soul.png");
@@ -156,9 +164,9 @@ void Game::checkDeath(sf::RenderWindow& window)
         deathSound.setLoop(false);
         deathSound.play();
 
-        window.draw(_player.getPlayer());
+        _window.draw(_player.getPlayer());
 
-        window.display();
+        _window.display();
 
         Sleep(2000);
     }
@@ -210,13 +218,13 @@ void Game::checkPattern()
     }
 }
 
-void Game::menu(sf::RenderWindow& window)
+void Game::menu()
 {
     if (_showMenu || _endGame)
     {
         _bgm.stop();
 
-        showMenu(window);
+        showMenu(_window);
 
         //Reinit
         _player.setPlayerPosition(sf::Vector2f(PLAYER_INIT_POSITION_X, PLAYER_INIT_POSITION_Y));
@@ -234,20 +242,26 @@ void Game::menu(sf::RenderWindow& window)
     }
 }
 
-void Game::draw(sf::RenderWindow& window)
+void Game::draw()
 {
-    window.clear();
+    _window.clear();
 
-    _arena.drawOutlineArena(window);
-    window.draw(_snowBoss.getBoss());
-    window.draw(_player.getPlayer());
-    drawHealthBar(window);
+    for (int i = 0; i < _spawner.getIceBullets().size(); i++)
+    {
+        _spawner.getIceBullets().at(i).bulletMovement();
+        _window.draw(_spawner.getIceBullets().at(i).getIce());
+    }
+
+    _arena.drawOutlineArena(_window);
+    _window.draw(_snowBoss.getBoss());
+    _window.draw(_player.getPlayer());
+    drawHealthBar();
 
     for (int i = 0; i < _patterns.size(); i++) {
         for (int j = 0; j < _patterns.at(i).getPattern().size(); j++) {
-            window.draw(_patterns.at(i).getPattern().at(j).getBullet().getBulletCircle());
+            _window.draw(_patterns.at(i).getPattern().at(j).getBullet().getBulletCircle());
         }
     }
     
-    window.display();
+    _window.display();
 }

@@ -32,9 +32,12 @@ void Spawner::setSpawner(sf::Vector2f position, float angle, float rotation, flo
 
 void Spawner::move()
 {
-	_angle += _rotation;
-	sf::Vector2f movement(_speed.x * (cos(_angle * PI / 180) / 2), _speed.y * (sin(_angle * PI / 180) / 2)); //convertir angle en radians, mettre dans un vecteur
-	_spawner.move(movement);
+	if (_shootSpeedClock.getElapsedTime() >= sf::seconds(_shootSpeed / 10))
+	{
+		_angle += _rotation;
+		sf::Vector2f movement(_speed.x * (cos(_angle * PI / 180) / 2), _speed.y * (sin(_angle * PI / 180) / 2)); //convertir angle en radians, mettre dans un vecteur
+		_spawner.move(movement);
+	}
 }
 
 void Spawner::turn()

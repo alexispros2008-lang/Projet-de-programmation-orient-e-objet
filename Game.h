@@ -18,6 +18,8 @@ private:
 	sf::Clock _startOfGameClock;
 	Spawner _spawner;
 
+	sf::RenderWindow _window;
+
 	bool _endGame;
 	bool _showMenu = true;
 
@@ -37,16 +39,16 @@ public:
 
 	void checkMovePlayer();
 
-	void drawHealthBar(sf::RenderWindow& window);
+	void drawHealthBar();
 
 	void checkHealth();
 
-	void checkDeath(sf::RenderWindow& window);
+	void checkDeath();
 
 	void checkPattern();
 
-	void menu(sf::RenderWindow& window);
+	void menu();
 
-	void draw(sf::RenderWindow& window);
+	void draw();
 };
 

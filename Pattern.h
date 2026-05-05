@@ -1,11 +1,13 @@
 #pragma once
 #include <vector>
 #include "Snowball.h"
+#include "Spawner.h"
 class Pattern
 {
 	private:
 		std::vector <Snowball> _pattern;
 		float _patternLifeTime;
+
 	public:
 		Pattern();
 
