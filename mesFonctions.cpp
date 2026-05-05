@@ -135,20 +135,6 @@ void showStats(sf::RenderWindow& window) {
 	sf::Font menuFont;
 	verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
 
-	sf::Text numberOfPatternText;
-	numberOfPatternText.setFont(menuFont);
-	numberOfPatternText.setString("Best number of pattern : " + numberOfPatternIntoString);
-	numberOfPatternText.setCharacterSize(30);
-	numberOfPatternText.setFillColor(sf::Color::White);
-	numberOfPatternText.setPosition(WINDOW_WIDTH / 2 - numberOfPatternText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - numberOfPatternText.getGlobalBounds().height / 2 + 50);
-
-	sf::Text secondsSurvivedText;
-	secondsSurvivedText.setFont(menuFont);
-	secondsSurvivedText.setString("Best time in seconds : " + secondsSurvivedIntoString);
-	secondsSurvivedText.setCharacterSize(30);
-	secondsSurvivedText.setFillColor(sf::Color::White);
-	secondsSurvivedText.setPosition(WINDOW_WIDTH / 2 - secondsSurvivedText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - secondsSurvivedText.getGlobalBounds().height / 2 + 100);
-
 	sf::Text titleStatsText;
 	titleStatsText.setFont(menuFont);
 	titleStatsText.setString("Best statistics for every game played");
@@ -156,13 +142,21 @@ void showStats(sf::RenderWindow& window) {
 	titleStatsText.setFillColor(sf::Color::White);
 	titleStatsText.setPosition(WINDOW_WIDTH / 2 - titleStatsText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 4 - titleStatsText.getGlobalBounds().height / 2);
 
+	sf::Text statisticText;
+	statisticText.setFont(menuFont);
+	statisticText.setString("Best number of pattern : " + numberOfPatternIntoString + "\n" +
+		"Best time in seconds : " + secondsSurvivedIntoString + "\n"
+	);
+	statisticText.setCharacterSize(30);
+	statisticText.setFillColor(sf::Color::White);
+	statisticText.setPosition(WINDOW_WIDTH / 2 - statisticText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - statisticText.getGlobalBounds().height / 2 + 50);
+
 	while (window.waitEvent(event))
 	{
 		window.clear(sf::Color::Black);
 
-		window.draw(numberOfPatternText);
-		window.draw(secondsSurvivedText);
 		window.draw(titleStatsText);
+		window.draw(statisticText);
 		window.display();
 
 		if (event.type == sf::Event::KeyPressed)
