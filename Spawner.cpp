@@ -27,6 +27,13 @@ Spawner::~Spawner()
 	_spawnerLifeTime = 0.0f;
 }
 
+void Spawner::setTypeBullet(Snowball bullet)
+{
+	sf::CircleShape tempBullet;
+	tempBullet.setPosition(bullet.getSnowballCircle().getPosition());
+	_typeSnowball.setSnowball(tempBullet, bullet.getBulletSpeed(), bullet.getSnowballCircle().getRadius(), bullet.getAngle(), bullet.getRotation());
+}
+
 void Spawner::setSpawner(sf::Vector2f position, float angle, float rotation, float shootSpeed, float spawnerLifeTime)
 {
 	_spawner.setPosition(position);

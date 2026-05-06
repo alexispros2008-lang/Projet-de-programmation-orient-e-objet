@@ -25,7 +25,7 @@ public:
 	inline std::vector<Snowball>& getSnowBullets() { return _snowBullets; }
 	inline float getLifeTime() const { return _spawnerLifeTime; }
 
-	inline void setTypeBullet(Snowball bullet) { _typeSnowball = bullet; }
+	void setTypeBullet(Snowball bullet);
 	void setSpawner(sf::Vector2f position, float angle, float rotation, float shootSpeed, float spawnerLifeTime);
 
 	void move();

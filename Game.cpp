@@ -235,6 +235,7 @@ void Game::checkPattern()
                     }
                     _patterns.at(i).getSpawners().at(j).move();
                 }
+				_patterns.at(i).getSpawners().at(j).summonBullet();
                 _patterns.at(i).getSpawners().at(j).turn();
 			}
             _patterns.at(i).resetPattern();
