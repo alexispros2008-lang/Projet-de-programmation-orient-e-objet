@@ -41,7 +41,7 @@ void Pattern::resetPattern()
 				|| _spawners.at(i).getSnowBullets().at(j).getSnowballCircle().getPosition().y < 0 - _spawners.at(i).getSnowBullets().at(j).getSnowballCircle().getRadius() * 2 - 100
 				|| _spawners.at(i).getSnowBullets().at(j).getSnowballCircle().getPosition().y > WINDOW_HEIGHT + _spawners.at(i).getSnowBullets().at(j).getSnowballCircle().getRadius() * 2 + 100)
 			{
-				deleteOneSnowball(j);
+				_spawners.at(i).getSnowBullets().erase(_spawners.at(i).getSnowBullets().begin() + j);
 			}
 		}
 	}
@@ -127,8 +127,8 @@ void Pattern::readPaternFile(std::string paternFileName)
 			tempBullet.setPosition({ position.x, position.y });
 			tempSnowball.setSnowball(tempBullet, speed * 2.5, radius, angle, 0);
 
-			_spawners.push_back(tempSpawner);
 			tempSpawner.setTypeBullet(tempSnowball);
+			_spawners.push_back(tempSpawner);
 		}
 	}
 	paternFile.close();

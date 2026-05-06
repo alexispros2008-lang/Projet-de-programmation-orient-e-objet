@@ -180,14 +180,27 @@ void Game::checkPattern()
         {
             Pattern pattern;
             _patterns.push_back(pattern); //temp pattern so it doesnt break everything under it
+
+
         }
 
-        if (_patternClock.getElapsedTime() > sf::seconds(_patterns.at(_patterns.size() - 1).getPatternLifeTime()))
+        if (_patterns.at(_patterns.size() - 1).getSpawners().size() == 0)
+        {
+            Spawner spawner;
+            _patterns.at(_patterns.size() - 1).getSpawners().push_back(spawner);
+        }
+
+        if (_patternClock.getElapsedTime() > sf::seconds(_patterns.at(_patterns.size() - 1).getPatternLifeTime()) && _patternClock.getElapsedTime().asSeconds() > _patterns.at(_patterns.size() - 1).getSpawners().at(_patterns.at(_patterns.size() - 1).getSpawners().size() - 1).getLifeTime())
         {
             Pattern pattern;
             pattern.createPattern();
             _patterns.push_back(pattern);
             _patternClock.restart();
+        }
+
+        if (_patterns.size() >= 5)
+        {
+            _patterns.erase(_patterns.begin());
         }
 
         for (int i = 0; i < _patterns.size(); i++)
@@ -228,12 +241,21 @@ void Game::checkPattern()
                             _player.takeDamage(1);
                         }
                     }
+
                     if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).getBullet().getBulletBounds()) && _player.getPlayerHealth() < PLAYER_HP && _patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).checkGreen())
                     {
                         _patterns.at(i).getSpawners().at(j).deleteOneSnowball(k);
                         _player.setPlayerHealth(_player.getPlayerHealth() + 1);
                     }
+
+                    
                     _patterns.at(i).getSpawners().at(j).move();
+                    _patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).bulletMovement();
+                }
+
+                if (_patternClock.getElapsedTime().asSeconds() > _patterns.at(i).getSpawners().at(j).getLifeTime() && _patterns.at(i).getSpawners().at(j).getLifeTime() > 0)
+                {
+                    _patterns.at(i).getSpawners().erase(_patterns.at(i).getSpawners().begin() + j);
                 }
 				_patterns.at(i).getSpawners().at(j).summonBullet();
                 _patterns.at(i).getSpawners().at(j).turn();

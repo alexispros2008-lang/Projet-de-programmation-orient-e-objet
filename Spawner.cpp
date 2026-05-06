@@ -65,7 +65,7 @@ void Spawner::summonBullet()
 	{
 		sf::CircleShape tempCircle;
 		tempCircle.setPosition(_spawner.getPosition());
-		Snowball snowball(tempCircle, _typeSnowball.getBulletSpeed(), _typeSnowball.getBullet().getBulletCircle().getRadius(), _typeSnowball.getAngle() + _angle, _typeSnowball.getRotation());
+		Snowball snowball(tempCircle, _typeSnowball.getBulletSpeed(), _typeSnowball.getAngle() + _angle, _typeSnowball.getBullet().getBulletCircle().getRadius(), _typeSnowball.getRotation());
 		_snowBullets.push_back(snowball);
 		_shootSpeedClock.restart();
 	}
