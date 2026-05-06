@@ -246,10 +246,10 @@ void Game::draw()
 {
     _window.clear();
 
-    for (int i = 0; i < _spawner.getIceBullets().size(); i++)
+    for (int i = 0; i < _spawner.getSnowBullets().size(); i++)
     {
-        _spawner.getIceBullets().at(i).bulletMovement();
-        _window.draw(_spawner.getIceBullets().at(i).getIce());
+        _spawner.getSnowBullets().at(i).bulletMovement();
+        _window.draw(_spawner.getSnowBullets().at(i).getSnowballCircle());
     }
 
     _arena.drawOutlineArena(_window);

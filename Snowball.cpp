@@ -10,6 +10,15 @@ Snowball::Snowball(sf::CircleShape bulletCircle, int bulletSpeed, float angle, i
 	_bulletCircle.setPosition(bulletCircle.getPosition().x, bulletCircle.getPosition().y);
 }
 
+Snowball::Snowball()
+{
+	_bulletCircle = sf::CircleShape(0);
+	_bulletCircle.setPosition(0, 0);
+	_bulletSpeed = 0;
+	_angle = 0.0f;
+	_rotation = 0.0f;
+}
+
 Snowball::~Snowball()
 {
 }
