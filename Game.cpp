@@ -213,6 +213,30 @@ void Game::checkPattern()
                 _patterns.at(i).patternMovement(j);
             }
 
+            for (int j = 0; j < _patterns.at(i).getSpawners().size(); j++)
+            {
+                for (int k = 0; k < _patterns.at(i).getSpawners().at(j).getSnowBullets().size(); k++)
+                {
+                    if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).getBullet().getBulletBounds()) && !_player.hasIFrames())
+                    {
+                        if (_patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).checkBlue() && _player.getPlayerSpeed() != 0 || _patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).checkOrange() && _player.getPlayerSpeed() == 0)
+                        {
+                            _player.takeDamage(1);
+                        }
+                        else if (_patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).checkWhite())
+                        {
+                            _player.takeDamage(1);
+                        }
+                    }
+                    if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).getBullet().getBulletBounds()) && _player.getPlayerHealth() < PLAYER_HP && _patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).checkGreen())
+                    {
+                        _patterns.at(i).getSpawners().at(j).deleteOneSnowball(k);
+                        _player.setPlayerHealth(_player.getPlayerHealth() + 1);
+                    }
+                    _patterns.at(i).getSpawners().at(j).move();
+                }
+                _patterns.at(i).getSpawners().at(j).turn();
+			}
             _patterns.at(i).resetPattern();
         }
     }
@@ -246,11 +270,6 @@ void Game::draw()
 {
     _window.clear();
 
-    for (int i = 0; i < _spawner.getSnowBullets().size(); i++)
-    {
-        _spawner.getSnowBullets().at(i).bulletMovement();
-        _window.draw(_spawner.getSnowBullets().at(i).getSnowballCircle());
-    }
 
     _arena.drawOutlineArena(_window);
     _window.draw(_snowBoss.getBoss());
@@ -258,8 +277,17 @@ void Game::draw()
     drawHealthBar();
 
     for (int i = 0; i < _patterns.size(); i++) {
+
         for (int j = 0; j < _patterns.at(i).getPattern().size(); j++) {
             _window.draw(_patterns.at(i).getPattern().at(j).getBullet().getBulletCircle());
+        }
+
+        for (int j = 0; j < _patterns.at(i).getSpawners().size(); j++)
+        {
+            for (int k = 0; k < _patterns.at(i).getSpawners().at(j).getSnowBullets().size(); k++)
+            {
+                _window.draw(_patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).getBullet().getBulletCircle());
+            }
         }
     }
     

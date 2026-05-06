@@ -9,7 +9,6 @@ class Pattern
 		float _patternLifeTime;
 
 		std::vector <Spawner> _spawners;
-
 	public:
 		Pattern();
 
@@ -21,7 +20,8 @@ class Pattern
 
 		std::string randomPatternFile();
 
-		std::vector <Snowball>& getPattern();
+		inline std::vector <Snowball>& getPattern() { return _pattern; }
+		inline std::vector <Spawner>& getSpawners() { return _spawners; }
 		float getPatternLifeTime() const { return _patternLifeTime; }
 
 		void patternMovement(int numberOfTheActualBullet);

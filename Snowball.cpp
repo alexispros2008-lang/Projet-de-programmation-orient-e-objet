@@ -28,6 +28,13 @@ const sf::CircleShape& Snowball::getSnowballCircle()
 	return _bulletCircle;
 }
 
+void Snowball::setSnowball(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation)
+{
+	createBullet(bulletCircle, bulletSpeed, radius, angle, rotation);
+	_bulletCircle = sf::CircleShape(radius);
+	_bulletCircle.setPosition(bulletCircle.getPosition().x, bulletCircle.getPosition().y);
+}
+
 void Snowball::setColorWhite()
 {
 	_bulletCircle.setFillColor(sf::Color::White);

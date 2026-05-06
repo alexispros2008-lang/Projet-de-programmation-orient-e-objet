@@ -14,6 +14,8 @@ class Snowball : public Bullet
 		inline float getAngle() const { return _angle; }
 		inline float getRotation() const { return _rotation; }
 
+		void setSnowball(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation);
+
 		void setColorWhite();
 		void setColorBlue();
 		void setColorOrange();

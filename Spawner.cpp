@@ -63,3 +63,8 @@ void Spawner::summonBullet()
 		_shootSpeedClock.restart();
 	}
 }
+
+void Spawner::deleteOneSnowball(int snowballVectorPlace)
+{
+	_snowBullets.erase(_snowBullets.begin() + snowballVectorPlace);
+}

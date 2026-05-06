@@ -31,5 +31,7 @@ public:
 	void move();
 	void turn();
 	void summonBullet();
+
+	void deleteOneSnowball(int snowballVectorPlace);
 };
 
