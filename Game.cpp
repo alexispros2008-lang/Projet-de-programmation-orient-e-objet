@@ -181,7 +181,7 @@ void Game::checkPattern()
             Pattern pattern;
             _patterns.push_back(pattern); //temp pattern so it doesnt break everything under it
 
-
+            _patterns.at(0).readPaternFile("pattern/patternDeath.txt");
         }
 
         if (_patterns.at(_patterns.size() - 1).getSpawners().size() == 0)
