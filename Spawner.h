@@ -17,15 +17,15 @@ private:
 	std::vector <Snowball> _snowBullets;
 public:
 	Spawner();
-	Spawner(sf::Vector2f position, float angle, float rotation, float shootSpeed, float spawnerLifeTime);
+	Spawner(sf::Vector2f position, sf::Vector2f speed, float angle, float rotation, float shootSpeed, float spawnerLifeTime);
 
 	~Spawner();
-	inline sf::RectangleShape getSpawner() const { return _spawner; }
+	inline sf::RectangleShape& getSpawner() { return _spawner; }
 	inline std::vector<Snowball>& getSnowBullets() { return _snowBullets; }
 	inline float getLifeTime() const { return _spawnerLifeTime; }
 
 	void setTypeBullet(Snowball bullet);
-	void setSpawner(sf::Vector2f position, float angle, float rotation, float shootSpeed, float spawnerLifeTime);
+	void setSpawner(sf::Vector2f position, sf::Vector2f speed, float angle, float rotation, float shootSpeed, float spawnerLifeTime);
 
 	void move();
 	void turn();
