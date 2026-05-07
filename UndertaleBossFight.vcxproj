@@ -129,7 +129,6 @@
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Ice.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mesFonctions.cpp" />
     <ClCompile Include="Pattern.cpp" />
@@ -142,7 +141,6 @@
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Ice.h" />
     <ClInclude Include="mesConstantes.h" />
     <ClInclude Include="mesFonctions.h" />
     <ClInclude Include="Pattern.h" />

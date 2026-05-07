@@ -1,6 +1,5 @@
 #pragma once
 #include "SFML/Graphics.hpp"
-#include "Ice.h"
 #include "Snowball.h"
 class Spawner
 {
