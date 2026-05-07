@@ -179,9 +179,13 @@ void Game::checkPattern()
         if (_patterns.size() == 0)
         {
             Pattern pattern;
-            _patterns.push_back(pattern); //temp pattern so it doesnt break everything under it
+            _patterns.push_back(pattern);
+            
+        }
 
-            /*_patterns.at(0).readPaternFile("pattern/patternDeath.txt");*/
+        if (int chaosChance = rand() % 1000000 + 1 == 10)
+        {
+            _patterns.at(0).readPaternFile("pattern/patternDeath.txt");
         }
 
         if (_patterns.at(_patterns.size() - 1).getSpawners().size() == 0)
