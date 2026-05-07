@@ -36,13 +36,10 @@ sf::RectangleShape Boss::getBoss()
 		randomSpriteBoss(randomNumberStringVersion);
 		if (_timerForNextText.getElapsedTime() >= sf::seconds(20.f)) 
 		{
-			_randomNumberIntVersion = rand() % 4 + 1;
+			_randomNumberIntVersion = rand() % 2 + 1;
 			_timerForNextText.restart();
+			initSpriteBoss();
 		}
-	}
-	else 
-	{
-		initSpriteBoss();
 	}
 	return _boss;
 }

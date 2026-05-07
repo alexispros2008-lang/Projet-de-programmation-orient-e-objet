@@ -376,24 +376,81 @@ void showPowerPoint(sf::RenderWindow& window)
 	powerPointInfo.setPosition(0.f, 0.f);
 	powerPointInfo.setSize({ WINDOW_WIDTH, WINDOW_HEIGHT });
 	static sf::Texture powerPointTexture1;
-	verificationTexture(powerPointTexture1, "images\\presentation\\1.png");
+	verificationTexture(powerPointTexture1, "images\\presentation\\Slide1.jpg");
 	static sf::Texture powerPointTexture2;
-	verificationTexture(powerPointTexture2, "images\\presentation\\2.png");
+	verificationTexture(powerPointTexture2, "images\\presentation\\Slide2.jpg");
 	static sf::Texture powerPointTexture3;
-	verificationTexture(powerPointTexture3, "images\\presentation\\3.png");
+	verificationTexture(powerPointTexture3, "images\\presentation\\Slide3.jpg");
+	static sf::Texture powerPointTexture4;
+	verificationTexture(powerPointTexture4, "images\\presentation\\Slide4.jpg");
+	static sf::Texture powerPointTexture5;
+	verificationTexture(powerPointTexture5, "images\\presentation\\Slide5.jpg");
+	static sf::Texture powerPointTexture6;
+	verificationTexture(powerPointTexture6, "images\\presentation\\Slide6.jpg");
+	static sf::Texture powerPointTexture7;
+	verificationTexture(powerPointTexture7, "images\\presentation\\Slide7.jpg");
+	static sf::Texture powerPointTexture8;
+	verificationTexture(powerPointTexture8, "images\\presentation\\Slide8.jpg");
+	static sf::Texture powerPointTexture9;
+	verificationTexture(powerPointTexture9, "images\\presentation\\Slide9.jpg");
+	static sf::Texture powerPointTexture10;
+	verificationTexture(powerPointTexture10, "images\\presentation\\Slide10.jpg");
+	static sf::Texture powerPointTexture11;
+	verificationTexture(powerPointTexture11, "images\\presentation\\Slide11.jpg");
+	static sf::Texture powerPointTexture12;
+	verificationTexture(powerPointTexture12, "images\\presentation\\Slide12.jpg");
 
 	while (window.waitEvent(event))
 	{
 		window.clear(sf::Color::Black);
 
-		if (actualPowerPoint == 0) {
+		if (actualPowerPoint == 0) 
+		{
 			powerPointInfo.setTexture(&powerPointTexture1);
 		}
-		else if (actualPowerPoint == 1) {
+		else if (actualPowerPoint == 1) 
+		{
 			powerPointInfo.setTexture(&powerPointTexture2);
 		}
-		else if (actualPowerPoint == 2) {
+		else if (actualPowerPoint == 2) 
+		{
 			powerPointInfo.setTexture(&powerPointTexture3);
+		}
+		else if (actualPowerPoint == 3) 
+		{
+			powerPointInfo.setTexture(&powerPointTexture4);
+		}
+		else if (actualPowerPoint == 4)
+		{
+			powerPointInfo.setTexture(&powerPointTexture5);
+		}
+		else if (actualPowerPoint == 5)
+		{
+			powerPointInfo.setTexture(&powerPointTexture6);
+		}
+		else if (actualPowerPoint == 6)
+		{
+			powerPointInfo.setTexture(&powerPointTexture7);
+		}
+		else if (actualPowerPoint == 7)
+		{
+			powerPointInfo.setTexture(&powerPointTexture8);
+		}
+		else if (actualPowerPoint == 8)
+		{
+			powerPointInfo.setTexture(&powerPointTexture9);
+		}
+		else if (actualPowerPoint == 9)
+		{
+			powerPointInfo.setTexture(&powerPointTexture10);
+		}
+		else if (actualPowerPoint == 10)
+		{
+			powerPointInfo.setTexture(&powerPointTexture11);
+		}
+		else if (actualPowerPoint == 11)
+		{
+			powerPointInfo.setTexture(&powerPointTexture12);
 		}
 		window.draw(powerPointInfo);
 		window.display();
@@ -409,7 +466,7 @@ void showPowerPoint(sf::RenderWindow& window)
 			}
 			if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Right)
 			{
-				if (actualPowerPoint != 4)
+				if (actualPowerPoint != 11)
 				{
 					actualPowerPoint = actualPowerPoint + 1;
 				}
