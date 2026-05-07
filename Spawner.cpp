@@ -62,7 +62,7 @@ void Spawner::turn()
 
 void Spawner::summonBullet()
 {
-	if (_shootSpeedClock.getElapsedTime() >= sf::seconds(_shootSpeed / 10))
+	if (_shootSpeedClock.getElapsedTime() >= sf::seconds(_shootSpeed / 10) && _spawnerClock.getElapsedTime().asSeconds() < _spawnerLifeTime)
 	{
 		sf::CircleShape tempCircle;
 		tempCircle.setPosition(_spawner.getPosition());
