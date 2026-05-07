@@ -12,6 +12,7 @@ private:
 	float _shootSpeed;
 	float _spawnerLifeTime;
 	sf::Clock _shootSpeedClock;
+	sf::Clock _spawnerClock;
 
 	Snowball _typeSnowball;
 	std::vector <Snowball> _snowBullets;
@@ -23,6 +24,7 @@ public:
 	inline sf::RectangleShape& getSpawner() { return _spawner; }
 	inline std::vector<Snowball>& getSnowBullets() { return _snowBullets; }
 	inline float getLifeTime() const { return _spawnerLifeTime; }
+	inline sf::Clock getSpawnerClock() const { return _spawnerClock; }
 
 	void setTypeBullet(Snowball bullet);
 	void setSpawner(sf::Vector2f position, sf::Vector2f speed, float angle, float rotation, float shootSpeed, float spawnerLifeTime);

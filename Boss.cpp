@@ -33,12 +33,17 @@ sf::RectangleShape Boss::getBoss()
 	std::string randomNumberStringVersion = std::to_string(_randomNumberIntVersion);
 	if (_timerForNextText.getElapsedTime() >= sf::seconds(5.f))
 	{
-		randomSpriteBoss(randomNumberStringVersion);
+		if (!_hasChanged)
+		{
+			randomSpriteBoss(randomNumberStringVersion);
+			_hasChanged = true;
+		}
 		if (_timerForNextText.getElapsedTime() >= sf::seconds(20.f)) 
 		{
 			_randomNumberIntVersion = rand() % 2 + 1;
 			_timerForNextText.restart();
 			initSpriteBoss();
+			_hasChanged = false;
 		}
 	}
 	return _boss;
