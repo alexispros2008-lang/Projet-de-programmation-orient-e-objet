@@ -376,29 +376,29 @@ void showPowerPoint(sf::RenderWindow& window)
 	powerPointInfo.setPosition(0.f, 0.f);
 	powerPointInfo.setSize({ WINDOW_WIDTH, WINDOW_HEIGHT });
 	static sf::Texture powerPointTexture1;
-	verificationTexture(powerPointTexture1, "images\\presentation\\Slide1.jpg");
+	verificationTexture(powerPointTexture1, "images\\presentation\\Diapositive1.jpg");
 	static sf::Texture powerPointTexture2;
-	verificationTexture(powerPointTexture2, "images\\presentation\\Slide2.jpg");
+	verificationTexture(powerPointTexture2, "images\\presentation\\Diapositive2.jpg");
 	static sf::Texture powerPointTexture3;
-	verificationTexture(powerPointTexture3, "images\\presentation\\Slide3.jpg");
+	verificationTexture(powerPointTexture3, "images\\presentation\\Diapositive3.jpg");
 	static sf::Texture powerPointTexture4;
-	verificationTexture(powerPointTexture4, "images\\presentation\\Slide4.jpg");
+	verificationTexture(powerPointTexture4, "images\\presentation\\Diapositive4.jpg");
 	static sf::Texture powerPointTexture5;
-	verificationTexture(powerPointTexture5, "images\\presentation\\Slide5.jpg");
+	verificationTexture(powerPointTexture5, "images\\presentation\\Diapositive5.jpg");
 	static sf::Texture powerPointTexture6;
-	verificationTexture(powerPointTexture6, "images\\presentation\\Slide6.jpg");
+	verificationTexture(powerPointTexture6, "images\\presentation\\Diapositive6.jpg");
 	static sf::Texture powerPointTexture7;
-	verificationTexture(powerPointTexture7, "images\\presentation\\Slide7.jpg");
+	verificationTexture(powerPointTexture7, "images\\presentation\\Diapositive7.jpg");
 	static sf::Texture powerPointTexture8;
-	verificationTexture(powerPointTexture8, "images\\presentation\\Slide8.jpg");
+	verificationTexture(powerPointTexture8, "images\\presentation\\Diapositive8.jpg");
 	static sf::Texture powerPointTexture9;
-	verificationTexture(powerPointTexture9, "images\\presentation\\Slide9.jpg");
+	verificationTexture(powerPointTexture9, "images\\presentation\\Diapositive9.jpg");
 	static sf::Texture powerPointTexture10;
-	verificationTexture(powerPointTexture10, "images\\presentation\\Slide10.jpg");
+	verificationTexture(powerPointTexture10, "images\\presentation\\Diapositive10.jpg");
 	static sf::Texture powerPointTexture11;
-	verificationTexture(powerPointTexture11, "images\\presentation\\Slide11.jpg");
+	verificationTexture(powerPointTexture11, "images\\presentation\\Diapositive11.jpg");
 	static sf::Texture powerPointTexture12;
-	verificationTexture(powerPointTexture12, "images\\presentation\\Slide12.jpg");
+	verificationTexture(powerPointTexture12, "images\\presentation\\Diapositive12.jpg");
 
 	while (window.waitEvent(event))
 	{
