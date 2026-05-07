@@ -46,6 +46,7 @@ void showMenu(sf::RenderWindow& window) {
 		"Press H for Help\n\n"
 		"Press C for Option\n\n"
 		"Press T for Tutorial\n\n"
+		"Press P for PowerPoint\n\n"
 		"Press Escape to Quit"
 	);
 
@@ -81,6 +82,11 @@ void showMenu(sf::RenderWindow& window) {
 			if (event.key.code == sf::Keyboard::T)
 			{
 				showTutorial(window);
+			}
+
+			if (event.key.code == sf::Keyboard::P)
+			{
+				showPowerPoint(window);
 			}
 
 			if (event.key.code == sf::Keyboard::Escape || event.type == sf::Event::Closed)
@@ -300,90 +306,112 @@ void showTutorial(sf::RenderWindow& window)
 	int actualTutorial = 0;
 	sf::Event event;
 	sf::Clock clock;
-	sf::RectangleShape tutorialInfo1;
-	tutorialInfo1.setPosition(0.f, 0.f);
-	tutorialInfo1.setSize({WINDOW_WIDTH, WINDOW_HEIGHT});
+	sf::RectangleShape tutorialInfo;
+	tutorialInfo.setPosition(0.f, 0.f);
+	tutorialInfo.setSize({WINDOW_WIDTH, WINDOW_HEIGHT});
 	static sf::Texture tutorialTexture1;
-
 	verificationTexture(tutorialTexture1, "images\\tutorial\\1.png");
-	tutorialInfo1.setTexture(&tutorialTexture1);
-
-	sf::RectangleShape tutorialInfo2;
-	tutorialInfo2.setPosition(0.f, 0.f);
-	tutorialInfo2.setSize({ WINDOW_WIDTH, WINDOW_HEIGHT });
 	static sf::Texture tutorialTexture2;
-
 	verificationTexture(tutorialTexture2, "images\\tutorial\\2.png");
-	tutorialInfo2.setTexture(&tutorialTexture2);
-
-	sf::RectangleShape tutorialInfo3;
-	tutorialInfo3.setPosition(0.f, 0.f);
-	tutorialInfo3.setSize({ WINDOW_WIDTH, WINDOW_HEIGHT });
 	static sf::Texture tutorialTexture3;
-
 	verificationTexture(tutorialTexture3, "images\\tutorial\\3.png");
-	tutorialInfo3.setTexture(&tutorialTexture3);
-
-	sf::RectangleShape tutorialInfo4;
-	tutorialInfo4.setPosition(0.f, 0.f);
-	tutorialInfo4.setSize({ WINDOW_WIDTH, WINDOW_HEIGHT });
 	static sf::Texture tutorialTexture4;
-
 	verificationTexture(tutorialTexture4, "images\\tutorial\\4.png");
-	tutorialInfo4.setTexture(&tutorialTexture4);
-	
-	sf::RectangleShape tutorialInfo5;
-	tutorialInfo5.setPosition(0.f, 0.f);
-	tutorialInfo5.setSize({ WINDOW_WIDTH, WINDOW_HEIGHT });
 	static sf::Texture tutorialTexture5;
-
 	verificationTexture(tutorialTexture5, "images\\tutorial\\5.png");
-	tutorialInfo5.setTexture(&tutorialTexture5);
 
 	while (window.waitEvent(event))
 	{
 		window.clear(sf::Color::Black);
 
 		if (actualTutorial == 0) {
-			window.draw(tutorialInfo1);
+			tutorialInfo.setTexture(&tutorialTexture1);
 		}
 		else if (actualTutorial == 1) {
-			window.draw(tutorialInfo2);
+			tutorialInfo.setTexture(&tutorialTexture2);
 		}
 		else if (actualTutorial == 2) {
-			window.draw(tutorialInfo3);
+			tutorialInfo.setTexture(&tutorialTexture3);
 		}
 		else if (actualTutorial == 3) {
-			window.draw(tutorialInfo4);
+			tutorialInfo.setTexture(&tutorialTexture4);
 		}
 		else if (actualTutorial == 4) {
-			window.draw(tutorialInfo5);
+			tutorialInfo.setTexture(&tutorialTexture5);
 		}
+		window.draw(tutorialInfo);
 		window.display();
 
 		if (clock.getElapsedTime() >= sf::seconds(0.4f))
 		{
 			if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Left)
 			{
-				if (actualTutorial == 0)
-				{
-
-				}
-				else
+				if (actualTutorial != 0)
 				{
 					actualTutorial = actualTutorial - 1;
 				}
 			}
 			if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Right)
 			{
-				if (actualTutorial == 4)
-				{
-
-				}
-				else
+				if (actualTutorial != 4)
 				{
 					actualTutorial = actualTutorial + 1;
+				}
+			}
+			if (event.key.code == sf::Keyboard::Escape)
+			{
+				break;
+			}
+			clock.restart();
+		}
+	}
+}
 
+void showPowerPoint(sf::RenderWindow& window)
+{
+	int actualPowerPoint = 0;
+	sf::Event event;
+	sf::Clock clock;
+	sf::RectangleShape powerPointInfo;
+	powerPointInfo.setPosition(0.f, 0.f);
+	powerPointInfo.setSize({ WINDOW_WIDTH, WINDOW_HEIGHT });
+	static sf::Texture powerPointTexture1;
+	verificationTexture(powerPointTexture1, "images\\presentation\\1.png");
+	static sf::Texture powerPointTexture2;
+	verificationTexture(powerPointTexture2, "images\\presentation\\2.png");
+	static sf::Texture powerPointTexture3;
+	verificationTexture(powerPointTexture3, "images\\presentation\\3.png");
+
+	while (window.waitEvent(event))
+	{
+		window.clear(sf::Color::Black);
+
+		if (actualPowerPoint == 0) {
+			powerPointInfo.setTexture(&powerPointTexture1);
+		}
+		else if (actualPowerPoint == 1) {
+			powerPointInfo.setTexture(&powerPointTexture2);
+		}
+		else if (actualPowerPoint == 2) {
+			powerPointInfo.setTexture(&powerPointTexture3);
+		}
+		window.draw(powerPointInfo);
+		window.display();
+
+		if (clock.getElapsedTime() >= sf::seconds(0.4f))
+		{
+			if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Left)
+			{
+				if (actualPowerPoint != 0)
+				{
+					actualPowerPoint = actualPowerPoint - 1;
+				}
+			}
+			if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Right)
+			{
+				if (actualPowerPoint != 4)
+				{
+					actualPowerPoint = actualPowerPoint + 1;
 				}
 			}
 			if (event.key.code == sf::Keyboard::Escape)
