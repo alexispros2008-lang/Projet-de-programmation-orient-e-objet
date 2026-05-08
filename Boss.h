@@ -4,13 +4,18 @@ class Boss
 {
 	private:
 		sf::RectangleShape _boss;
+		sf::Text _bossText;
 		sf::Clock _timerForNextText;
-		int _randomNumberIntVersion = 1;
+		int _randomEventText = 1;
 		bool _hasChanged = false;
+		sf::Texture _bossTexture;
+		sf::Texture _bossTextureWithText;
 	public:
 		Boss();
 		void initSpriteBoss();
-		void randomSpriteBoss(std::string randomNumberForBossText);
+		void initTextBoss();
+		void randomTextBoss(int randomEventText);
 		sf::RectangleShape getBoss();
+		sf::Text& getBossText();
 };
 

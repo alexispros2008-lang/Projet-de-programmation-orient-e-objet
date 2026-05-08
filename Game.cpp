@@ -307,7 +307,7 @@ void Game::draw()
 {
     _window.clear();
 
-    _window.draw(_snowBoss.getBoss());
+    _window.draw(_snowBoss.getBoss());    
     _arena.drawOutlineArena(_window);
     _window.draw(_player.getPlayer());
     drawHealthBar();

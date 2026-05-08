@@ -3,48 +3,67 @@
 
 Boss::Boss()
 {
-	_boss.setPosition(110.f, 25.f);
-	_boss.setSize({ 600.f, 250.f });
 	initSpriteBoss();
+	initTextBoss();
 	_timerForNextText.restart();
 }
 
 void Boss::initSpriteBoss()
 {
-	static sf::Texture bossTexture;
-
-	_boss.setSize({ 600.f, 250.f });
-	verificationTexture(bossTexture, "images\\BossAndBg.png");
-	_boss.setTexture(&bossTexture);
+	_boss.setPosition(110.f, 25.f);
+	_boss.setSize({ 590.f, 255.f });
+	verificationTexture(_bossTextureWithText, "images/BossAndBgAndText.png");
+	verificationTexture(_bossTexture, "images\\BossAndBg.png");
+	_boss.setTexture(&_bossTexture);
 }
 
-void Boss::randomSpriteBoss(std::string randomNumberForBossText)
+void Boss::initTextBoss()
 {
-	static sf::Texture bossTexture2;
+	sf::Font textboxBossFont;
+	verificationFont(textboxBossFont, "fonts\\PixelOperator8-bold.ttf");
+	_bossText.setFont(textboxBossFont);
+	_bossText.setCharacterSize(30);
+	_bossText.setFillColor(sf::Color::Black);
+	_bossText.setPosition(50, 50);
 
-	std::string pathToBoss = ("images/boss/boss" + randomNumberForBossText + ".png");
-	_boss.setSize({ 680.f, 285.f });
-	verificationTexture(bossTexture2, pathToBoss);
-	_boss.setTexture(&bossTexture2);
+	_bossText.setString("Snow joke here...");
+}
+
+void Boss::randomTextBoss(int randomEventText)
+{
+	if (_randomEventText == 1) 
+	{
+		_bossText.setString("Snow joke here1...");
+	}
+	else if (_randomEventText == 2)
+	{
+		_bossText.setString("Snow joke here2...");
+	}
 }
 
 sf::RectangleShape Boss::getBoss()
 {
-	std::string randomNumberStringVersion = std::to_string(_randomNumberIntVersion);
 	if (_timerForNextText.getElapsedTime() >= sf::seconds(5.f))
 	{
 		if (!_hasChanged)
 		{
-			randomSpriteBoss(randomNumberStringVersion);
+			randomTextBoss(_randomEventText);
 			_hasChanged = true;
+			_boss.setTexture(&_bossTextureWithText);
 		}
 		if (_timerForNextText.getElapsedTime() >= sf::seconds(20.f)) 
 		{
-			_randomNumberIntVersion = rand() % 2 + 1;
+			_randomEventText = rand() % 2 + 1;
 			_timerForNextText.restart();
-			initSpriteBoss();
+			_bossText.setString("");
+			_boss.setTexture(&_bossTexture);
 			_hasChanged = false;
 		}
 	}
 	return _boss;
+}
+
+sf::Text& Boss::getBossText()
+{
+	return _bossText;
 }
