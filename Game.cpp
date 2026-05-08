@@ -194,7 +194,7 @@ void Game::checkPattern()
             _patterns.at(_patterns.size() - 1).getSpawners().push_back(spawner);
         }
 
-        if (_patternClock.getElapsedTime() > sf::seconds(_patterns.at(_patterns.size() - 1).getPatternLifeTime()) && _patternClock.getElapsedTime().asSeconds() > _patterns.at(_patterns.size() - 1).getSpawners().at(_patterns.at(_patterns.size() - 1).getSpawners().size() - 1).getLifeTime())
+        if (_patternClock.getElapsedTime() > sf::seconds(_patterns.at(_patterns.size() - 1).getPatternLifeTime()) && _patternClock.getElapsedTime().asSeconds() > _patterns.at(_patterns.size() - 1).getSpawners().at(_patterns.at(_patterns.size() - 1).getSpawners().size() - 1).getLifeTime() + 1)
         {
             Pattern pattern;
             pattern.createPattern();
@@ -255,15 +255,25 @@ void Game::checkPattern()
                     
                     _patterns.at(i).getSpawners().at(j).move();
                     _patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).bulletMovement();
+
+                    
                 }
 
-                if (_patternClock.getElapsedTime().asSeconds() > _patterns.at(i).getSpawners().at(j).getLifeTime() && _patterns.at(i).getSpawners().at(j).getLifeTime() > 0)
-                {
-                    _patterns.at(i).getSpawners().erase(_patterns.at(i).getSpawners().begin() + j);
-                }
+                
 				_patterns.at(i).getSpawners().at(j).summonBullet();
                 _patterns.at(i).getSpawners().at(j).turn();
+
+                if (_patterns.at(i).getSpawners().at(j).getSpawnerClock().getElapsedTime().asSeconds() > _patterns.at(i).getSpawners().at(j).getLifeTime() + 5 && _patterns.at(i).getSpawners().at(j).getLifeTime() > 0)
+                {
+                    while (_patterns.at(i).getSpawners().size() != 0)
+                    {
+                        _patterns.at(i).getSpawners().clear();
+                    }
+                }
 			}
+
+            
+
             _patterns.at(i).resetPattern();
         }
     }
