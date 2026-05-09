@@ -25,8 +25,6 @@ Game::~Game()
 
 void Game::run()
 {
-    readOptionFile(_currentFps, _actualDifficulty);
-
     _window.setFramerateLimit(_currentFps);
 
 	//_spawner.setSpawner(sf::Vector2f(ARENA_POS_X + ARENA_WIDTH / 2, ARENA_POS_Y), 270, 1.0f, 1.f);
@@ -172,6 +170,8 @@ void Game::checkDeath()
 
 void Game::checkPattern()
 {
+    readOptionFile(_currentFps, _actualDifficulty);
+
     if (_startOfGameClock.getElapsedTime() > sf::seconds(4.f))
     {
         if (_patterns.size() == 0)

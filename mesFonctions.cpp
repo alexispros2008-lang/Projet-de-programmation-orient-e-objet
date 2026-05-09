@@ -297,7 +297,6 @@ void showOption(sf::RenderWindow& window) {
 			"up the game and make it harder.\n\n"
 			"Press U to put the game in 60fps, it will put.\n"
 			"the game at the intended speed limit.\n\n"
-			"\n\nChanging the difficulty will close the game.\n\n"
 			"Press B to put the game in easy mode.\n\n"
 			"Press N to put the game in normal mode.\n\n"
 			"Press M to put the game in hard mode.\n\n"
@@ -326,20 +325,14 @@ void showOption(sf::RenderWindow& window) {
 		if (event.key.code == sf::Keyboard::B)
 		{
 			actualDifficulty = 2;
-			writeCurrentOptionFile(currentFps, actualDifficulty);
-			exit(1);
 		}
 		if (event.key.code == sf::Keyboard::N)
 		{
 			actualDifficulty = 0;
-			writeCurrentOptionFile(currentFps, actualDifficulty);
-			exit(1);
 		}
 		if (event.key.code == sf::Keyboard::M)
 		{
 			actualDifficulty = 1;
-			writeCurrentOptionFile(currentFps, actualDifficulty);
-			exit(1);
 		}
 		writeCurrentOptionFile(currentFps, actualDifficulty);
 	}
