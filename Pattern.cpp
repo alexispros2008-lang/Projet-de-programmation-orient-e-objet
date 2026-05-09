@@ -153,15 +153,15 @@ std::string Pattern::randomPatternFile(int actualDifficulty)
 	}
 	else if (actualDifficulty == HARD_MODE)
 	{
-		randomNumberIntVersion = rand() % 22 + 1;
+		randomNumberIntVersion = rand() % 25 + 1;
 	}
 	else if (actualDifficulty == EASY_MODE)
 	{
 		randomNumberIntVersion = rand() % 10 + 1;
 	}
-	else
+	else if (actualDifficulty == DEBUG_MODE)
 	{
-		randomNumberIntVersion = 22; //for pattern testing
+		randomNumberIntVersion = 25;
 	}
 	std::string randomNumberStringVersion = std::to_string(randomNumberIntVersion);
 	return randomNumberStringVersion;
