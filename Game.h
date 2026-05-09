@@ -31,6 +31,8 @@ private:
 	std::vector<sf::Keyboard::Key> _v_key;
 
 	int _nbPatterns = 0;
+	int _currentFps = 60;
+	int _actualDifficulty = 0;
 
 public:
 	Game();

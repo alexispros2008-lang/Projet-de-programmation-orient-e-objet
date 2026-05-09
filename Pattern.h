@@ -12,13 +12,13 @@ class Pattern
 	public:
 		Pattern();
 
-		void createPattern();
+		void createPattern(int actualDifficulty);
 		void resetPattern();
 		void readPaternFile(std::string paternFileName);
 
 		void deleteOneSnowball(int snowballVectorPlace);
 
-		std::string randomPatternFile();
+		std::string randomPatternFile(int actualDifficulty);
 
 		inline std::vector <Snowball>& getPattern() { return _pattern; }
 		inline std::vector <Spawner>& getSpawners() { return _spawners; }

@@ -263,19 +263,44 @@ void showHelp(sf::RenderWindow& window) {
 void showOption(sf::RenderWindow& window) {
 
 	sf::Event event;
+	int currentFps = 60;
+	int actualDifficulty = 0;
+	std::string actualDifficultyInString;
+	readOptionFile(currentFps, actualDifficulty);
+
 	while (window.waitEvent(event))
 	{
 		window.clear(sf::Color::Black);
+
+		std::string currentFpsInString = std::to_string(currentFps);
+		if (actualDifficulty == 0)
+		{
+			actualDifficultyInString = "Normal";
+		}
+		else if (actualDifficulty == 1)
+		{
+			actualDifficultyInString = "Hard";
+		}
+		else if (actualDifficulty == 2)
+		{
+			actualDifficultyInString = "Easy";
+		}
 
 		sf::Font menuFont;
 		verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
 
 		sf::Text optionText;
 		optionText.setFont(menuFont);
-		optionText.setString("Press Y to put the game in 120fps, it will speed.\n"
+		optionText.setString("Current Fps setting : " + currentFpsInString + "\n" 
+			"Current difficulty : " + actualDifficultyInString + "\n\n\n\n"
+			"Press Y to put the game in 120fps, it will speed.\n"
 			"up the game and make it harder.\n\n"
 			"Press U to put the game in 60fps, it will put.\n"
 			"the game at the intended speed limit.\n\n"
+			"\n\nChanging the difficulty will close the game.\n\n"
+			"Press B to put the game in easy mode.\n\n"
+			"Press N to put the game in normal mode.\n\n"
+			"Press M to put the game in hard mode.\n\n"
 			"Press Escape to return to the menu."
 );
 		optionText.setCharacterSize(15);
@@ -290,15 +315,62 @@ void showOption(sf::RenderWindow& window) {
 		}
 		if (event.key.code == sf::Keyboard::Y)
 		{
-			window.setFramerateLimit(120);
-			break;
+			currentFps = 120;
+			window.setFramerateLimit(currentFps);
 		}
 		if (event.key.code == sf::Keyboard::U)
 		{
-			window.setFramerateLimit(60);
-			break;
+			currentFps = 60;
+			window.setFramerateLimit(currentFps);
 		}
+		if (event.key.code == sf::Keyboard::B)
+		{
+			actualDifficulty = 2;
+			writeCurrentOptionFile(currentFps, actualDifficulty);
+			exit(1);
+		}
+		if (event.key.code == sf::Keyboard::N)
+		{
+			actualDifficulty = 0;
+			writeCurrentOptionFile(currentFps, actualDifficulty);
+			exit(1);
+		}
+		if (event.key.code == sf::Keyboard::M)
+		{
+			actualDifficulty = 1;
+			writeCurrentOptionFile(currentFps, actualDifficulty);
+			exit(1);
+		}
+		writeCurrentOptionFile(currentFps, actualDifficulty);
 	}
+}
+
+void readOptionFile(int& currentFps, int& actualDifficulty)
+{
+	std::ifstream optionFile;
+	optionFile.open("save/option.txt");
+
+	if (!optionFile) {
+		exit(1);
+	}
+
+	optionFile >> currentFps >> actualDifficulty;
+
+	optionFile.close();
+}
+
+void writeCurrentOptionFile(int& currentFps, int& actualDifficulty)
+{
+	std::ofstream optionFile;
+	optionFile.open("save/option.txt");
+
+	if (!optionFile) {
+		exit(1);
+	}
+
+	optionFile << currentFps << " " << actualDifficulty;
+
+	optionFile.close();
 }
 
 void showTutorial(sf::RenderWindow& window)

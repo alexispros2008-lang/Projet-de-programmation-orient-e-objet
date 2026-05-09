@@ -12,9 +12,9 @@ Pattern::Pattern()
 	_patternLifeTime = 0.0f;
 }
 
-void Pattern::createPattern()
+void Pattern::createPattern(int actualDifficulty)
 {
-	std::string randomNumberStringVersion = randomPatternFile();
+	std::string randomNumberStringVersion = randomPatternFile(actualDifficulty);
 	readPaternFile("pattern/pattern" + randomNumberStringVersion + ".txt");
 }
 
@@ -144,10 +144,25 @@ void Pattern::deleteOneSnowball(int snowballVectorPlace)
 	_pattern.erase(_pattern.begin() + snowballVectorPlace);
 }
 
-std::string Pattern::randomPatternFile()
+std::string Pattern::randomPatternFile(int actualDifficulty)
 {
-	int randomNumberIntVersion =  rand() % 19 + 1;
-	//randomNumberIntVersion = 19; //for pattern testing
+	int randomNumberIntVersion = 0;
+	if (actualDifficulty == 0)
+	{
+		randomNumberIntVersion = rand() % 14 + 1;
+	}
+	else if (actualDifficulty == 1)
+	{
+		randomNumberIntVersion = rand() % 19 + 1;
+	}
+	else if (actualDifficulty == 2) 
+	{
+		randomNumberIntVersion = rand() % 10 + 1;
+	}
+	else
+	{
+		randomNumberIntVersion = 19; //for pattern testing
+	}
 	std::string randomNumberStringVersion = std::to_string(randomNumberIntVersion);
 	return randomNumberStringVersion;
 }

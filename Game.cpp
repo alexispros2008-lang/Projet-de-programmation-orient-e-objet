@@ -25,8 +25,9 @@ Game::~Game()
 
 void Game::run()
 {
-    
-    _window.setFramerateLimit(60);
+    readOptionFile(_currentFps, _actualDifficulty);
+
+    _window.setFramerateLimit(_currentFps);
 
 	//_spawner.setSpawner(sf::Vector2f(ARENA_POS_X + ARENA_WIDTH / 2, ARENA_POS_Y), 270, 1.0f, 1.f);
 	//_spawner.setTypeIce(Ice(sf::CircleShape(), 10, 10, 0.0f, 1.0f));
@@ -177,7 +178,6 @@ void Game::checkPattern()
         {
             Pattern pattern;
             _patterns.push_back(pattern);
-            
         }
 
         if (int chaosChance = rand() % 1000000 + 1 == 10)
@@ -194,7 +194,7 @@ void Game::checkPattern()
         if (_patternClock.getElapsedTime() > sf::seconds(_patterns.at(_patterns.size() - 1).getPatternLifeTime()) && _patternClock.getElapsedTime().asSeconds() > _patterns.at(_patterns.size() - 1).getSpawners().at(_patterns.at(_patterns.size() - 1).getSpawners().size() - 1).getLifeTime() + 1)
         {
             Pattern pattern;
-            pattern.createPattern();
+            pattern.createPattern(_actualDifficulty);
             _patterns.push_back(pattern);
             _patternClock.restart();
             _nbPatterns++;

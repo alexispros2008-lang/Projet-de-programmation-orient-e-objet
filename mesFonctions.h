@@ -9,6 +9,8 @@ void iFrameAnimation(sf::RectangleShape& player, bool& hasIFrames);
 void showHelp(sf::RenderWindow& window);
 void insertStats(int numberOfPattern, sf::Clock startOfGameClock);
 bool compareStats(int numberOfPattern, sf::Clock startOfGameClock);
+void readOptionFile(int& currentFps, int& actualDifficulty);
+void writeCurrentOptionFile(int& currentFps, int& actualDifficulty);
 void showStats(sf::RenderWindow& window);
 void showOption(sf::RenderWindow& window);
 void showTutorial(sf::RenderWindow& window);
