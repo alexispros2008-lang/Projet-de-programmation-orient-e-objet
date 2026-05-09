@@ -147,15 +147,15 @@ void Pattern::deleteOneSnowball(int snowballVectorPlace)
 std::string Pattern::randomPatternFile(int actualDifficulty)
 {
 	int randomNumberIntVersion = 0;
-	if (actualDifficulty == 0)
+	if (actualDifficulty == NORMAL_MODE)
 	{
 		randomNumberIntVersion = rand() % 14 + 1;
 	}
-	else if (actualDifficulty == 1)
+	else if (actualDifficulty == HARD_MODE)
 	{
 		randomNumberIntVersion = rand() % 22 + 1;
 	}
-	else if (actualDifficulty == 2) 
+	else if (actualDifficulty == EASY_MODE)
 	{
 		randomNumberIntVersion = rand() % 10 + 1;
 	}

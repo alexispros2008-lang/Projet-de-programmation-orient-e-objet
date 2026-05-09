@@ -23,6 +23,11 @@ const int PLAYER_HEALTH_BAR_WIDTH = 200 * 20 / 50.0f;
 const int PLAYER_INIT_POSITION_X = ARENA_POS_X + ARENA_WIDTH / 2;
 const int PLAYER_INIT_POSITION_Y = ARENA_POS_Y + ARENA_HEIGHT / 2;
 
+const int EASY_MODE = 2;
+const int NORMAL_MODE = 0;
+const int HARD_MODE = 1;
+const int DEBUG_MODE = 4;
+
 const float IFRAME_DURATION = 1.0f;
 
 const double PI = 3.14159265358979323846;

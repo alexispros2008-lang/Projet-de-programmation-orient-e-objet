@@ -143,17 +143,21 @@ void showStats(sf::RenderWindow& window) {
 		std::string actualDifficultyInString;
 		actualDifficultyInString = transformActualDifficultyIntoString(actualDifficulty);
 
-		if (actualDifficulty == 0)
+		if (actualDifficulty == NORMAL_MODE)
 		{
 			statsFile.open("save/normalModeStats.txt");
 		}
-		else if (actualDifficulty == 1)
+		else if (actualDifficulty == HARD_MODE)
 		{
 			statsFile.open("save/hardModeStats.txt");
 		}
-		else
+		else if (actualDifficulty == EASY_MODE)
 		{
 			statsFile.open("save/easyModeStats.txt");
+		}
+		else
+		{
+			statsFile.open("save/debugModeStats.txt");
 		}
 
 		if (!statsFile) {
@@ -227,17 +231,21 @@ bool compareStats(int numberOfPattern, sf::Clock startOfGameClock, int actualDif
 {
 	std::ifstream statsFile;
 
-	if (actualDifficulty == 0)
+	if (actualDifficulty == NORMAL_MODE)
 	{
 		statsFile.open("save/normalModeStats.txt");
 	}
-	else if (actualDifficulty == 1)
+	else if (actualDifficulty == HARD_MODE)
 	{
 		statsFile.open("save/hardModeStats.txt");
 	}
-	else
+	else if (actualDifficulty == EASY_MODE)
 	{
 		statsFile.open("save/easyModeStats.txt");
+	}
+	else
+	{
+		statsFile.open("save/debugModeStats.txt");
 	}
 
 	if (!statsFile) {
@@ -265,17 +273,21 @@ void insertStats(int numberOfPattern, sf::Clock startOfGameClock, int actualDiff
 {
 	std::ofstream statsFile;
 	
-	if (actualDifficulty == 0)
+	if (actualDifficulty == NORMAL_MODE)
 	{
 		statsFile.open("save/normalModeStats.txt");
 	}
-	else if (actualDifficulty == 1)
+	else if (actualDifficulty == HARD_MODE)
 	{
 		statsFile.open("save/hardModeStats.txt");
 	}
-	else
+	else if (actualDifficulty == EASY_MODE)
 	{
 		statsFile.open("save/easyModeStats.txt");
+	}
+	else
+	{
+		statsFile.open("save/debugModeStats.txt");
 	}
 
 	if (!statsFile) {
@@ -379,19 +391,19 @@ void showOption(sf::RenderWindow& window) {
 		}
 		if (event.key.code == sf::Keyboard::B)
 		{
-			actualDifficulty = 2;
+			actualDifficulty = EASY_MODE;
 		}
 		if (event.key.code == sf::Keyboard::N)
 		{
-			actualDifficulty = 0;
+			actualDifficulty = NORMAL_MODE;
 		}
 		if (event.key.code == sf::Keyboard::M)
 		{
-			actualDifficulty = 1;
+			actualDifficulty = HARD_MODE;
 		}
 		if (event.key.code == sf::Keyboard::Z)
 		{
-			actualDifficulty = 4;
+			actualDifficulty = DEBUG_MODE;
 		}
 		writeCurrentOptionFile(currentFps, actualDifficulty);
 	}
@@ -607,15 +619,15 @@ void showPowerPoint(sf::RenderWindow& window)
 std::string transformActualDifficultyIntoString(const int& actualDifficulty)
 {
 	std::string actualDifficultyInString = std::to_string(actualDifficulty);
-	if (actualDifficulty == 0)
+	if (actualDifficulty == NORMAL_MODE)
 	{
 		actualDifficultyInString = "Normal";
 	}
-	else if (actualDifficulty == 1)
+	else if (actualDifficulty == HARD_MODE)
 	{
 		actualDifficultyInString = "Hard";
 	}
-	else if (actualDifficulty == 2)
+	else if (actualDifficulty == EASY_MODE)
 	{
 		actualDifficultyInString = "Easy";
 	}
