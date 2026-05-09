@@ -143,7 +143,7 @@ void Game::checkDeath()
         _bgm.stop();
 
         _endGame = true;
-        insertStats(_nbPatterns, _startOfGameClock);
+        insertStats(_nbPatterns, _startOfGameClock, _actualDifficulty);
 
         _window.clear(sf::Color::Black);
 

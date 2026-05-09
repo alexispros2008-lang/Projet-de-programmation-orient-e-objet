@@ -70,7 +70,8 @@ void showMenu(sf::RenderWindow& window) {
 				showStats(window);
 			}
 
-			if (event.key.code == sf::Keyboard::H) {
+			if (event.key.code == sf::Keyboard::H) 
+			{
 				showHelp(window);
 			}
 
@@ -130,7 +131,26 @@ void iFrameAnimation(sf::RectangleShape& player, bool& hasIFrames)
 void showStats(sf::RenderWindow& window) {
 	
 	std::ifstream statsFile;
-	statsFile.open("save/stats.txt");
+
+	int currentFps = 60;
+	int actualDifficulty = 0;
+	readOptionFile(currentFps, actualDifficulty);
+
+	std::string actualDifficultyInString;
+	actualDifficultyInString = transformActualDifficultyIntoString(actualDifficulty);
+
+	if (actualDifficulty == 0)
+	{
+		statsFile.open("save/normalModeStats.txt");
+	}
+	else if (actualDifficulty == 1)
+	{
+		statsFile.open("save/hardModeStats.txt");
+	}
+	else
+	{
+		statsFile.open("save/easyModeStats.txt");
+	}
 
 	if (!statsFile) {
 		exit(1);
@@ -153,7 +173,7 @@ void showStats(sf::RenderWindow& window) {
 
 	sf::Text titleStatsText;
 	titleStatsText.setFont(menuFont);
-	titleStatsText.setString("Best statistics for every game played");
+	titleStatsText.setString("Best statistics for every game " + actualDifficultyInString + " played");
 	titleStatsText.setCharacterSize(20);
 	titleStatsText.setFillColor(sf::Color::White);
 	titleStatsText.setPosition(WINDOW_WIDTH / 2 - titleStatsText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 4 - titleStatsText.getGlobalBounds().height / 2);
@@ -162,8 +182,12 @@ void showStats(sf::RenderWindow& window) {
 	statisticText.setFont(menuFont);
 	statisticText.setString("Best number of pattern : " + numberOfPatternIntoString + "\n" +
 		"Best time in seconds : " + secondsSurvivedIntoString + "\n"
+		"\n\nPress B to put the game in easy mode.\n\n"
+		"Press N to put the game in normal mode.\n\n"
+		"Press M to put the game in hard mode.\n\n"
+		"Press Z to put the game in debug mode.\n\n"
 	);
-	statisticText.setCharacterSize(30);
+	statisticText.setCharacterSize(20);
 	statisticText.setFillColor(sf::Color::White);
 	statisticText.setPosition(WINDOW_WIDTH / 2 - statisticText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - statisticText.getGlobalBounds().height / 2 + 50);
 
@@ -175,17 +199,53 @@ void showStats(sf::RenderWindow& window) {
 		window.draw(statisticText);
 		window.display();
 
-		if (event.type == sf::Event::KeyPressed)
+		if (event.key.code == sf::Keyboard::Escape)
 		{
+			break;
+		}
+		if (event.key.code == sf::Keyboard::B)
+		{
+			actualDifficulty = 2;
+			writeCurrentOptionFile(currentFps, actualDifficulty);
+			break;
+		}
+		if (event.key.code == sf::Keyboard::N)
+		{
+			actualDifficulty = 0;
+			writeCurrentOptionFile(currentFps, actualDifficulty);
+			break;
+		}
+		if (event.key.code == sf::Keyboard::M)
+		{
+			actualDifficulty = 1;
+			writeCurrentOptionFile(currentFps, actualDifficulty);
+			break;
+		}
+		if (event.key.code == sf::Keyboard::Z)
+		{
+			actualDifficulty = 4;
+			writeCurrentOptionFile(currentFps, actualDifficulty);
 			break;
 		}
 	}
 }
 
-bool compareStats(int numberOfPattern, sf::Clock startOfGameClock)
+bool compareStats(int numberOfPattern, sf::Clock startOfGameClock, int actualDifficulty)
 {
 	std::ifstream statsFile;
-	statsFile.open("save/stats.txt");
+
+	if (actualDifficulty == 0)
+	{
+		statsFile.open("save/normalModeStats.txt");
+	}
+	else if (actualDifficulty == 1)
+	{
+		statsFile.open("save/hardModeStats.txt");
+	}
+	else
+	{
+		statsFile.open("save/easyModeStats.txt");
+	}
 
 	if (!statsFile) {
 		exit(1);
@@ -208,16 +268,28 @@ bool compareStats(int numberOfPattern, sf::Clock startOfGameClock)
 	}
 }
 
-void insertStats(int numberOfPattern, sf::Clock startOfGameClock)
+void insertStats(int numberOfPattern, sf::Clock startOfGameClock, int actualDifficulty)
 {
 	std::ofstream statsFile;
-	statsFile.open("save/stats.txt");
+	
+	if (actualDifficulty == 0)
+	{
+		statsFile.open("save/normalModeStats.txt");
+	}
+	else if (actualDifficulty == 1)
+	{
+		statsFile.open("save/hardModeStats.txt");
+	}
+	else
+	{
+		statsFile.open("save/easyModeStats.txt");
+	}
 
 	if (!statsFile) {
 		exit(1);
 	}
 
-	if (compareStats(numberOfPattern, startOfGameClock))
+	if (compareStats(numberOfPattern, startOfGameClock, actualDifficulty))
 	{
 		statsFile << numberOfPattern << " " << startOfGameClock.getElapsedTime().asSeconds();
 	}
@@ -273,18 +345,7 @@ void showOption(sf::RenderWindow& window) {
 		window.clear(sf::Color::Black);
 
 		std::string currentFpsInString = std::to_string(currentFps);
-		if (actualDifficulty == 0)
-		{
-			actualDifficultyInString = "Normal";
-		}
-		else if (actualDifficulty == 1)
-		{
-			actualDifficultyInString = "Hard";
-		}
-		else if (actualDifficulty == 2)
-		{
-			actualDifficultyInString = "Easy";
-		}
+		actualDifficultyInString = transformActualDifficultyIntoString(actualDifficulty);
 
 		sf::Font menuFont;
 		verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
@@ -300,6 +361,7 @@ void showOption(sf::RenderWindow& window) {
 			"Press B to put the game in easy mode.\n\n"
 			"Press N to put the game in normal mode.\n\n"
 			"Press M to put the game in hard mode.\n\n"
+			"Press Z to put the game in debug mode.\n\n"
 			"Press Escape to return to the menu."
 );
 		optionText.setCharacterSize(15);
@@ -333,6 +395,10 @@ void showOption(sf::RenderWindow& window) {
 		if (event.key.code == sf::Keyboard::M)
 		{
 			actualDifficulty = 1;
+		}
+		if (event.key.code == sf::Keyboard::Z)
+		{
+			actualDifficulty = 4;
 		}
 		writeCurrentOptionFile(currentFps, actualDifficulty);
 	}
@@ -543,4 +609,26 @@ void showPowerPoint(sf::RenderWindow& window)
 			clock.restart();
 		}
 	}
+}
+
+std::string transformActualDifficultyIntoString(const int& actualDifficulty)
+{
+	std::string actualDifficultyInString = std::to_string(actualDifficulty);
+	if (actualDifficulty == 0)
+	{
+		actualDifficultyInString = "Normal";
+	}
+	else if (actualDifficulty == 1)
+	{
+		actualDifficultyInString = "Hard";
+	}
+	else if (actualDifficulty == 2)
+	{
+		actualDifficultyInString = "Easy";
+	}
+	else
+	{
+		actualDifficultyInString = "Debug";
+	}
+	return actualDifficultyInString;
 }

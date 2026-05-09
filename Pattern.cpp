@@ -153,7 +153,7 @@ std::string Pattern::randomPatternFile(int actualDifficulty)
 	}
 	else if (actualDifficulty == 1)
 	{
-		randomNumberIntVersion = rand() % 19 + 1;
+		randomNumberIntVersion = rand() % 22 + 1;
 	}
 	else if (actualDifficulty == 2) 
 	{
@@ -161,7 +161,7 @@ std::string Pattern::randomPatternFile(int actualDifficulty)
 	}
 	else
 	{
-		randomNumberIntVersion = 19; //for pattern testing
+		randomNumberIntVersion = 22; //for pattern testing
 	}
 	std::string randomNumberStringVersion = std::to_string(randomNumberIntVersion);
 	return randomNumberStringVersion;
