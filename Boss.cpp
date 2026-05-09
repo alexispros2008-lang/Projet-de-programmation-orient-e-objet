@@ -30,12 +30,39 @@ void Boss::randomTextBoss(int randomEventText)
 {
 	if (_randomEventText == 1) 
 	{
-		_bossText.setString("Snow joke \n"
-			"here1...");
+		_bossText.setString("I'm snow\nexcited for\nwinter!");
 	}
 	else if (_randomEventText == 2)
 	{
-		_bossText.setString("Snow joke here2...");
+		_bossText.setString("Snow doubt\nabout it, I'm\nchillin'.");
+	}
+	else if (_randomEventText == 3)
+	{
+		_bossText.setString("Snow way,\nthat's\nhilarious!");
+	}
+	else if (_randomEventText == 4)
+	{
+		_bossText.setString("Snow excited\nto see\nyou!");
+	}
+	else if (_randomEventText == 5)
+	{
+		_bossText.setString("Snowbody\ncompares to\nyou.");
+	}
+	else if (_randomEventText == 6)
+	{
+		_bossText.setString("Chill vibes\nonly.");
+	}
+	else if (_randomEventText == 7)
+	{
+		_bossText.setString("Cold enough\nCold enough\nto pun yet?");
+	}
+	else if (_randomEventText == 8)
+	{
+		_bossText.setString("Snow kidding\naround.");
+	}
+	else if (_randomEventText == 9)
+	{
+		_bossText.setString("Ice to\nsee your\njokes.");
 	}
 }
 
@@ -51,7 +78,7 @@ sf::RectangleShape Boss::getBoss()
 		}
 		if (_timerForNextText.getElapsedTime() >= sf::seconds(20.f)) 
 		{
-			_randomEventText = rand() % 2 + 1;
+			_randomEventText = rand() % 9 + 1;
 			_timerForNextText.restart();
 			_bossText.setString(" ");
 			_boss.setTexture(&_bossTexture);
