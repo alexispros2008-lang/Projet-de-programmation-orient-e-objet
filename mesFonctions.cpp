@@ -130,69 +130,69 @@ void iFrameAnimation(sf::RectangleShape& player, bool& hasIFrames)
 
 void showStats(sf::RenderWindow& window) {
 	
-	std::ifstream statsFile;
-
-	int currentFps = 60;
-	int actualDifficulty = 0;
-	readOptionFile(currentFps, actualDifficulty);
-
-	std::string actualDifficultyInString;
-	actualDifficultyInString = transformActualDifficultyIntoString(actualDifficulty);
-
-	if (actualDifficulty == 0)
-	{
-		statsFile.open("save/normalModeStats.txt");
-	}
-	else if (actualDifficulty == 1)
-	{
-		statsFile.open("save/hardModeStats.txt");
-	}
-	else
-	{
-		statsFile.open("save/easyModeStats.txt");
-	}
-
-	if (!statsFile) {
-		exit(1);
-	}
-
-	int bestSecondsSurvived = 0;
-	int bestNumberOfPattern = 0;
-
-	statsFile >> bestNumberOfPattern >> bestSecondsSurvived;
-
-	statsFile.close();
-
-	std::string numberOfPatternIntoString = std::to_string(bestNumberOfPattern);
-	std::string secondsSurvivedIntoString = std::to_string(bestSecondsSurvived);
-
 	sf::Event event;
-
-	sf::Font menuFont;
-	verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
-
-	sf::Text titleStatsText;
-	titleStatsText.setFont(menuFont);
-	titleStatsText.setString("Best statistics for every game " + actualDifficultyInString + " played");
-	titleStatsText.setCharacterSize(20);
-	titleStatsText.setFillColor(sf::Color::White);
-	titleStatsText.setPosition(WINDOW_WIDTH / 2 - titleStatsText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 4 - titleStatsText.getGlobalBounds().height / 2);
-
-	sf::Text statisticText;
-	statisticText.setFont(menuFont);
-	statisticText.setString("Best number of pattern : " + numberOfPatternIntoString + "\n" +
-		"Best time in seconds : " + secondsSurvivedIntoString + "\n"
-		"\n\nPress B to put the game in easy mode.\n\n"
-		"Press N to put the game in normal mode.\n\n"
-		"Press M to put the game in hard mode.\n\n"
-		"Press Z to put the game in debug mode.\n\n"
-	);
-	statisticText.setCharacterSize(20);
-	statisticText.setFillColor(sf::Color::White);
-	statisticText.setPosition(WINDOW_WIDTH / 2 - statisticText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - statisticText.getGlobalBounds().height / 2 + 50);
 
 	while (window.waitEvent(event))
 	{
+		std::ifstream statsFile;
+
+		int currentFps = 60;
+		int actualDifficulty = 0;
+		readOptionFile(currentFps, actualDifficulty);
+
+		std::string actualDifficultyInString;
+		actualDifficultyInString = transformActualDifficultyIntoString(actualDifficulty);
+
+		if (actualDifficulty == 0)
+		{
+			statsFile.open("save/normalModeStats.txt");
+		}
+		else if (actualDifficulty == 1)
+		{
+			statsFile.open("save/hardModeStats.txt");
+		}
+		else
+		{
+			statsFile.open("save/easyModeStats.txt");
+		}
+
+		if (!statsFile) {
+			exit(1);
+		}
+
+		int bestSecondsSurvived = 0;
+		int bestNumberOfPattern = 0;
+
+		statsFile >> bestNumberOfPattern >> bestSecondsSurvived;
+
+		statsFile.close();
+
+		std::string numberOfPatternIntoString = std::to_string(bestNumberOfPattern);
+		std::string secondsSurvivedIntoString = std::to_string(bestSecondsSurvived);
+
+		sf::Font menuFont;
+		verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
+
+		sf::Text titleStatsText;
+		titleStatsText.setFont(menuFont);
+		titleStatsText.setString("Best statistics for every " + actualDifficultyInString + " game played");
+		titleStatsText.setCharacterSize(20);
+		titleStatsText.setFillColor(sf::Color::White);
+		titleStatsText.setPosition(WINDOW_WIDTH / 2 - titleStatsText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 4 - titleStatsText.getGlobalBounds().height / 2);
+
+		sf::Text statisticText;
+		statisticText.setFont(menuFont);
+		statisticText.setString("Best number of pattern : " + numberOfPatternIntoString + "\n" +
+			"Best time in seconds : " + secondsSurvivedIntoString + "\n"
+			"\n\nPress B to put the game in easy mode.\n\n"
+			"Press N to put the game in normal mode.\n\n"
+			"Press M to put the game in hard mode.\n\n"
+			"Press Z to put the game in debug mode.\n\n"
+		);
+		statisticText.setCharacterSize(20);
+		statisticText.setFillColor(sf::Color::White);
+		statisticText.setPosition(WINDOW_WIDTH / 2 - statisticText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - statisticText.getGlobalBounds().height / 2 + 50);
+
 		window.clear(sf::Color::Black);
 
 		window.draw(titleStatsText);
@@ -206,27 +206,20 @@ void showStats(sf::RenderWindow& window) {
 		if (event.key.code == sf::Keyboard::B)
 		{
 			actualDifficulty = 2;
-			writeCurrentOptionFile(currentFps, actualDifficulty);
-			break;
 		}
 		if (event.key.code == sf::Keyboard::N)
 		{
 			actualDifficulty = 0;
-			writeCurrentOptionFile(currentFps, actualDifficulty);
-			break;
 		}
 		if (event.key.code == sf::Keyboard::M)
 		{
 			actualDifficulty = 1;
-			writeCurrentOptionFile(currentFps, actualDifficulty);
-			break;
 		}
 		if (event.key.code == sf::Keyboard::Z)
 		{
 			actualDifficulty = 4;
-			writeCurrentOptionFile(currentFps, actualDifficulty);
-			break;
 		}
+		writeCurrentOptionFile(currentFps, actualDifficulty);
 	}
 }
 
