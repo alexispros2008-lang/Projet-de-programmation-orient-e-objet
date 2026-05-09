@@ -1,0 +1,9 @@
+// bulletType (spawner=4), x, y, moveSpeedX, moveSpeedY, angle, rotation, speed, lifetime. // bulletType, speed, angle, rotation, radius
+4 800 460 -30 0 0 0 2 5
+1 5 0 5 10
+4 790 460 -30 0 0 0 2 5
+1 5 0 5 10
+4 780 460 -30 0 0 0 2 5
+1 5 0 5 10
+4 770 460 -30 0 0 0 2 5
+1 5 0 5 10

@@ -5,6 +5,7 @@
 #include <vector>
 #include "Snowball.h"
 #include "mesConstantes.h"
+#include <string>
 
 Pattern::Pattern()
 {
@@ -59,6 +60,9 @@ void Pattern::readPaternFile(std::string paternFileName)
 	while (!paternFile.eof())
 	{
 		int bulletType = 0;
+		std::string comment;
+
+		std::getline(paternFile, comment); // Chaque fichier a une commentaire au 1er ligne
 	
 		paternFile >> bulletType;
 
@@ -100,9 +104,10 @@ void Pattern::readPaternFile(std::string paternFileName)
 		else
 		{
 			float rotation = 0;
+			sf::Vector2f moveSpeed;
 
-			paternFile >> position.x >> position.y >> angle >> rotation >> speed >> lifeTime;
-			Spawner tempSpawner(position, sf::Vector2f(0, 0), angle, rotation, speed, lifeTime);
+			paternFile >> position.x >> position.y >> moveSpeed.x >> moveSpeed.y >> angle >> rotation >> speed >> lifeTime;
+			Spawner tempSpawner(position, moveSpeed, angle, rotation, speed, lifeTime);
 
 			paternFile >> bulletType >> speed >> angle >> rotation >> radius;
 			sf::CircleShape tempBullet;
@@ -141,7 +146,8 @@ void Pattern::deleteOneSnowball(int snowballVectorPlace)
 
 std::string Pattern::randomPatternFile()
 {
-	int randomNumberIntVersion =  rand() % 17 + 1;
+	int randomNumberIntVersion =  rand() % 19 + 1;
+	//randomNumberIntVersion = 19; //for pattern testing
 	std::string randomNumberStringVersion = std::to_string(randomNumberIntVersion);
 	return randomNumberStringVersion;
 }

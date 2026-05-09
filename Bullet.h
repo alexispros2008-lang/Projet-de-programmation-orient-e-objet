@@ -11,6 +11,8 @@ class Bullet
 		int _bulletSpeed;
 		float _angle;
 		float _rotation; //speed of rotation
+		
+		sf::Clock bulletClock;
 	public:
 		Bullet();
 		Bullet(sf::CircleShape bulletCircle, int bulletSpeed, int radius, float angle, float rotation);

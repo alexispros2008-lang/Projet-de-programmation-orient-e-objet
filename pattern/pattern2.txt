@@ -1,3 +1,4 @@
+// bulletType, x, y, speed, angle, radius, lifetime
 0 600 285 4 180 10 1
 0 600 385 4 180 10 1
 0 600 485 4 180 10 1

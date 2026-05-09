@@ -1,1 +1,2 @@
+// bulletType, x, y, speed, angle, radius, lifetime
 1 300 700 4 90 100 2
