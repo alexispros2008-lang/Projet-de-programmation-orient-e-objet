@@ -30,6 +30,8 @@ private:
 
 	std::vector<sf::Keyboard::Key> _v_key;
 
+	int _nbPatterns = 0;
+
 public:
 	Game();
 	~Game();

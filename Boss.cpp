@@ -19,21 +19,19 @@ void Boss::initSpriteBoss()
 
 void Boss::initTextBoss()
 {
-	sf::Font textboxBossFont;
-	verificationFont(textboxBossFont, "fonts\\PixelOperator8-bold.ttf");
-	_bossText.setFont(textboxBossFont);
-	_bossText.setCharacterSize(30);
+	verificationFont(_textboxBossFont, "fonts\\PixelOperator8-bold.ttf");
+	_bossText.setFont(_textboxBossFont);
+	_bossText.setCharacterSize(12);
 	_bossText.setFillColor(sf::Color::Black);
-	_bossText.setPosition(50, 50);
-
-	_bossText.setString("Snow joke here...");
+	_bossText.setPosition(215, 140);
 }
 
 void Boss::randomTextBoss(int randomEventText)
 {
 	if (_randomEventText == 1) 
 	{
-		_bossText.setString("Snow joke here1...");
+		_bossText.setString("Snow joke \n"
+			"here1...");
 	}
 	else if (_randomEventText == 2)
 	{
@@ -55,7 +53,7 @@ sf::RectangleShape Boss::getBoss()
 		{
 			_randomEventText = rand() % 2 + 1;
 			_timerForNextText.restart();
-			_bossText.setString("");
+			_bossText.setString(" ");
 			_boss.setTexture(&_bossTexture);
 			_hasChanged = false;
 		}

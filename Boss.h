@@ -10,6 +10,8 @@ class Boss
 		bool _hasChanged = false;
 		sf::Texture _bossTexture;
 		sf::Texture _bossTextureWithText;
+		sf::Font _textboxBossFont;
+
 	public:
 		Boss();
 		void initSpriteBoss();

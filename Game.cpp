@@ -52,9 +52,6 @@ void Game::run()
 
 		menu();
 
-        //_spawner.summonBullet();
-        //_spawner.move();
-
         checkPattern();
         checkMovePlayer();
         checkArenaBounds();
@@ -147,7 +144,7 @@ void Game::checkDeath()
         _bgm.stop();
 
         _endGame = true;
-        insertStats(_patterns.size(), _startOfGameClock);
+        insertStats(_nbPatterns, _startOfGameClock);
 
         _window.clear(sf::Color::Black);
 
@@ -200,6 +197,7 @@ void Game::checkPattern()
             pattern.createPattern();
             _patterns.push_back(pattern);
             _patternClock.restart();
+            _nbPatterns++;
         }
 
         if (_patterns.size() >= 5)
@@ -258,8 +256,6 @@ void Game::checkPattern()
 
                     
                 }
-
-                
 				_patterns.at(i).getSpawners().at(j).summonBullet();
                 _patterns.at(i).getSpawners().at(j).turn();
 
@@ -271,9 +267,6 @@ void Game::checkPattern()
                     }
                 }
 			}
-
-            
-
             _patterns.at(i).resetPattern();
         }
     }
@@ -307,7 +300,8 @@ void Game::draw()
 {
     _window.clear();
 
-    _window.draw(_snowBoss.getBoss());    
+    _window.draw(_snowBoss.getBoss());  
+    _window.draw(_snowBoss.getBossText());
     _arena.drawOutlineArena(_window);
     _window.draw(_player.getPlayer());
     drawHealthBar();
