@@ -1,8 +1,6 @@
 #include "Game.h"
 #include "mesFonctions.h"
 
-//Optimisations a faire: IFrameClock qui compte pas pour infini (Gros nombre)
-
 Game::Game()
 {
 	_player = Player(sf::Vector2f(PLAYER_INIT_POSITION_X, PLAYER_INIT_POSITION_Y), sf::Vector2f(20, 20));
@@ -26,9 +24,6 @@ Game::~Game()
 void Game::run()
 {
     _window.setFramerateLimit(_currentFps);
-
-	//_spawner.setSpawner(sf::Vector2f(ARENA_POS_X + ARENA_WIDTH / 2, ARENA_POS_Y), 270, 1.0f, 1.f);
-	//_spawner.setTypeIce(Ice(sf::CircleShape(), 10, 10, 0.0f, 1.0f));
 
     sf::Event event;
     
@@ -275,12 +270,10 @@ void Game::checkPattern()
                         _player.setPlayerHealth(_player.getPlayerHealth() + 1);
                     }
 
-                    
                     _patterns.at(i).getSpawners().at(j).move();
                     _patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).bulletMovement();
-
-                    
                 }
+
 				_patterns.at(i).getSpawners().at(j).summonBullet();
                 _patterns.at(i).getSpawners().at(j).turn();
 
