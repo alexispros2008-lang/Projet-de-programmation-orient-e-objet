@@ -191,7 +191,7 @@ void Game::checkPattern()
             _patterns.at(_patterns.size() - 1).getSpawners().push_back(spawner);
         }
 
-        int lifeTimeMinus = 0;
+        float lifeTimeMinus = 0;
         int patternSize = 5;
 
         if (_actualDifficulty == CHAOS_MODE)
@@ -201,7 +201,7 @@ void Game::checkPattern()
         }
         else if (_actualDifficulty == SUPER_HARD_MODE)
         {
-            lifeTimeMinus = 2;
+            lifeTimeMinus = 1.5;
             patternSize = 10;
         }
         else
