@@ -50,7 +50,7 @@ void Spawner::move()
 	if (_shootSpeedClock.getElapsedTime() >= sf::seconds(_shootSpeed / 10))
 	{
 		_angle += _rotation;
-		sf::Vector2f movement(_speed.x * (cos(_angle * PI / 180) / 2), _speed.y * (sin(_angle * PI / 180) / 2)); //convertir angle en radians, mettre dans un vecteur
+		sf::Vector2f movement(_speed.x * ((cos(_angle * PI / 180) / 2) + 1), _speed.y * ((sin(_angle * PI / 180) / 2) + 1)); //convertir angle en radians, mettre dans un vecteur
 		_spawner.move(movement);
 	}
 }
