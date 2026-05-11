@@ -161,7 +161,7 @@ std::string Pattern::randomPatternFile(int actualDifficulty)
 	}
 	else if (actualDifficulty == DEBUG_MODE)
 	{
-		randomNumberIntVersion = 25;
+		randomNumberIntVersion = 26;
 	}
 	else if (actualDifficulty == CHAOS_MODE)
 	{
