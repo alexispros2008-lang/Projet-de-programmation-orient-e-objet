@@ -206,7 +206,7 @@ void Game::checkPattern()
         }
         else
         {
-            lifeTimeMinus = 0;
+            lifeTimeMinus = 1;
             patternSize = 5;
         }
 
