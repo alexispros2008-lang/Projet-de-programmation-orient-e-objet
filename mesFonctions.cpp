@@ -163,6 +163,10 @@ void showStats(sf::RenderWindow& window) {
 		{
 			statsFile.open("save/chaosModeStats.txt");
 		}
+		else if (actualDifficulty == SUPER_HARD_MODE)
+		{
+			statsFile.open("save/superHardModeStats.txt");
+		}
 
 		if (!statsFile) {
 			exit(1);
@@ -195,6 +199,7 @@ void showStats(sf::RenderWindow& window) {
 			"\n\nPress B to put the game in easy mode.\n\n"
 			"Press N to put the game in normal mode.\n\n"
 			"Press M to put the game in hard mode.\n\n"
+			"Press S to put the game in super hard mode.\n\n"
 			"Press C to put the game in chaos mode.\n\n"
 			"Press Z to put the game in debug mode.\n\n"
 		);
@@ -232,6 +237,10 @@ void showStats(sf::RenderWindow& window) {
 		{
 			actualDifficulty = DEBUG_MODE;
 		}
+		if (event.key.code == sf::Keyboard::S)
+		{
+			actualDifficulty = SUPER_HARD_MODE;
+		}
 		writeCurrentOptionFile(currentFps, actualDifficulty);
 	}
 }
@@ -259,6 +268,10 @@ bool compareStats(int numberOfPattern, sf::Clock startOfGameClock, int actualDif
 	else if (actualDifficulty == CHAOS_MODE)
 	{
 		statsFile.open("save/chaosModeStats.txt");
+	}
+	else if (actualDifficulty == SUPER_HARD_MODE)
+	{
+		statsFile.open("save/superHardModeStats.txt");
 	}
 
 	if (!statsFile) {
@@ -305,6 +318,10 @@ void insertStats(int numberOfPattern, sf::Clock startOfGameClock, int actualDiff
 	else if (actualDifficulty == CHAOS_MODE)
 	{
 		statsFile.open("save/chaosModeStats.txt");
+	}
+	else if (actualDifficulty == SUPER_HARD_MODE)
+	{
+		statsFile.open("save/superHardModeStats.txt");
 	}
 
 	if (!statsFile) {
@@ -381,6 +398,7 @@ void showOption(sf::RenderWindow& window) {
 			"Press B to put the game in easy mode.\n\n"
 			"Press N to put the game in normal mode.\n\n"
 			"Press M to put the game in hard mode.\n\n"
+			"Press S to put the game in super hard mode.\n\n"
 			"Press C to put the game in chaos mode.\n\n"
 			"Press Z to put the game in debug mode.\n\n"
 			"Press Escape to return to the menu."
@@ -420,6 +438,10 @@ void showOption(sf::RenderWindow& window) {
 		if (event.key.code == sf::Keyboard::C)
 		{
 			actualDifficulty = CHAOS_MODE;
+		}
+		if (event.key.code == sf::Keyboard::S)
+		{
+			actualDifficulty = SUPER_HARD_MODE;
 		}
 		if (event.key.code == sf::Keyboard::Z)
 		{
@@ -663,6 +685,10 @@ std::string transformActualDifficultyIntoString(const int& actualDifficulty)
 	else if (actualDifficulty == CHAOS_MODE)
 	{
 		actualDifficultyInString = "Chaos";
+	}
+	else if (actualDifficulty == SUPER_HARD_MODE)
+	{
+		actualDifficultyInString = "SHard";
 	}
 	return actualDifficultyInString;
 }

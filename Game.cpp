@@ -191,38 +191,37 @@ void Game::checkPattern()
             _patterns.at(_patterns.size() - 1).getSpawners().push_back(spawner);
         }
 
+        int lifeTimeMinus = 0;
+        int patternSize = 5;
+
         if (_actualDifficulty == CHAOS_MODE)
         {
-            if (_patternClock.getElapsedTime() > sf::seconds(_patterns.at(_patterns.size() - 1).getPatternLifeTime() - 5) && _patternClock.getElapsedTime().asSeconds() > _patterns.at(_patterns.size() - 1).getSpawners().at(_patterns.at(_patterns.size() - 1).getSpawners().size() - 1).getLifeTime() - 5)
-            {
-                Pattern pattern;
-                pattern.createPattern(_actualDifficulty);
-                _patterns.push_back(pattern);
-                _patternClock.restart();
-                _nbPatterns++;
-            }
-
-            if (_patterns.size() >= 50)
-            {
-                _patterns.erase(_patterns.begin());
-            }
+            lifeTimeMinus = 10;
+            patternSize = 50;
+        }
+        else if (_actualDifficulty == SUPER_HARD_MODE)
+        {
+            lifeTimeMinus = 2;
+            patternSize = 10;
+        }
+        else
+        {
+            lifeTimeMinus = 0;
+            patternSize = 5;
         }
 
-        else 
+        if (_patternClock.getElapsedTime() > sf::seconds(_patterns.at(_patterns.size() - 1).getPatternLifeTime() / lifeTimeMinus) && _patternClock.getElapsedTime().asSeconds() > _patterns.at(_patterns.size() - 1).getSpawners().at(_patterns.at(_patterns.size() - 1).getSpawners().size() - 1).getLifeTime() / lifeTimeMinus)
         {
-            if (_patternClock.getElapsedTime() > sf::seconds(_patterns.at(_patterns.size() - 1).getPatternLifeTime()) && _patternClock.getElapsedTime().asSeconds() > _patterns.at(_patterns.size() - 1).getSpawners().at(_patterns.at(_patterns.size() - 1).getSpawners().size() - 1).getLifeTime() + 1)
-            {
-                Pattern pattern;
-                pattern.createPattern(_actualDifficulty);
-                _patterns.push_back(pattern);
-                _patternClock.restart();
-                _nbPatterns++;
-            }
+            Pattern pattern;
+            pattern.createPattern(_actualDifficulty);
+            _patterns.push_back(pattern);
+            _patternClock.restart();
+            _nbPatterns++;
+        }
 
-            if (_patterns.size() >= 5)
-            {
-                _patterns.erase(_patterns.begin());
-            }
+        if (_patterns.size() >= patternSize)
+        {
+            _patterns.erase(_patterns.begin());
         }
 
         for (int i = 0; i < _patterns.size(); i++)

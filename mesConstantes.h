@@ -28,6 +28,7 @@ const int NORMAL_MODE = 0;
 const int HARD_MODE = 1;
 const int CHAOS_MODE = 4;
 const int DEBUG_MODE = 5;
+const int SUPER_HARD_MODE = 6;
 
 const float IFRAME_DURATION = 1.0f;
 
