@@ -223,15 +223,18 @@ void Game::checkPattern()
         {
             for (int j = 0; j < _patterns.at(i).getPattern().size(); j++) {
 
-                if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getPattern()[j].getBullet().getBulletBounds()) && !_player.hasIFrames())
+                if (_actualDifficulty != DEBUG_MODE)
                 {
-                    if (_patterns.at(i).getPattern()[j].checkBlue() && _player.getPlayerSpeed() != 0 || _patterns.at(i).getPattern()[j].checkOrange() && _player.getPlayerSpeed() == 0)
+                    if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getPattern()[j].getBullet().getBulletBounds()) && !_player.hasIFrames())
                     {
-                        _player.takeDamage(1);
-                    }
-                    else if (_patterns.at(i).getPattern()[j].checkWhite())
-                    {
-                        _player.takeDamage(1);
+                        if (_patterns.at(i).getPattern()[j].checkBlue() && _player.getPlayerSpeed() != 0 || _patterns.at(i).getPattern()[j].checkOrange() && _player.getPlayerSpeed() == 0)
+                        {
+                            _player.takeDamage(1);
+                        }
+                        else if (_patterns.at(i).getPattern()[j].checkWhite())
+                        {
+                            _player.takeDamage(1);
+                        }
                     }
                 }
                 if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getPattern()[j].getBullet().getBulletBounds()) && _player.getPlayerHealth() < PLAYER_HP && _patterns.at(i).getPattern()[j].checkGreen())
@@ -246,15 +249,18 @@ void Game::checkPattern()
             {
                 for (int k = 0; k < _patterns.at(i).getSpawners().at(j).getSnowBullets().size(); k++)
                 {
-                    if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).getBullet().getBulletBounds()) && !_player.hasIFrames())
+                    if (_actualDifficulty != DEBUG_MODE)
                     {
-                        if (_patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).checkBlue() && _player.getPlayerSpeed() != 0 || _patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).checkOrange() && _player.getPlayerSpeed() == 0)
+                        if (checkBoundingBox(_player.getPlayerBounds(), _patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).getBullet().getBulletBounds()) && !_player.hasIFrames())
                         {
-                            _player.takeDamage(1);
-                        }
-                        else if (_patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).checkWhite())
-                        {
-                            _player.takeDamage(1);
+                            if (_patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).checkBlue() && _player.getPlayerSpeed() != 0 || _patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).checkOrange() && _player.getPlayerSpeed() == 0)
+                            {
+                                _player.takeDamage(1);
+                            }
+                            else if (_patterns.at(i).getSpawners().at(j).getSnowBullets().at(k).checkWhite())
+                            {
+                                _player.takeDamage(1);
+                            }
                         }
                     }
 
