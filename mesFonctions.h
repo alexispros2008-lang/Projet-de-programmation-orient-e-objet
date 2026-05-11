@@ -6,7 +6,7 @@ void verificationFont(sf::Font& font, std::string pathFont);
 bool checkBoundingBox(sf::FloatRect, sf::FloatRect);
 void showMenu(sf::RenderWindow& window);
 void iFrameAnimation(sf::RectangleShape& player, bool& hasIFrames);
-void showHelp(sf::RenderWindow& window);
+void showCredits(sf::RenderWindow& window);
 void insertStats(int numberOfPattern, sf::Clock startOfGameClock, int actualDifficulty);
 bool compareStats(int numberOfPattern, sf::Clock startOfGameClock, int actualDifficulty);
 void readOptionFile(int& currentFps, int& actualDifficulty);

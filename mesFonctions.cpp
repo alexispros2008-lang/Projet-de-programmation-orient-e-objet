@@ -43,7 +43,7 @@ void showMenu(sf::RenderWindow& window) {
 	menuText.setString("Undertale Boss Fight\n\n\n"
 		"Press Enter to Play\n\n"
 		"Press Space for Statistics\n\n"
-		"Press H for Help\n\n"
+		"Press H for Credits\n\n"
 		"Press C for Option\n\n"
 		"Press T for Tutorial\n\n"
 		"Press P for PowerPoint\n\n"
@@ -72,7 +72,7 @@ void showMenu(sf::RenderWindow& window) {
 
 			if (event.key.code == sf::Keyboard::H) 
 			{
-				showHelp(window);
+				showCredits(window);
 			}
 
 			if (event.key.code == sf::Keyboard::C)
@@ -321,29 +321,27 @@ void insertStats(int numberOfPattern, sf::Clock startOfGameClock, int actualDiff
 
 
 
-void showHelp(sf::RenderWindow& window) {
+void showCredits(sf::RenderWindow& window) {
 
 	sf::Font menuFont;
 	verificationFont(menuFont, "fonts\\PixelOperator8-bold.ttf");
 
-	sf::Text helpText;
-	helpText.setFont(menuFont);
-	helpText.setString("Use the arrow keys to move.\n"
-		"Survive for as many patterns as you can!\n"
-		"Blue bullets will hit you if you move.\n"
-		"Orange bullets will hit you if you stay still.\n\n"
-		"Press Escape to return to the menu."
+	sf::Text creditText;
+	creditText.setFont(menuFont);
+	creditText.setString("Made by :\n"
+		"Nicolas Buldakov\n"
+		"Alexis Provencher"
 	);
-	helpText.setCharacterSize(17.5f);
-	helpText.setFillColor(sf::Color::White);
-	helpText.setPosition(WINDOW_WIDTH / 2 - helpText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - helpText.getGlobalBounds().height / 2);
+	creditText.setCharacterSize(45.5f);
+	creditText.setFillColor(sf::Color::White);
+	creditText.setPosition(WINDOW_WIDTH / 2 - creditText.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - creditText.getGlobalBounds().height / 2);
 
 	sf::Event event;
 	while (window.waitEvent(event))
 	{
 		window.clear(sf::Color::Black);
 
-		window.draw(helpText);
+		window.draw(creditText);
 
 		window.display();
 
@@ -477,6 +475,8 @@ void showTutorial(sf::RenderWindow& window)
 	verificationTexture(tutorialTexture4, "images\\tutorial\\4.png");
 	static sf::Texture tutorialTexture5;
 	verificationTexture(tutorialTexture5, "images\\tutorial\\5.png");
+	static sf::Texture tutorialTexture6;
+	verificationTexture(tutorialTexture6, "images\\tutorial\\6.png");
 
 	while (window.waitEvent(event))
 	{
@@ -497,6 +497,9 @@ void showTutorial(sf::RenderWindow& window)
 		else if (actualTutorial == 4) {
 			tutorialInfo.setTexture(&tutorialTexture5);
 		}
+		else if (actualTutorial == 5) {
+			tutorialInfo.setTexture(&tutorialTexture6);
+		}
 		window.draw(tutorialInfo);
 		window.display();
 
@@ -511,7 +514,7 @@ void showTutorial(sf::RenderWindow& window)
 			}
 			if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Right)
 			{
-				if (actualTutorial != 4)
+				if (actualTutorial != 5)
 				{
 					actualTutorial = actualTutorial + 1;
 				}
