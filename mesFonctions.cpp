@@ -155,9 +155,13 @@ void showStats(sf::RenderWindow& window) {
 		{
 			statsFile.open("save/easyModeStats.txt");
 		}
-		else
+		else if (actualDifficulty == DEBUG_MODE)
 		{
 			statsFile.open("save/debugModeStats.txt");
+		}
+		else if (actualDifficulty == CHAOS_MODE)
+		{
+			statsFile.open("save/chaosModeStats.txt");
 		}
 
 		if (!statsFile) {
@@ -191,6 +195,7 @@ void showStats(sf::RenderWindow& window) {
 			"\n\nPress B to put the game in easy mode.\n\n"
 			"Press N to put the game in normal mode.\n\n"
 			"Press M to put the game in hard mode.\n\n"
+			"Press C to put the game in chaos mode.\n\n"
 			"Press Z to put the game in debug mode.\n\n"
 		);
 		statisticText.setCharacterSize(20);
@@ -209,19 +214,23 @@ void showStats(sf::RenderWindow& window) {
 		}
 		if (event.key.code == sf::Keyboard::B)
 		{
-			actualDifficulty = 2;
+			actualDifficulty = EASY_MODE;
 		}
 		if (event.key.code == sf::Keyboard::N)
 		{
-			actualDifficulty = 0;
+			actualDifficulty = NORMAL_MODE;
 		}
 		if (event.key.code == sf::Keyboard::M)
 		{
-			actualDifficulty = 1;
+			actualDifficulty = HARD_MODE;
+		}
+		if (event.key.code == sf::Keyboard::C)
+		{
+			actualDifficulty = CHAOS_MODE;
 		}
 		if (event.key.code == sf::Keyboard::Z)
 		{
-			actualDifficulty = 4;
+			actualDifficulty = DEBUG_MODE;
 		}
 		writeCurrentOptionFile(currentFps, actualDifficulty);
 	}
@@ -243,9 +252,13 @@ bool compareStats(int numberOfPattern, sf::Clock startOfGameClock, int actualDif
 	{
 		statsFile.open("save/easyModeStats.txt");
 	}
-	else
+	else if (actualDifficulty == DEBUG_MODE)
 	{
 		statsFile.open("save/debugModeStats.txt");
+	}
+	else if (actualDifficulty == CHAOS_MODE)
+	{
+		statsFile.open("save/chaosModeStats.txt");
 	}
 
 	if (!statsFile) {
@@ -285,9 +298,13 @@ void insertStats(int numberOfPattern, sf::Clock startOfGameClock, int actualDiff
 	{
 		statsFile.open("save/easyModeStats.txt");
 	}
-	else
+	else if (actualDifficulty == DEBUG_MODE)
 	{
 		statsFile.open("save/debugModeStats.txt");
+	}
+	else if (actualDifficulty == CHAOS_MODE)
+	{
+		statsFile.open("save/chaosModeStats.txt");
 	}
 
 	if (!statsFile) {
@@ -366,6 +383,7 @@ void showOption(sf::RenderWindow& window) {
 			"Press B to put the game in easy mode.\n\n"
 			"Press N to put the game in normal mode.\n\n"
 			"Press M to put the game in hard mode.\n\n"
+			"Press C to put the game in chaos mode.\n\n"
 			"Press Z to put the game in debug mode.\n\n"
 			"Press Escape to return to the menu."
 );
@@ -400,6 +418,10 @@ void showOption(sf::RenderWindow& window) {
 		if (event.key.code == sf::Keyboard::M)
 		{
 			actualDifficulty = HARD_MODE;
+		}
+		if (event.key.code == sf::Keyboard::C)
+		{
+			actualDifficulty = CHAOS_MODE;
 		}
 		if (event.key.code == sf::Keyboard::Z)
 		{
@@ -631,9 +653,13 @@ std::string transformActualDifficultyIntoString(const int& actualDifficulty)
 	{
 		actualDifficultyInString = "Easy";
 	}
-	else
+	else if (actualDifficulty == DEBUG_MODE)
 	{
 		actualDifficultyInString = "Debug";
+	}
+	else if (actualDifficulty == CHAOS_MODE)
+	{
+		actualDifficultyInString = "Chaos";
 	}
 	return actualDifficultyInString;
 }

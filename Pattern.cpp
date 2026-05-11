@@ -163,6 +163,10 @@ std::string Pattern::randomPatternFile(int actualDifficulty)
 	{
 		randomNumberIntVersion = 25;
 	}
+	else if (actualDifficulty == CHAOS_MODE)
+	{
+		randomNumberIntVersion = rand() % 25 + 1;
+	}
 	std::string randomNumberStringVersion = std::to_string(randomNumberIntVersion);
 	return randomNumberStringVersion;
 }

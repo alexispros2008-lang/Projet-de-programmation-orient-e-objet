@@ -26,7 +26,8 @@ const int PLAYER_INIT_POSITION_Y = ARENA_POS_Y + ARENA_HEIGHT / 2;
 const int EASY_MODE = 2;
 const int NORMAL_MODE = 0;
 const int HARD_MODE = 1;
-const int DEBUG_MODE = 4;
+const int CHAOS_MODE = 4;
+const int DEBUG_MODE = 5;
 
 const float IFRAME_DURATION = 1.0f;
 
