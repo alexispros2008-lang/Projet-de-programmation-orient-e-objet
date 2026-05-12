@@ -200,7 +200,7 @@ void showStats(sf::RenderWindow& window) {
 			"Press N to put the game in normal mode.\n\n"
 			"Press M to put the game in hard mode.\n\n"
 			"Press S to put the game in super hard mode.\n\n"
-			"Press C to put the game in chaos mode.\n\n"
+			"Press J to put the game in chaos mode.\n\n"
 			"Press Z to put the game in debug mode.\n\n"
 		);
 		statisticText.setCharacterSize(20);
@@ -229,7 +229,7 @@ void showStats(sf::RenderWindow& window) {
 		{
 			actualDifficulty = HARD_MODE;
 		}
-		if (event.key.code == sf::Keyboard::C)
+		if (event.key.code == sf::Keyboard::J)
 		{
 			actualDifficulty = CHAOS_MODE;
 		}
@@ -399,7 +399,7 @@ void showOption(sf::RenderWindow& window) {
 			"Press N to put the game in normal mode.\n\n"
 			"Press M to put the game in hard mode.\n\n"
 			"Press S to put the game in super hard mode.\n\n"
-			"Press C to put the game in chaos mode.\n\n"
+			"Press J to put the game in chaos mode.\n\n"
 			"Press Z to put the game in debug mode.\n\n"
 			"Press Escape to return to the menu."
 );
@@ -435,7 +435,7 @@ void showOption(sf::RenderWindow& window) {
 		{
 			actualDifficulty = HARD_MODE;
 		}
-		if (event.key.code == sf::Keyboard::C)
+		if (event.key.code == sf::Keyboard::J)
 		{
 			actualDifficulty = CHAOS_MODE;
 		}
