@@ -153,7 +153,7 @@ std::string Pattern::randomPatternFile(int actualDifficulty)
 	}
 	else if (actualDifficulty == HARD_MODE)
 	{
-		randomNumberIntVersion = rand() % 25 + 1;
+		randomNumberIntVersion = rand() % 26 + 1;
 	}
 	else if (actualDifficulty == EASY_MODE)
 	{
@@ -165,11 +165,11 @@ std::string Pattern::randomPatternFile(int actualDifficulty)
 	}
 	else if (actualDifficulty == CHAOS_MODE)
 	{
-		randomNumberIntVersion = rand() % 25 + 1;
+		randomNumberIntVersion = rand() % 26 + 1;
 	}
 	else if (actualDifficulty == SUPER_HARD_MODE)
 	{
-		randomNumberIntVersion = rand() % 25 + 1;
+		randomNumberIntVersion = rand() % 26 + 1;
 	}
 	std::string randomNumberStringVersion = std::to_string(randomNumberIntVersion);
 	return randomNumberStringVersion;
